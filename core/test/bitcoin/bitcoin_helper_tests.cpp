@@ -30,7 +30,7 @@
  */
 
 #include <gtest/gtest.h>
-#include <api/BitcoinLikeHelper.hpp>
+#include <ledger-core-source-api/api/BitcoinLikeHelper.hpp>
 
 using namespace ledger::core::api;
 

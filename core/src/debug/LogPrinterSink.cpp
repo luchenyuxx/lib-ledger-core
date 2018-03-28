@@ -29,7 +29,7 @@
  *
  */
 #include "LogPrinterSink.hpp"
-#include "../api/ExecutionContext.hpp"
+#include "../ledger-core-source-api/api/ExecutionContext.hpp"
 #include "../utils/LambdaRunnable.hpp"
 
 namespace ledger {

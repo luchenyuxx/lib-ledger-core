@@ -33,14 +33,14 @@
 
 #include <string>
 #include <utils/Option.hpp>
-#include <api/HttpClient.hpp>
-#include <api/WebSocketClient.hpp>
-#include <api/PathResolver.hpp>
-#include <api/LogPrinter.hpp>
-#include <api/ThreadDispatcher.hpp>
-#include <api/RandomNumberGenerator.hpp>
-#include <api/DatabaseBackend.hpp>
-#include <api/WalletPoolCallback.hpp>
+#include <ledger-core-source-api/api/HttpClient.hpp>
+#include <ledger-core-source-api/api/WebSocketClient.hpp>
+#include <ledger-core-source-api/api/PathResolver.hpp>
+#include <ledger-core-source-api/api/LogPrinter.hpp>
+#include <ledger-core-source-api/api/ThreadDispatcher.hpp>
+#include <ledger-core-source-api/api/RandomNumberGenerator.hpp>
+#include <ledger-core-source-api/api/DatabaseBackend.hpp>
+#include <ledger-core-source-api/api/WalletPoolCallback.hpp>
 
 #include <memory>
 #include <unordered_map>
@@ -48,7 +48,7 @@
 #include <net/HttpClient.hpp>
 #include <async/DedicatedContext.hpp>
 #include <preferences/Preferences.hpp>
-#include <api/DynamicObject.hpp>
+#include <ledger-core-source-api/api/DynamicObject.hpp>
 #include <database/DatabaseSessionPool.hpp>
 #include <collections/DynamicObject.hpp>
 #include <wallet/bitcoin/factories/BitcoinLikeWalletFactory.hpp>

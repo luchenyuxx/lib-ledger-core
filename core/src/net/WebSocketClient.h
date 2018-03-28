@@ -32,8 +32,8 @@
 #ifndef LEDGER_CORE_WEBSOCKETCLIENT_H
 #define LEDGER_CORE_WEBSOCKETCLIENT_H
 
-#include <api/WebSocketClient.hpp>
-#include <api/WebSocketConnection.hpp>
+#include <ledger-core-source-api/api/WebSocketClient.hpp>
+#include <ledger-core-source-api/api/WebSocketConnection.hpp>
 #include <async/Future.hpp>
 
 namespace ledger {

@@ -31,8 +31,8 @@
 #ifndef LEDGER_CORE_MONGOOSEHTTPCLIENT_HPP
 #define LEDGER_CORE_MONGOOSEHTTPCLIENT_HPP
 
-#include <ledger/core/api/HttpClient.hpp>
-#include <ledger/core/api/ExecutionContext.hpp>
+#include <ledger/core/ledger-core-source-api/api/HttpClient.hpp>
+#include <ledger/core/ledger-core-source-api/api/ExecutionContext.hpp>
 #include "mongoose.h"
 #include <memory>
 

@@ -31,9 +31,9 @@
 #ifndef LEDGER_CORE_DYNAMICARRAY_HPP
 #define LEDGER_CORE_DYNAMICARRAY_HPP
 
-#include "../api/DynamicArray.hpp"
-#include "../api/DynamicObject.hpp"
-#include "../api/DynamicType.hpp"
+#include "../ledger-core-source-api/api/DynamicArray.hpp"
+#include "../ledger-core-source-api/api/DynamicObject.hpp"
+#include "../ledger-core-source-api/api/DynamicType.hpp"
 #include <cereal/cereal.hpp>
 #include <cereal/types/vector.hpp>
 #include "../collections/collections.hpp"

@@ -33,7 +33,7 @@
 
 #include "BitcoinLikeBlockchainExplorer.hpp"
 
-#include <api/BitcoinLikeNetworkParameters.hpp>
+#include <ledger-core-source-api/api/BitcoinLikeNetworkParameters.hpp>
 #include <collections/collections.hpp>
 #include <async/Future.hpp>
 #include <net/HttpClient.hpp>

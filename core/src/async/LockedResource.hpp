@@ -32,7 +32,7 @@
 #define LEDGER_CORE_LOCKEDRESOURCE_HPP
 
 #include <memory>
-#include "../api/Lock.hpp"
+#include "../ledger-core-source-api/api/Lock.hpp"
 
 namespace ledger {
     namespace core {

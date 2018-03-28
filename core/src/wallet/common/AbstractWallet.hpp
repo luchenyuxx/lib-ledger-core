@@ -31,24 +31,24 @@
 #ifndef LEDGER_CORE_ABSTRACTWALLET_HPP
 #define LEDGER_CORE_ABSTRACTWALLET_HPP
 
-#include <src/api/Wallet.hpp>
-#include <src/api/Currency.hpp>
-#include <src/api/Account.hpp>
+#include <src/ledger-core-source-api/api/Wallet.hpp>
+#include <src/ledger-core-source-api/api/Currency.hpp>
+#include <src/ledger-core-source-api/api/Account.hpp>
 #include <src/preferences/Preferences.hpp>
 #include <src/async/DedicatedContext.hpp>
 #include <src/events/EventPublisher.hpp>
 #include <src/debug/logger.hpp>
-#include <src/api/WalletType.hpp>
+#include <src/ledger-core-source-api/api/WalletType.hpp>
 #include <src/database/DatabaseSessionPool.hpp>
 #include <collections/DynamicObject.hpp>
 #include <utils/DerivationScheme.hpp>
-#include <api/AccountCreationInfo.hpp>
-#include <api/ExtendedKeyAccountCreationInfo.hpp>
-#include <api/AccountCreationInfoCallback.hpp>
-#include <api/ExtendedKeyAccountCreationInfoCallback.hpp>
-#include <api/AccountCallback.hpp>
-#include <api/Block.hpp>
-#include <api/BlockCallback.hpp>
+#include <ledger-core-source-api/api/AccountCreationInfo.hpp>
+#include <ledger-core-source-api/api/ExtendedKeyAccountCreationInfo.hpp>
+#include <ledger-core-source-api/api/AccountCreationInfoCallback.hpp>
+#include <ledger-core-source-api/api/ExtendedKeyAccountCreationInfoCallback.hpp>
+#include <ledger-core-source-api/api/AccountCallback.hpp>
+#include <ledger-core-source-api/api/Block.hpp>
+#include <ledger-core-source-api/api/BlockCallback.hpp>
 
 namespace ledger {
     namespace core {

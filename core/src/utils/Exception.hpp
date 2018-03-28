@@ -33,8 +33,8 @@
 
 #include <exception>
 #include <string>
-#include "../api/ErrorCode.hpp"
-#include "../api/Error.hpp"
+#include "../ledger-core-source-api/api/ErrorCode.hpp"
+#include "../ledger-core-source-api/api/Error.hpp"
 #include "../utils/Option.hpp"
 #include <memory>
 #include <fmt/format.h>

@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_IMMEDIATEEXECUTIONCONTEXT_HPP
 #define LEDGER_CORE_IMMEDIATEEXECUTIONCONTEXT_HPP
 
-#include "../api/ExecutionContext.hpp"
+#include "../ledger-core-source-api/api/ExecutionContext.hpp"
 
 namespace ledger {
     namespace core {

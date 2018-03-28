@@ -32,9 +32,9 @@
 #define LEDGER_CORE_BITCOINLIKEBLOCKCHAINOBSERVER_HPP
 
 #include <async/DedicatedContext.hpp>
-#include <api/Currency.hpp>
-#include <api/ExecutionContext.hpp>
-#include <api/DynamicObject.hpp>
+#include <ledger-core-source-api/api/Currency.hpp>
+#include <ledger-core-source-api/api/ExecutionContext.hpp>
+#include <ledger-core-source-api/api/DynamicObject.hpp>
 #include <debug/logger.hpp>
 #include <wallet/bitcoin/explorers/BitcoinLikeBlockchainExplorer.hpp>
 

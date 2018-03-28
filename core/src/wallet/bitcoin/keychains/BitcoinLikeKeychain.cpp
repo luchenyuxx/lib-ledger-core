@@ -29,7 +29,7 @@
  *
  */
 
-#include <api/Currency.hpp>
+#include <ledger-core-source-api/api/Currency.hpp>
 #include "BitcoinLikeKeychain.hpp"
 
 namespace ledger {

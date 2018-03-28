@@ -30,7 +30,7 @@
  */
 
 #include "QtWebSocketClient.h"
-#include <api/ErrorCode.hpp>
+#include <ledger-core-source-api/api/ErrorCode.hpp>
 
 using namespace ledger::core;
 

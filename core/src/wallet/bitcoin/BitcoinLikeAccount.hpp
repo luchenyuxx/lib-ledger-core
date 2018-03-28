@@ -32,19 +32,19 @@
 #define LEDGER_CORE_BITCOINLIKEACCOUNT_HPP
 
 #include "BitcoinLikeWallet.hpp"
-#include <api/BitcoinLikeAccount.hpp>
+#include <ledger-core-source-api/api/BitcoinLikeAccount.hpp>
 #include "explorers/BitcoinLikeBlockchainExplorer.hpp"
 #include <wallet/bitcoin/keychains/BitcoinLikeKeychain.hpp>
 #include <soci.h>
 #include <preferences/Preferences.hpp>
 #include <wallet/common/AbstractAccount.hpp>
-#include <api/Amount.hpp>
-#include <api/AmountCallback.hpp>
-#include <api/OperationListCallback.hpp>
-#include <api/BitcoinLikeOutput.hpp>
-#include <api/BitcoinLikePickingStrategy.hpp>
-#include <api/BitcoinLikeTransactionRequest.hpp>
-#include <api/BitcoinLikePreparedTransaction.hpp>
+#include <ledger-core-source-api/api/Amount.hpp>
+#include <ledger-core-source-api/api/AmountCallback.hpp>
+#include <ledger-core-source-api/api/OperationListCallback.hpp>
+#include <ledger-core-source-api/api/BitcoinLikeOutput.hpp>
+#include <ledger-core-source-api/api/BitcoinLikePickingStrategy.hpp>
+#include <ledger-core-source-api/api/BitcoinLikeTransactionRequest.hpp>
+#include <ledger-core-source-api/api/BitcoinLikePreparedTransaction.hpp>
 
 namespace ledger {
     namespace core {

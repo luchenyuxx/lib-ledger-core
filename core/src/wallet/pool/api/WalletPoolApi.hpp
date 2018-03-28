@@ -31,9 +31,9 @@
 #ifndef LEDGER_CORE_WALLETPOOL_API_HPP
 #define LEDGER_CORE_WALLETPOOL_API_HPP
 
-#include <api/WalletPool.hpp>
+#include <ledger-core-source-api/api/WalletPool.hpp>
 #include <wallet/pool/WalletPool.hpp>
-#include <api/WalletPoolCallback.hpp>
+#include <ledger-core-source-api/api/WalletPoolCallback.hpp>
 #include <debug/LoggerApi.hpp>
 
 namespace ledger {

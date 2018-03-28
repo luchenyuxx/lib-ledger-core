@@ -30,11 +30,11 @@
  */
 #include "WalletPoolApi.hpp"
 #include <async/Future.hpp>
-#include <api/WalletCallback.hpp>
-#include <api/I32Callback.hpp>
-#include <api/CurrencyListCallback.hpp>
-#include <api/CurrencyCallback.hpp>
-#include <api/WalletListCallback.hpp>
+#include <ledger-core-source-api/api/WalletCallback.hpp>
+#include <ledger-core-source-api/api/I32Callback.hpp>
+#include <ledger-core-source-api/api/CurrencyListCallback.hpp>
+#include <ledger-core-source-api/api/CurrencyCallback.hpp>
+#include <ledger-core-source-api/api/WalletListCallback.hpp>
 
 namespace ledger {
     namespace core {

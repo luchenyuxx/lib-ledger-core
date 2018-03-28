@@ -31,7 +31,7 @@
 
 #include <gtest/gtest.h>
 #include <database/query/QueryFilter.h>
-#include <api/TrustLevel.hpp>
+#include <ledger-core-source-api/api/TrustLevel.hpp>
 
 using namespace ledger::core;
 

@@ -31,12 +31,12 @@
 #ifndef LEDGER_CORE_HTTPCLIENT_HPP
 #define LEDGER_CORE_HTTPCLIENT_HPP
 
-#include "../api/HttpClient.hpp"
-#include "../api/HttpMethod.hpp"
-#include "../api/HttpRequest.hpp"
-#include "../api/HttpUrlConnection.hpp"
-#include "../api/HttpReadBodyResult.hpp"
-#include "../api/ExecutionContext.hpp"
+#include "ledger-core-source-api/api/HttpClient.hpp"
+#include "ledger-core-source-api/api/HttpMethod.hpp"
+#include "ledger-core-source-api/api/HttpRequest.hpp"
+#include "ledger-core-source-api/api/HttpUrlConnection.hpp"
+#include "ledger-core-source-api/api/HttpReadBodyResult.hpp"
+#include "ledger-core-source-api/api/ExecutionContext.hpp"
 #include "../utils/optional.hpp"
 #include <unordered_map>
 #include <memory>

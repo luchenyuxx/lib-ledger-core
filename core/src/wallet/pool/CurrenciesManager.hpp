@@ -32,7 +32,7 @@
 #define LEDGER_CORE_CURRENCIESMANAGER_HPP
 
 #include <async/DedicatedContext.hpp>
-#include <api/Currency.hpp>
+#include <ledger-core-source-api/api/Currency.hpp>
 #include "WalletPool.hpp"
 
 namespace ledger {

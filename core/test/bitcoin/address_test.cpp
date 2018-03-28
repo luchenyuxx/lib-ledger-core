@@ -30,12 +30,12 @@
  */
 
 #include <gtest/gtest.h>
-#include <ledger/core/api/BitcoinLikeAddress.hpp>
-#include <ledger/core/api/BitcoinLikeNetworkParameters.hpp>
+#include <ledger/core/ledger-core-source-api/api/BitcoinLikeAddress.hpp>
+#include <ledger/core/ledger-core-source-api/api/BitcoinLikeNetworkParameters.hpp>
 #include <ledger/core/utils/hex.h>
-#include <ledger/core/api/BitcoinLikeExtendedPublicKey.hpp>
+#include <ledger/core/ledger-core-source-api/api/BitcoinLikeExtendedPublicKey.hpp>
 #include <ledger/core/utils/optional.hpp>
-#include <ledger/core/api/Networks.hpp>
+#include <ledger/core/ledger-core-source-api/api/Networks.hpp>
 
 std::vector<std::vector<std::string>> fixtures = {
         {"010966776006953D5567439E5E39F86A0D273BEE", "16UwLL9Risc3QfPqBUvKofHmBQ7wMtjvM", "00"},

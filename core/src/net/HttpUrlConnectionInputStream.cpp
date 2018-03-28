@@ -30,7 +30,7 @@
  */
 #include "HttpUrlConnectionInputStream.hpp"
 #include "../utils/Exception.hpp"
-#include "../api/HttpReadBodyResult.hpp"
+#include "../ledger-core-source-api/api/HttpReadBodyResult.hpp"
 
 namespace ledger {
     namespace core {

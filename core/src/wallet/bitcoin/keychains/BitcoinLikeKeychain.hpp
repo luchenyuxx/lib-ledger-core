@@ -37,11 +37,11 @@
 #include <utils/DerivationScheme.hpp>
 #include "../../../utils/Option.hpp"
 #include "../../../preferences/Preferences.hpp"
-#include "../../../api/Configuration.hpp"
-#include "../../../api/DynamicObject.hpp"
-#include <api/Currency.hpp>
-#include <api/AccountCreationInfo.hpp>
-#include <api/ExtendedKeyAccountCreationInfo.hpp>
+#include "../../../ledger-core-source-api/api/Configuration.hpp"
+#include "../../../ledger-core-source-api/api/DynamicObject.hpp"
+#include <ledger-core-source-api/api/Currency.hpp>
+#include <ledger-core-source-api/api/AccountCreationInfo.hpp>
+#include <ledger-core-source-api/api/ExtendedKeyAccountCreationInfo.hpp>
 
 namespace ledger {
     namespace core {

@@ -36,7 +36,7 @@
 #include <unordered_set>
 #include <src/wallet/pool/WalletPool.hpp>
 #include <CoutLogPrinter.hpp>
-#include <src/api/DynamicObject.hpp>
+#include <src/ledger-core-source-api/api/DynamicObject.hpp>
 #include <wallet/common/CurrencyBuilder.hpp>
 #include <wallet/bitcoin/BitcoinLikeWallet.hpp>
 #include <wallet/bitcoin/database/BitcoinLikeWalletDatabase.h>
@@ -48,7 +48,7 @@
 #include <async/async_wait.h>
 #include <wallet/bitcoin/BitcoinLikeAccount.hpp>
 #include <database/query/QueryBuilder.h>
-#include <api/QueryFilter.hpp>
+#include <ledger-core-source-api/api/QueryFilter.hpp>
 
 #include "BaseFixture.h"
 

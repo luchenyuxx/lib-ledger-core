@@ -29,8 +29,8 @@
  *
  */
 
-#include <api/BitcoinLikeHelper.hpp>
-#include <api/BitcoinLikeOutput.hpp>
+#include <ledger-core-source-api/api/BitcoinLikeHelper.hpp>
+#include <ledger-core-source-api/api/BitcoinLikeOutput.hpp>
 #include <utils/Option.hpp>
 #include <memory>
 

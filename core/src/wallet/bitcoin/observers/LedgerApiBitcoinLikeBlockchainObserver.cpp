@@ -30,8 +30,8 @@
  */
 
 #include "LedgerApiBitcoinLikeBlockchainObserver.h"
-#include <api/ConfigurationDefaults.hpp>
-#include <api/Configuration.hpp>
+#include <ledger-core-source-api/api/ConfigurationDefaults.hpp>
+#include <ledger-core-source-api/api/Configuration.hpp>
 #include <math/Fibonacci.h>
 #include <utils/JSONUtils.h>
 #include <wallet/bitcoin/explorers/api/WebSocketNotificationParser.h>

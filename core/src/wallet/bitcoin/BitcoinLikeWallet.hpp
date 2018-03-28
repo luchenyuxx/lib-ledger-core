@@ -31,14 +31,14 @@
 #ifndef LEDGER_CORE_BITCOINLIKEWALLET_HPP
 #define LEDGER_CORE_BITCOINLIKEWALLET_HPP
 
-#include "../../api/BitcoinLikeWallet.hpp"
+#include "../../ledger-core-source-api/api/BitcoinLikeWallet.hpp"
 #include <memory>
 #include "explorers/BitcoinLikeBlockchainExplorer.hpp"
 #include "keychains/BitcoinLikeKeychain.hpp"
 #include "observers/BitcoinLikeBlockchainObserver.hpp"
 #include "synchronizers/BitcoinLikeAccountSynchronizer.hpp"
 #include <src/wallet/common/AbstractWallet.hpp>
-#include <src/api/BitcoinLikeNetworkParameters.hpp>
+#include <src/ledger-core-source-api/api/BitcoinLikeNetworkParameters.hpp>
 #include <wallet/bitcoin/factories/BitcoinLikeWalletFactory.hpp>
 #include <wallet/bitcoin/database/BitcoinLikeWalletDatabase.h>
 

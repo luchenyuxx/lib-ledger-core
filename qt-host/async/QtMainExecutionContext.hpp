@@ -33,8 +33,8 @@
 
 #include <QtConcurrent>
 #include <QThreadPool>
-#include <src/api/ExecutionContext.hpp>
-#include <src/api/Runnable.hpp>
+#include <src/ledger-core-source-api/api/ExecutionContext.hpp>
+#include <src/ledger-core-source-api/api/Runnable.hpp>
 #include <QCoreApplication>
 
 namespace ledger {

@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_AESCIPHER_HPP
 #define LEDGER_CORE_AESCIPHER_HPP
 
-#include "../api/RandomNumberGenerator.hpp"
+#include "../ledger-core-source-api/api/RandomNumberGenerator.hpp"
 #include <memory>
 #include <string>
 #include <ostream>

@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_AES256_HPP
 #define LEDGER_CORE_AES256_HPP
 
-#include "../api/RandomNumberGenerator.hpp"
+#include "../ledger-core-source-api/api/RandomNumberGenerator.hpp"
 #include <vector>
 
 namespace ledger {

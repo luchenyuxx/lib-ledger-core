@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_NATIVEPATHRESOLVER_HPP
 #define LEDGER_CORE_NATIVEPATHRESOLVER_HPP
 
-#include <src/api/PathResolver.hpp>
+#include <src/ledger-core-source-api/api/PathResolver.hpp>
 #include <vector>
 
 class NativePathResolver : public ledger::core::api::PathResolver {

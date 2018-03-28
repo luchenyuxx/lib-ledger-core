@@ -34,8 +34,8 @@
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/sink.h>
 #include <spdlog/sinks/file_sinks.h>
-#include "../api/ExecutionContext.hpp"
-#include "../api/PathResolver.hpp"
+#include "../ledger-core-source-api/api/ExecutionContext.hpp"
+#include "../ledger-core-source-api/api/PathResolver.hpp"
 #include <memory>
 #include "../utils/optional.hpp"
 

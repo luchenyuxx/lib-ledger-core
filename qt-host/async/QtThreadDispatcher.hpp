@@ -34,10 +34,10 @@
 #include <QObject>
 #include <QMap>
 #include <QMutex>
-#include <src/api/ThreadDispatcher.hpp>
-#include <src/api/Runnable.hpp>
+#include <src/ledger-core-source-api/api/ThreadDispatcher.hpp>
+#include <src/ledger-core-source-api/api/Runnable.hpp>
 #include <QCoreApplication>
-#include <src/api/ExecutionContext.hpp>
+#include <src/ledger-core-source-api/api/ExecutionContext.hpp>
 
 namespace ledger {
     namespace qt {

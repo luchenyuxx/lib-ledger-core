@@ -31,8 +31,8 @@
 #ifndef LEDGER_CORE_AMOUNT_H
 #define LEDGER_CORE_AMOUNT_H
 
-#include <api/Amount.hpp>
-#include <api/Currency.hpp>
+#include <ledger-core-source-api/api/Amount.hpp>
+#include <ledger-core-source-api/api/Currency.hpp>
 #include <math/BigInt.h>
 #include <api_impl/BigIntImpl.hpp>
 

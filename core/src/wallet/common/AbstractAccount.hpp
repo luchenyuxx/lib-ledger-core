@@ -31,14 +31,14 @@
 #ifndef LEDGER_CORE_ABSTRACTACCOUNT_HPP
 #define LEDGER_CORE_ABSTRACTACCOUNT_HPP
 
-#include <src/api/Account.hpp>
+#include <src/ledger-core-source-api/api/Account.hpp>
 #include "AbstractWallet.hpp"
 #include "OperationQuery.h"
 #include <async/Future.hpp>
 #include <wallet/common/Amount.h>
 #include <events/EventPublisher.hpp>
-#include <api/Block.hpp>
-#include <api/BlockCallback.hpp>
+#include <ledger-core-source-api/api/Block.hpp>
+#include <ledger-core-source-api/api/BlockCallback.hpp>
 
 namespace ledger {
     namespace core {

@@ -18,7 +18,7 @@ list(APPEND ledger-core-sources
         async/ExecutionContext.hpp
         async/Callback.hpp
         async/EventEmitter.hpp
-        api/BigInt.hpp
+        ledger-core-source-api/api/BigInt.hpp
 
         api_impl/LedgerCoreImpl.cpp
         api_impl/LedgerCoreImpl.hpp
@@ -29,7 +29,7 @@ set(ANDROID_CPP_FEATURES exceptions)
 # Automaticall ADD djinni api files to the library
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 file(GLOB ledger-core-djinni-api-sources
-        "api/*"
+        "ledger-core-source-api/api/*"
         )
 list(APPEND ledger-core-sources ${ledger-core-djinni-api-sources})
 
@@ -37,9 +37,9 @@ if (TARGET_JNI)
     message(STATUS "Configure project for JNI")
     find_package(JNI REQUIRED)
     file(GLOB ledger-core-jni-sources
-            "jni/*.cpp"
-            "jni/*.hpp"
-            "jni/jni/*"
+            "ledger-core-source-api/jni/*.cpp"
+            "ledger-core-source-api/jni/*.hpp"
+            "ledger-core-source-api/jni/jni/*"
             )
     list(APPEND ledger-core-sources ${ledger-core-jni-sources})
 endif ()
@@ -220,7 +220,7 @@ file(GLOB_RECURSE LEDGER_CORE_HEADERS
         )
 
 file(GLOB LEDGER_CORE_API_HEADERS
-        "api/*.hpp"
+        "ledger-core-source-api/api/*.hpp"
         )
 
 include_directories(ledger-core ../lib/bigd)

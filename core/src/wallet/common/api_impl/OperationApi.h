@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_OPERATIONAPI_H
 #define LEDGER_CORE_OPERATIONAPI_H
 
-#include <api/Operation.hpp>
+#include <ledger-core-source-api/api/Operation.hpp>
 #include "../Operation.h"
 
 namespace ledger {

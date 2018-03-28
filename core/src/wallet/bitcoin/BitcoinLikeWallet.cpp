@@ -29,11 +29,11 @@
  *
  */
 #include "BitcoinLikeWallet.hpp"
-#include <api/ErrorCode.hpp>
-#include <api/AccountCallback.hpp>
+#include <ledger-core-source-api/api/ErrorCode.hpp>
+#include <ledger-core-source-api/api/AccountCallback.hpp>
 #include <wallet/common/database/AccountDatabaseHelper.h>
-#include <api/ConfigurationDefaults.hpp>
-#include <api/KeychainEngines.hpp>
+#include <ledger-core-source-api/api/ConfigurationDefaults.hpp>
+#include <ledger-core-source-api/api/KeychainEngines.hpp>
 #include <wallet/bitcoin/database/BitcoinLikeAccountDatabaseHelper.h>
 #include "BitcoinLikeAccount.hpp"
 #include <algorithm>

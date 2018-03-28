@@ -33,7 +33,7 @@
 
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/sink.h>
-#include "../api/LogPrinter.hpp"
+#include "../ledger-core-source-api/api/LogPrinter.hpp"
 #include <memory>
 
 namespace spd = spdlog;

@@ -33,7 +33,7 @@
 
 #include "PreferencesBackend.hpp"
 #include "Preferences.hpp"
-#include "../api/PreferencesEditor.hpp"
+#include "../ledger-core-source-api/api/PreferencesEditor.hpp"
 #include <memory>
 #include <cereal/cereal.hpp>
 #include <cereal/archives/portable_binary.hpp>

@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_CURRENCIES_HPP
 #define LEDGER_CORE_CURRENCIES_HPP
 
-#include <api/Currency.hpp>
+#include <ledger-core-source-api/api/Currency.hpp>
 
 namespace ledger {
     namespace core {

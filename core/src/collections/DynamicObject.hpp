@@ -31,9 +31,9 @@
 #ifndef LEDGER_CORE_DYNAMICOBJECT_HPP
 #define LEDGER_CORE_DYNAMICOBJECT_HPP
 
-#include "../api/DynamicArray.hpp"
-#include "../api/DynamicObject.hpp"
-#include "../api/DynamicType.hpp"
+#include "../ledger-core-source-api/api/DynamicArray.hpp"
+#include "../ledger-core-source-api/api/DynamicObject.hpp"
+#include "../ledger-core-source-api/api/DynamicType.hpp"
 #include <cereal/cereal.hpp>
 #include "../collections/collections.hpp"
 #include "DynamicValue.hpp"

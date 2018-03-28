@@ -29,7 +29,7 @@
  *
  */
 #include "OperationQuery.h"
-#include <api/OperationListCallback.hpp>
+#include <ledger-core-source-api/api/OperationListCallback.hpp>
 #include "Operation.h"
 #include <database/soci-date.h>
 #include <database/soci-option.h>

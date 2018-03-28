@@ -32,7 +32,7 @@
 #define LEDGER_CORE_LAMBDARUNNABLE_HPP
 
 #include <functional>
-#include "../api/Runnable.hpp"
+#include "../ledger-core-source-api/api/Runnable.hpp"
 #include <memory>
 
 namespace ledger {

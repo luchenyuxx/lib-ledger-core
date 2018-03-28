@@ -32,7 +32,7 @@
 #ifndef LEDGER_CORE_BITCOINLIKEHELPER_H
 #define LEDGER_CORE_BITCOINLIKEHELPER_H
 
-#include <api/BitcoinLikeHelper.hpp>
+#include <ledger-core-source-api/api/BitcoinLikeHelper.hpp>
 #include <bytes/BytesWriter.h>
 
 namespace ledger {

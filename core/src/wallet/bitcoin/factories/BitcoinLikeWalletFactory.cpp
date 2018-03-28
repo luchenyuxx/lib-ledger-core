@@ -32,16 +32,16 @@
 #include "../networks.hpp"
 #include <leveldb/db.h>
 #include <wallet/currencies.hpp>
-#include <api/KeychainEngines.hpp>
-#include <api/BlockchainObserverEngines.hpp>
+#include <ledger-core-source-api/api/KeychainEngines.hpp>
+#include <ledger-core-source-api/api/BlockchainObserverEngines.hpp>
 #include <wallet/pool/WalletPool.hpp>
-#include <api/ConfigurationDefaults.hpp>
+#include <ledger-core-source-api/api/ConfigurationDefaults.hpp>
 #include <wallet/bitcoin/explorers/LedgerApiBitcoinLikeBlockchainExplorer.hpp>
 #include <wallet/bitcoin/BitcoinLikeWallet.hpp>
 #include <wallet/bitcoin/synchronizers/BlockchainExplorerAccountSynchronizer.h>
-#include <api/SynchronizationEngines.hpp>
+#include <ledger-core-source-api/api/SynchronizationEngines.hpp>
 #include <wallet/bitcoin/factories/keystores/BitcoinLikeP2PKHKeychainFactory.h>
-#include <api/BlockchainExplorerEngines.hpp>
+#include <ledger-core-source-api/api/BlockchainExplorerEngines.hpp>
 #include <wallet/bitcoin/observers/LedgerApiBitcoinLikeBlockchainObserver.h>
 
 #define STRING(key, def) entry.configuration->getString(key).value_or(def)

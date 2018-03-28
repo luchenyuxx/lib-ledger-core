@@ -32,20 +32,20 @@
 #include <wallet/common/Operation.h>
 #include <wallet/common/database/OperationDatabaseHelper.h>
 #include <database/query/QueryBuilder.h>
-#include <api/EventCode.hpp>
+#include <ledger-core-source-api/api/EventCode.hpp>
 #include <utils/DateUtils.hpp>
 #include <wallet/bitcoin/database/BitcoinLikeUTXODatabaseHelper.h>
-#include <api/I32Callback.hpp>
+#include <ledger-core-source-api/api/I32Callback.hpp>
 #include <collections/functional.hpp>
 #include <wallet/bitcoin/api_impl/BitcoinLikeOutputApi.h>
-#include <api/BitcoinLikeOutputListCallback.hpp>
+#include <ledger-core-source-api/api/BitcoinLikeOutputListCallback.hpp>
 #include <wallet/common/database/BlockDatabaseHelper.h>
 #include <wallet/bitcoin/database/BitcoinLikeBlockDatabaseHelper.h>
 #include <events/EventPublisher.hpp>
 #include <events/Event.hpp>
-#include <api/BitcoinLikePreparedTransactionCallback.hpp>
-#include <api/BitcoinLikeTransactionRequestCallback.hpp>
-#include <api/StringCallback.hpp>
+#include <ledger-core-source-api/api/BitcoinLikePreparedTransactionCallback.hpp>
+#include <ledger-core-source-api/api/BitcoinLikeTransactionRequestCallback.hpp>
+#include <ledger-core-source-api/api/StringCallback.hpp>
 
 namespace ledger {
     namespace core {

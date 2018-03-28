@@ -31,11 +31,11 @@
 #ifndef LEDGER_CORE_QTHTTPCLIENT_HPP
 #define LEDGER_CORE_QTHTTPCLIENT_HPP
 
-#include <src/api/HttpClient.hpp>
-#include <src/api/HttpUrlConnection.hpp>
-#include <src/api/HttpRequest.hpp>
-#include <src/api/HttpReadBodyResult.hpp>
-#include <src/api/HttpMethod.hpp>
+#include <src/ledger-core-source-api/api/HttpClient.hpp>
+#include <src/ledger-core-source-api/api/HttpUrlConnection.hpp>
+#include <src/ledger-core-source-api/api/HttpRequest.hpp>
+#include <src/ledger-core-source-api/api/HttpReadBodyResult.hpp>
+#include <src/ledger-core-source-api/api/HttpMethod.hpp>
 #include <QtNetwork>
 #include <QObject>
 #include "../async/QtThreadDispatcher.hpp"

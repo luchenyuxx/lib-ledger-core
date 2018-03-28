@@ -6,7 +6,7 @@
 	'targets': [{
 		'target_name': 'ledgerapp_nodejs',
 		'sources': [
-			"<!@(python glob.py api/core/nodejs *.cpp *.hpp)"
+			"<!@(python glob.py ledger-core-api/api/core/nodejs *.cpp *.hpp)"
 		],
 		'include_dirs': [
 			"<!(node -e \"require('nan')\")",

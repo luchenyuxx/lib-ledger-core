@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_DYNAMICVALUE_HPP
 #define LEDGER_CORE_DYNAMICVALUE_HPP
 
-#include "../api/DynamicType.hpp"
+#include "../ledger-core-source-api/api/DynamicType.hpp"
 #include <cereal/cereal.hpp>
 #include <vector>
 #include <cereal/archives/portable_binary.hpp>

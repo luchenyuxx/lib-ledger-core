@@ -32,12 +32,12 @@
 #ifndef LEDGER_CORE_FAKEWEBSOCKETCLIENT_H
 #define LEDGER_CORE_FAKEWEBSOCKETCLIENT_H
 
-#include <api/WebSocketClient.hpp>
+#include <ledger-core-source-api/api/WebSocketClient.hpp>
 #include <memory>
 #include <list>
 #include <functional>
 #include <atomic>
-#include <api/ErrorCode.hpp>
+#include <ledger-core-source-api/api/ErrorCode.hpp>
 
 class FakeWebSocketClient : public ledger::core::api::WebSocketClient {
 public:

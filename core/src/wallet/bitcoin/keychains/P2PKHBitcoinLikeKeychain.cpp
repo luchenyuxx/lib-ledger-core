@@ -35,9 +35,9 @@
 #include <boost/iostreams/device/array.hpp>
 #include <boost/iostreams/stream.hpp>
 #include <fmt/format.h>
-#include <src/api/DynamicObject.hpp>
-#include "../../../api/BitcoinLikeAddress.hpp"
-#include "../../../api/Configuration.hpp"
+#include <src/ledger-core-source-api/api/DynamicObject.hpp>
+#include "../../../ledger-core-source-api/api/BitcoinLikeAddress.hpp"
+#include "../../../ledger-core-source-api/api/Configuration.hpp"
 #include "../../../utils/DerivationPath.hpp"
 #include "../../../collections/strings.hpp"
 #include <debug/Benchmarker.h>

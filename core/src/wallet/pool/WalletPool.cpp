@@ -28,7 +28,7 @@
  * SOFTWARE.
  *
  */
-#include <api/PoolConfiguration.hpp>
+#include <ledger-core-source-api/api/PoolConfiguration.hpp>
 #include <wallet/currencies.hpp>
 #include <wallet/pool/database/CurrenciesDatabaseHelper.hpp>
 #include <wallet/pool/database/PoolDatabaseHelper.hpp>

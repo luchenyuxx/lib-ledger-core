@@ -33,7 +33,7 @@
 #define LEDGER_CORE_OPERATION_H
 
 #include <string>
-#include <api/WalletType.hpp>
+#include <ledger-core-source-api/api/WalletType.hpp>
 #include <chrono>
 #include <vector>
 #include <math/BigInt.h>
@@ -41,8 +41,8 @@
 #include "TrustIndicator.h"
 #include <memory>
 #include <wallet/bitcoin/explorers/BitcoinLikeBlockchainExplorer.hpp>
-#include <api/OperationType.hpp>
-#include <api/Operation.hpp>
+#include <ledger-core-source-api/api/OperationType.hpp>
+#include <ledger-core-source-api/api/Operation.hpp>
 #include "Block.h"
 
 namespace ledger {
