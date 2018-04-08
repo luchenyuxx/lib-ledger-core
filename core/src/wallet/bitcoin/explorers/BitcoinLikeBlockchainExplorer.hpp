@@ -36,7 +36,7 @@
 #include <vector>
 #include <utils/ConfigurationMatchable.h>
 #include "../../../utils/optional.hpp"
-#include "../../../ledger-core-source-api/api/ErrorCode.hpp"
+#include <api/core/cpp/ErrorCode.hpp>
 #include "../../../utils/Option.hpp"
 #include "../../../async/Future.hpp"
 #include "../../../collections/collections.hpp"

@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_NETWORKS_HPP
 #define LEDGER_CORE_NETWORKS_HPP
 
-#include "../../ledger-core-source-api/api/BitcoinLikeNetworkParameters.hpp"
+#include <api/core/cpp/BitcoinLikeNetworkParameters.hpp>
 
 namespace ledger {
     namespace core {

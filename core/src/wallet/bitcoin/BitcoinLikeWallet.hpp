@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_BITCOINLIKEWALLET_HPP
 #define LEDGER_CORE_BITCOINLIKEWALLET_HPP
 
-#include "../../ledger-core-source-api/api/BitcoinLikeWallet.hpp"
+#include <api/core/cpp/BitcoinLikeWallet.hpp>
 #include <memory>
 #include "explorers/BitcoinLikeBlockchainExplorer.hpp"
 #include "keychains/BitcoinLikeKeychain.hpp"
