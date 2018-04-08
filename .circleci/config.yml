@@ -10,9 +10,12 @@ jobs:
           name: Setup
           command: |
             . .circleci/setup_debian.sh
+      - run: echo "StrictHostKeyChecking=no" >> /etc/ssh/ssh_config
+      #Problem with ledger-core-api submodule, workaround:
+      - run: rm -rf ledger-core-api
       - run:
-          name: Initialize submodules
-          command: git submodule init
+          name: Initialize submodule
+          command: git submodule update --init -- ledger-core-api
       - run:
           name: Build core library
           command: |
