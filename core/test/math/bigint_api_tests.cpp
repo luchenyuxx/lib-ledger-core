@@ -30,7 +30,7 @@
  */
 
 #include <gtest/gtest.h>
-#include <ledger/core/ledger-core-source-api/api/BigInt.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/BigInt.hpp>
 
 using namespace ledger::core::api;
 

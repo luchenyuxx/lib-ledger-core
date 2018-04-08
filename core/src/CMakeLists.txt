@@ -18,7 +18,7 @@ list(APPEND ledger-core-sources
         async/ExecutionContext.hpp
         async/Callback.hpp
         async/EventEmitter.hpp
-        ledger-core-source-api/api/BigInt.hpp
+        ../../ledger-core-api/api/core/cpp/BigInt.hpp
 
         api_impl/LedgerCoreImpl.cpp
         api_impl/LedgerCoreImpl.hpp
@@ -29,7 +29,7 @@ set(ANDROID_CPP_FEATURES exceptions)
 # Automaticall ADD djinni api files to the library
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 file(GLOB ledger-core-djinni-api-sources
-        "ledger-core-source-api/api/*"
+        "../../ledger-core-api/api/core/cpp/*"
         )
 list(APPEND ledger-core-sources ${ledger-core-djinni-api-sources})
 
@@ -37,9 +37,9 @@ if (TARGET_JNI)
     message(STATUS "Configure project for JNI")
     find_package(JNI REQUIRED)
     file(GLOB ledger-core-jni-sources
-            "ledger-core-source-api/jni/*.cpp"
-            "ledger-core-source-api/jni/*.hpp"
-            "ledger-core-source-api/jni/jni/*"
+            "../../ledger-core-api/api/core/jni/*.cpp"
+            "../../ledger-core-api/api/core/jni/*.hpp"
+            "../../ledger-core-api/api/core/jni/jni/*"
             )
     list(APPEND ledger-core-sources ${ledger-core-jni-sources})
 endif ()
@@ -220,7 +220,7 @@ file(GLOB_RECURSE LEDGER_CORE_HEADERS
         )
 
 file(GLOB LEDGER_CORE_API_HEADERS
-        "ledger-core-source-api/api/*.hpp"
+        "../../ledger-core-api/api/core/cpp/*.hpp"
         )
 
 include_directories(ledger-core ../lib/bigd)
@@ -235,6 +235,10 @@ file(GLOB ledger-core-header
         )
 file(COPY ${ledger-core-header} DESTINATION ${CMAKE_BINARY_DIR}/include/ledger/core FILES_MATCHING PATTERN "*.h")
 file(COPY ${ledger-core-header} DESTINATION ${CMAKE_BINARY_DIR}/include/ledger/core FILES_MATCHING PATTERN "*.hpp")
+file(COPY ${LEDGER_CORE_API_HEADERS} DESTINATION ${CMAKE_BINARY_DIR}/include/ledger/core/api FILES_MATCHING PATTERN "*.hpp")
+
+
+#target_include_directories(ledger-core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../../ledger-core-api)
 
 target_include_directories(ledger-core PUBLIC ..)
 target_include_directories(ledger-core PUBLIC ../lib/bigd)

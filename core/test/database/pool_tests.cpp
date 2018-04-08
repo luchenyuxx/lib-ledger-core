@@ -36,7 +36,7 @@
 #include <unordered_set>
 #include <src/wallet/pool/WalletPool.hpp>
 #include <CoutLogPrinter.hpp>
-#include <src/ledger-core-source-api/api/DynamicObject.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/DynamicObject.hpp>
 
 using namespace ledger::core;
 using namespace ledger::qt;

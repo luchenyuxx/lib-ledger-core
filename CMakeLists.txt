@@ -16,6 +16,7 @@ mark_as_advanced(VERSION_MAJOR VERSION_MINOR VERSION_PATCH)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY build)
 list(APPEND INCLUDE_DIRECTORIES core/test/include/)
 
+include_directories(ledger-core ${CMAKE_CURRENT_SOURCE_DIR}/ledger-core-api/)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 set(CMAKE_MACOSX_RPATH 1)
 

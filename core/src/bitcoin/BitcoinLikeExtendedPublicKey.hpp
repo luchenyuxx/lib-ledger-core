@@ -31,9 +31,9 @@
 #ifndef LEDGER_CORE_BITCOINLIKEEXTENDEDPUBLICKEY_HPP
 #define LEDGER_CORE_BITCOINLIKEEXTENDEDPUBLICKEY_HPP
 
-#include "../ledger-core-source-api/api/BitcoinLikeExtendedPublicKey.hpp"
+#include <api/core/cpp/BitcoinLikeExtendedPublicKey.hpp>
 #include "../crypto/DeterministicPublicKey.hpp"
-#include "../ledger-core-source-api/api/BitcoinLikeNetworkParameters.hpp"
+#include <api/core/cpp/BitcoinLikeNetworkParameters.hpp>
 #include <memory>
 #include "../utils/Option.hpp"
 #include "../utils/DerivationPath.hpp"

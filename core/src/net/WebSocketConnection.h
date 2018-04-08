@@ -33,8 +33,8 @@
 #define LEDGER_CORE_WEBSOCKETCONNECTION_H
 
 #include <string>
-#include <ledger-core-source-api/api/WebSocketConnection.hpp>
-#include <ledger-core-source-api/api/WebSocketClient.hpp>
+#include <api/core/cpp/WebSocketConnection.hpp>
+#include <api/core/cpp/WebSocketClient.hpp>
 #include "WebSocketClient.h"
 
 namespace ledger {

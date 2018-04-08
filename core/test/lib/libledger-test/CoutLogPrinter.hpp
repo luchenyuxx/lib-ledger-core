@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_COUTLOGPRINTER_HPP
 #define LEDGER_CORE_COUTLOGPRINTER_HPP
 
-#include <src/ledger-core-source-api/api/LogPrinter.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/LogPrinter.hpp>
 #include <memory>
 
 class CoutLogPrinter : public ledger::core::api::LogPrinter {

@@ -32,7 +32,7 @@
 #define LEDGER_CORE_LOGGERAPI_HPP
 
 #include "logger.hpp"
-#include "../ledger-core-source-api/api/Logger.hpp"
+#include <api/core/cpp/Logger.hpp>
 #include <memory>
 
 namespace ledger {

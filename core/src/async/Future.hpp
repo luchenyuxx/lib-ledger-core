@@ -36,12 +36,12 @@
 #include <functional>
 #include <list>
 #include "Deffered.hpp"
-#include "../ledger-core-source-api/api/ExecutionContext.hpp"
+#include <api/core/cpp/ExecutionContext.hpp>
 #include "ExecutionContext.hpp"
 #include "../utils/Exception.hpp"
 #include "../utils/ImmediateExecutionContext.hpp"
 #include "../traits/callback_traits.hpp"
-#include "../ledger-core-source-api/api/Error.hpp"
+#include <api/core/cpp/Error.hpp>
 #include "../traits/shared_ptr_traits.hpp"
 
 namespace ledger {

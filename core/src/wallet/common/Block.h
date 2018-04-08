@@ -33,7 +33,7 @@
 
 #include <chrono>
 #include <string>
-#include <ledger-core-source-api/api/Block.hpp>
+#include <api/core/cpp/Block.hpp>
 
 namespace ledger {
     namespace core {

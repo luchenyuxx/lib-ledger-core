@@ -31,11 +31,11 @@
 #ifndef LEDGER_CORE_EVENTPUBLISHER_HPP
 #define LEDGER_CORE_EVENTPUBLISHER_HPP
 
-#include <src/ledger-core-source-api/api/EventBus.hpp>
-#include <src/ledger-core-source-api/api/EventPublisher.hpp>
-#include <src/ledger-core-source-api/api/Event.hpp>
-#include <src/ledger-core-source-api/api/EventCode.hpp>
-#include <src/ledger-core-source-api/api/EventReceiver.hpp>
+#include <api/core/cpp/EventBus.hpp>
+#include <api/core/cpp/EventPublisher.hpp>
+#include <api/core/cpp/Event.hpp>
+#include <api/core/cpp/EventCode.hpp>
+#include <api/core/cpp/EventReceiver.hpp>
 #include <unordered_set>
 #include <memory>
 #include <src/async/DedicatedContext.hpp>

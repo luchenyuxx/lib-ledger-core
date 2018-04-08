@@ -31,8 +31,9 @@
 #ifndef LEDGER_CORE_BITCOINLIKEADDRESS_HPP
 #define LEDGER_CORE_BITCOINLIKEADDRESS_HPP
 
-#include "../ledger-core-source-api/api/BitcoinLikeAddress.hpp"
-#include "../ledger-core-source-api/api/BitcoinLikeNetworkParameters.hpp"
+
+#include <api/core/cpp/BitcoinLikeAddress.hpp>
+#include <api/core/cpp/BitcoinLikeNetworkParameters.hpp>
 #include "../utils/optional.hpp"
 
 namespace ledger {

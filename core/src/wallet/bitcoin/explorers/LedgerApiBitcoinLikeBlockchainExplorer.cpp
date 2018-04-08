@@ -32,7 +32,7 @@
 #include <fmt/format.h>
 #include <rapidjson/stringbuffer.h>
 #include <rapidjson/writer.h>
-#include <ledger-core-source-api/api/Configuration.hpp>
+#include <api/core/cpp/Configuration.hpp>
 #include "../../../utils/hex.h"
 #include "api/TransactionsBulkParser.hpp"
 #include "api/TransactionParser.hpp"

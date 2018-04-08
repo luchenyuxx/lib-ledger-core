@@ -32,7 +32,7 @@
 #define LEDGER_CORE_CURRENCIESDATABASEHELPER_HPP
 
 #include <soci.h>
-#include <ledger-core-source-api/api/Currency.hpp>
+#include <api/core/cpp/Currency.hpp>
 
 namespace ledger {
     namespace core {

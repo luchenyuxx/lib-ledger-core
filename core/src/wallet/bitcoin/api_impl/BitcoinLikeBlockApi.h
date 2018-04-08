@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_BITCOINLIKEBLOCKAPI_H
 #define LEDGER_CORE_BITCOINLIKEBLOCKAPI_H
 
-#include <ledger-core-source-api/api/BitcoinLikeBlock.hpp>
+#include <api/core/cpp/BitcoinLikeBlock.hpp>
 #include <wallet/common/api_impl/OperationApi.h>
 
 namespace ledger {

@@ -33,9 +33,9 @@
 #include <debug/LoggerApi.hpp>
 #include <wallet/bitcoin/BitcoinLikeWallet.hpp>
 #include <wallet/common/database/AccountDatabaseHelper.h>
-#include <ledger-core-source-api/api/I32Callback.hpp>
+#include <api/core/cpp/I32Callback.hpp>
 #include "AbstractAccount.hpp"
-#include <ledger-core-source-api/api/AccountListCallback.hpp>
+#include <api/core/cpp/AccountListCallback.hpp>
 #include <async/algorithm.h>
 #include <wallet/common/database/BlockDatabaseHelper.h>
 

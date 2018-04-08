@@ -30,7 +30,7 @@
  */
 
 #include "FakeWebSocketClient.h"
-#include <ledger-core-source-api/api/WebSocketConnection.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/WebSocketConnection.hpp>
 
 FakeWebSocketClient::FakeWebSocketClient() : _id(0) {
     _closeCallback = [] () {};

@@ -38,7 +38,7 @@
 #include <mutex>
 #include "../utils/Exception.hpp"
 #include <queue>
-#include "../ledger-core-source-api/api/ExecutionContext.hpp"
+#include <api/core/cpp/ExecutionContext.hpp>
 #include <tuple>
 #include "../utils/LambdaRunnable.hpp"
 

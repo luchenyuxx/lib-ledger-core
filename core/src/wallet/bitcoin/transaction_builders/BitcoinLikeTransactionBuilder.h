@@ -34,7 +34,7 @@
 
 #include <vector>
 #include <memory>
-#include <ledger-core-source-api/api/BitcoinLikeOutput.hpp>
+#include <api/core/cpp/BitcoinLikeOutput.hpp>
 #include <soci.h>
 
 namespace ledger {

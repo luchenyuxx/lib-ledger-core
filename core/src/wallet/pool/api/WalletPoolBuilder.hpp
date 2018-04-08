@@ -33,8 +33,8 @@
 
 #include <unordered_map>
 
-#include <ledger-core-source-api/api/WalletPoolBuilder.hpp>
-#include <ledger-core-source-api/api/WalletPool.hpp>
+#include <api/core/cpp/WalletPoolBuilder.hpp>
+#include <api/core/cpp/WalletPool.hpp>
 #include <utils/optional.hpp>
 
 namespace ledger {

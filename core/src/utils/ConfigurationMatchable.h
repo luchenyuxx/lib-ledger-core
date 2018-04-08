@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_CONFIGURATIONMATCHABLE_H
 #define LEDGER_CORE_CONFIGURATIONMATCHABLE_H
 
-#include <ledger-core-source-api/api/DynamicObject.hpp>
+#include <api/core/cpp/DynamicObject.hpp>
 
 namespace ledger {
     namespace core {

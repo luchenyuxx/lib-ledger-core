@@ -33,10 +33,10 @@
 
 #include <string>
 #include <rapidjson/document.h>
-#include <ledger-core-source-api/api/TrustIndicator.hpp>
-#include <ledger-core-source-api/api/TrustLevel.hpp>
+#include <api/core/cpp/TrustIndicator.hpp>
+#include <api/core/cpp/TrustLevel.hpp>
 #include <cereal/cereal.hpp>
-#include <ledger-core-source-api/api/enum_from_string.hpp>
+#include <api/core/cpp/enum_from_string.hpp>
 #include <cereal/types/string.hpp>
 #include <cereal/types/vector.hpp>
 

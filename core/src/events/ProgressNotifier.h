@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_PROGRESSNOTIFIER_H
 #define LEDGER_CORE_PROGRESSNOTIFIER_H
 
-#include <ledger-core-source-api/api/ExecutionContext.hpp>
+#include <api/core/cpp/ExecutionContext.hpp>
 #include <functional>
 #include <utils/Option.hpp>
 #include <utils/Exception.hpp>

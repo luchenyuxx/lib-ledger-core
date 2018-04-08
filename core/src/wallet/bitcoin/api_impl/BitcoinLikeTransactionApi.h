@@ -31,12 +31,12 @@
 #ifndef LEDGER_CORE_BITCOINLIKETRANSACTIONAPI_H
 #define LEDGER_CORE_BITCOINLIKETRANSACTIONAPI_H
 
-#include <ledger-core-source-api/api/BitcoinLikeTransaction.hpp>
+#include <api/core/cpp/BitcoinLikeTransaction.hpp>
 #include <wallet/common/api_impl/OperationApi.h>
 #include <wallet/bitcoin/explorers/BitcoinLikeBlockchainExplorer.hpp>
 #include "BitcoinLikeInputApi.h"
 #include "BitcoinLikeOutputApi.h"
-#include <ledger-core-source-api/api/BitcoinLikeBlock.hpp>
+#include <api/core/cpp/BitcoinLikeBlock.hpp>
 #include "BitcoinLikeBlockApi.h"
 
 namespace ledger {

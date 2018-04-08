@@ -31,14 +31,14 @@
 #ifndef LEDGER_CORE_PREFERENCESBACKEND_HPP
 #define LEDGER_CORE_PREFERENCESBACKEND_HPP
 
-#include "../ledger-core-source-api/api/Preferences.hpp"
-#include "../ledger-core-source-api/api/PreferencesEditor.hpp"
+#include <api/core/cpp/Preferences.hpp>
+#include <api/core/cpp/PreferencesEditor.hpp>
 #include <leveldb/db.h>
 #include <memory>
-#include "../ledger-core-source-api/api/ThreadDispatcher.hpp"
-#include "../ledger-core-source-api/api/ExecutionContext.hpp"
-#include "../ledger-core-source-api/api/PathResolver.hpp"
-#include "../ledger-core-source-api/api/Lock.hpp"
+#include <api/core/cpp/ThreadDispatcher.hpp>
+#include <api/core/cpp/ExecutionContext.hpp>
+#include <api/core/cpp/PathResolver.hpp>
+#include <api/core/cpp/Lock.hpp>
 #include <string>
 #include <functional>
 #include "../utils/optional.hpp"

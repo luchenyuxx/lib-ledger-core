@@ -32,8 +32,8 @@
 #include "ConditionQueryFilter.h"
 #include <utils/DateUtils.hpp>
 #include <cereal/external/base64.hpp>
-#include <ledger-core-source-api/api/TrustLevel.hpp>
-#include <ledger-core-source-api/api/OperationType.hpp>
+#include <api/core/cpp/TrustLevel.hpp>
+#include <api/core/cpp/OperationType.hpp>
 
 namespace ledger {
     namespace core {

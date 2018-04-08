@@ -5,7 +5,7 @@
 #ifndef LEDGER_CORE_SECP256K1API_H
 #define LEDGER_CORE_SECP256K1API_H
 
-#include <ledger-core-source-api/api/Secp256k1.hpp>
+#include <api/core/cpp/Secp256k1.hpp>
 #include <include/secp256k1.h>
 
 namespace ledger {

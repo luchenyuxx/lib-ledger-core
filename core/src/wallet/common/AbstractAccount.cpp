@@ -31,8 +31,8 @@
 #include <wallet/common/database/AccountDatabaseHelper.h>
 #include "AbstractAccount.hpp"
 #include <wallet/common/OperationQuery.h>
-#include <ledger-core-source-api/api/StringListCallback.hpp>
-#include <ledger-core-source-api/api/AmountCallback.hpp>
+#include <api/core/cpp/StringListCallback.hpp>
+#include <api/core/cpp/AmountCallback.hpp>
 #include <events/Event.hpp>
 #include <wallet/common/database/BlockDatabaseHelper.h>
 

@@ -8,15 +8,15 @@ else
     trace="false";
 fi
 echo "Enable debug compilation " $trace
-CORE_CPP_API_DIRECTORY=core/src/ledger-core-source-api/api
-CORE_CPP_JNI_DIRECTORY=core/src/ledger-core-source-api/jni
+CORE_CPP_API_DIRECTORY=ledger-core-api/api/core/cpp
+CORE_CPP_JNI_DIRECTORY=ledger-core-api/api/core/jni
 rm -rf $CORE_CPP_API_DIRECTORY $CORE_CPP_JNI_DIRECTORY
 ./djinni/src/run    --idl ./core/core.djinni \
                     --cpp-out $CORE_CPP_API_DIRECTORY \
                     --cpp-namespace ledger::core::api \
                     --cpp-optional-template std::experimental::optional \
-                    --cpp-optional-header "\"../../utils/optional.hpp\"" \
-                    --jni-include-cpp-prefix "../../../api/" \
+                    --cpp-optional-header "\"../../../../core/src/utils/optional.hpp\"" \
+                    --jni-include-cpp-prefix "../cpp/" \
                     --jni-out $CORE_CPP_JNI_DIRECTORY/jni \
                     --java-out ledger-core-api/api/core/java \
                     --java-package co.ledger.core \
@@ -27,7 +27,7 @@ rm -rf $CORE_CPP_API_DIRECTORY $CORE_CPP_JNI_DIRECTORY
                     --objcpp-out ledger-core-api/api/core/objcpp \
                     --node-out ledger-core-api/api/core/nodejs \
 					--node-type-prefix NJS \
-        			--node-include-cpp ../../../../$CORE_CPP_API_DIRECTORY \
+        			--node-include-cpp ../cpp \
         			--node-package ledgerapp_nodejs \
                     --trace $trace
 

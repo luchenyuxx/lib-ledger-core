@@ -38,7 +38,7 @@
 #include "observers/BitcoinLikeBlockchainObserver.hpp"
 #include "synchronizers/BitcoinLikeAccountSynchronizer.hpp"
 #include <src/wallet/common/AbstractWallet.hpp>
-#include <src/ledger-core-source-api/api/BitcoinLikeNetworkParameters.hpp>
+#include <api/core/cpp/BitcoinLikeNetworkParameters.hpp>
 #include <wallet/bitcoin/factories/BitcoinLikeWalletFactory.hpp>
 #include <wallet/bitcoin/database/BitcoinLikeWalletDatabase.h>
 

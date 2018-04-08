@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_HTTPURLCONNECTIONINPUTSTREAM_HPP
 #define LEDGER_CORE_HTTPURLCONNECTIONINPUTSTREAM_HPP
 
-#include "../ledger-core-source-api/api/HttpUrlConnection.hpp"
+#include <api/core/cpp/HttpUrlConnection.hpp>
 #include <vector>
 #include <memory>
 

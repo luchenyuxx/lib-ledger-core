@@ -29,11 +29,11 @@
  *
  */
 #include "CurrenciesDatabaseHelper.hpp"
-#include <ledger-core-source-api/api/BitcoinLikeNetworkParameters.hpp>
+#include <api/core/cpp/BitcoinLikeNetworkParameters.hpp>
 #include <utils/hex.h>
-#include <ledger-core-source-api/api/enum_from_string.hpp>
-#include <ledger-core-source-api/api/Currency.hpp>
-#include <ledger-core-source-api/api/BitcoinLikeFeePolicy.hpp>
+#include <api/core/cpp/enum_from_string.hpp>
+#include <api/core/cpp/Currency.hpp>
+#include <api/core/cpp/BitcoinLikeFeePolicy.hpp>
 
 using namespace soci;
 

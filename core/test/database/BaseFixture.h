@@ -39,7 +39,7 @@
 #include <unordered_set>
 #include <src/wallet/pool/WalletPool.hpp>
 #include <CoutLogPrinter.hpp>
-#include <src/ledger-core-source-api/api/DynamicObject.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/DynamicObject.hpp>
 #include <wallet/common/CurrencyBuilder.hpp>
 #include <wallet/bitcoin/BitcoinLikeWallet.hpp>
 #include <wallet/bitcoin/database/BitcoinLikeWalletDatabase.h>
@@ -50,16 +50,16 @@
 #include <wallet/bitcoin/explorers/api/TransactionParser.hpp>
 #include <async/async_wait.h>
 #include <wallet/bitcoin/BitcoinLikeAccount.hpp>
-#include <ledger-core-source-api/api/BitcoinLikeOperation.hpp>
-#include <ledger-core-source-api/api/BitcoinLikeTransaction.hpp>
-#include <ledger-core-source-api/api/BitcoinLikeInput.hpp>
-#include <ledger-core-source-api/api/BitcoinLikeOutput.hpp>
-#include <ledger-core-source-api/api/BigInt.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/BitcoinLikeOperation.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/BitcoinLikeTransaction.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/BitcoinLikeInput.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/BitcoinLikeOutput.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/BigInt.hpp>
 #include <net/QtHttpClient.hpp>
 #include <events/LambdaEventReceiver.hpp>
 #include <soci.h>
-#include <ledger-core-source-api/api/Account.hpp>
-#include <ledger-core-source-api/api/BitcoinLikeAccount.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/Account.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/BitcoinLikeAccount.hpp>
 
 using namespace ledger::core; // Only do that for testing
 using namespace ledger::qt; // Djeez

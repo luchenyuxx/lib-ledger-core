@@ -32,9 +32,9 @@
 #define LEDGER_CORE_LOGGER_HPP
 
 #include <spdlog/spdlog.h>
-#include "../ledger-core-source-api/api/ExecutionContext.hpp"
-#include "../ledger-core-source-api/api/LogPrinter.hpp"
-#include "../ledger-core-source-api/api/PathResolver.hpp"
+#include <api/core/cpp/ExecutionContext.hpp>
+#include <api/core/cpp/LogPrinter.hpp>
+#include <api/core/cpp/PathResolver.hpp>
 #include <memory>
 #include <cstddef>
 #include "../utils/optional.hpp"

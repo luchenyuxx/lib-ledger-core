@@ -32,9 +32,9 @@
 #define LEDGER_CORE_BITCOINLIKEKEYCHAINFACTORY_H
 
 #include <collections/DynamicObject.hpp>
-#include <ledger-core-source-api/api/Currency.hpp>
+#include <api/core/cpp/Currency.hpp>
 #include <wallet/bitcoin/keychains/BitcoinLikeKeychain.hpp>
-#include <ledger-core-source-api/api/ExtendedKeyAccountCreationInfo.hpp>
+#include <api/core/cpp/ExtendedKeyAccountCreationInfo.hpp>
 #include <async/Future.hpp>
 
 namespace ledger {

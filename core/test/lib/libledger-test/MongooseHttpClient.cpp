@@ -30,12 +30,12 @@
  */
 #include "MongooseHttpClient.hpp"
 #include "NativeThreadDispatcher.hpp"
-#include "../../../src/ledger-core-source-api/api/HttpMethod.hpp"
-#include <ledger/core/ledger-core-source-api/api/HttpRequest.hpp>
+#include "../../../../../ledger-core-api/api/core/cpp/HttpMethod.hpp"
+#include <../../ledger-core-api/api/core/cpp/HttpRequest.hpp>
 #include <sstream>
 #include <cstring>
-#include <ledger/core/ledger-core-source-api/api/HttpUrlConnection.hpp>
-#include <ledger/core/ledger-core-source-api/api/HttpReadBodyResult.hpp>
+#include <../../ledger-core-api/api/core/cpp/HttpUrlConnection.hpp>
+#include <../../ledger-core-api/api/core/cpp/HttpReadBodyResult.hpp>
 
 class HttpUrlConnection : public ledger::core::api::HttpUrlConnection {
 public:

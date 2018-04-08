@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_QUERYFILTER_H
 #define LEDGER_CORE_QUERYFILTER_H
 
-#include <ledger-core-source-api/api/QueryFilter.hpp>
+#include <api/core/cpp/QueryFilter.hpp>
 #include <soci.h>
 
 namespace ledger {

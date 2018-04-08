@@ -33,7 +33,7 @@
 
 #include "QueryFilter.h"
 #include <fmt/format.h>
-#include <ledger-core-source-api/api/Amount.hpp>
+#include <api/core/cpp/Amount.hpp>
 
 namespace ledger {
     namespace core {

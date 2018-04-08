@@ -34,12 +34,12 @@
 #define OPENSSL_NO_KRB5
 #include <asio.hpp>
 #include <asio/ssl.hpp>
-#include <ledger/core/ledger-core-source-api/api/HttpClient.hpp>
-#include <ledger/core/ledger-core-source-api/api/ExecutionContext.hpp>
-#include <ledger/core/ledger-core-source-api/api/HttpMethod.hpp>
-#include <ledger/core/ledger-core-source-api/api/HttpReadBodyResult.hpp>
-#include <ledger/core/ledger-core-source-api/api/HttpUrlConnection.hpp>
-#include <ledger/core/ledger-core-source-api/api/HttpRequest.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/HttpClient.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/ExecutionContext.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/HttpMethod.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/HttpReadBodyResult.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/HttpUrlConnection.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/HttpRequest.hpp>
 
 class AsioHttpClient : public ledger::core::api::HttpClient {
 public:

@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_BITCOINLIKEOUTPUTAPI_H
 #define LEDGER_CORE_BITCOINLIKEOUTPUTAPI_H
 
-#include <ledger-core-source-api/api/BitcoinLikeOutput.hpp>
+#include <api/core/cpp/BitcoinLikeOutput.hpp>
 #include <wallet/bitcoin/explorers/BitcoinLikeBlockchainExplorer.hpp>
 #include <wallet/common/api_impl/OperationApi.h>
 #include <utils/Either.hpp>

@@ -31,10 +31,10 @@
 #ifndef LEDGER_CORE_NATIVETHREADDISPATCHER_HPP
 #define LEDGER_CORE_NATIVETHREADDISPATCHER_HPP
 
-#include <ledger/core/ledger-core-source-api/api/ThreadDispatcher.hpp>
-#include <ledger/core/ledger-core-source-api/api/ExecutionContext.hpp>
-#include <ledger/core/ledger-core-source-api/api/Runnable.hpp>
-#include <ledger/core/ledger-core-source-api/api/Lock.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/ThreadDispatcher.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/ExecutionContext.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/Runnable.hpp>
+#include <../../../../ledger-core-api/api/core/cpp/Lock.hpp>
 #include "EventThread.hpp"
 #include "EventLooper.hpp"
 

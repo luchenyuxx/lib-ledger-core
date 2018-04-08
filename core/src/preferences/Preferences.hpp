@@ -31,8 +31,8 @@
 #ifndef LEDGER_CORE_PREFERENCES_HPP
 #define LEDGER_CORE_PREFERENCES_HPP
 
-#include "../ledger-core-source-api/api/Preferences.hpp"
-#include "../ledger-core-source-api/api/PreferencesEditor.hpp"
+#include <api/core/cpp/Preferences.hpp>
+#include <api/core/cpp/PreferencesEditor.hpp>
 #include "PreferencesBackend.hpp"
 #include "PreferencesEditor.hpp"
 #include "../utils/Option.hpp"

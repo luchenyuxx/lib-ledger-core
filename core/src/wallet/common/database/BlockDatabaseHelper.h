@@ -34,7 +34,7 @@
 #include <wallet/common/Block.h>
 #include <string>
 #include <soci.h>
-#include <ledger-core-source-api/api/Block.hpp>
+#include <api/core/cpp/Block.hpp>
 #include <utils/Option.hpp>
 
 namespace ledger {

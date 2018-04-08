@@ -31,8 +31,8 @@
 #ifndef LEDGER_CORE_OPERATIONQUERY_H
 #define LEDGER_CORE_OPERATIONQUERY_H
 
-#include <ledger-core-source-api/api/OperationQuery.hpp>
-#include <ledger-core-source-api/api/OperationOrderKey.hpp>
+#include <api/core/cpp/OperationQuery.hpp>
+#include <api/core/cpp/OperationOrderKey.hpp>
 #include <database/query/QueryBuilder.h>
 #include <database/DatabaseSessionPool.hpp>
 #include <async/DedicatedContext.hpp>
