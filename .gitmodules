@@ -7,6 +7,3 @@
 [submodule "ledger-core-api"]
 	path = ledger-core-api
 	url = git@github.com:KhalilBellakrid/ledger-core-api.git
-[submodule "core/src/ledger-core-source-api"]
-	path = core/src/ledger-core-source-api
-	url = git@github.com:KhalilBellakrid/ledger-core-source-api.git
