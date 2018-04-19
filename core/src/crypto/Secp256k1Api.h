@@ -6,7 +6,7 @@
 #define LEDGER_CORE_SECP256K1API_H
 
 #include <api/Secp256k1.hpp>
-#include <include/secp256k1.h>
+#include <secp256k1_wrapper.h>
 
 namespace ledger {
     namespace core {

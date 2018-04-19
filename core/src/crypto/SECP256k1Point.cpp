@@ -31,7 +31,6 @@
 #include "SECP256k1Point.hpp"
 #include "../utils/Exception.hpp"
 #include <utils/VectorUtils.h>
-#include <include/secp256k1.h>
 #include <debug/Benchmarker.h>
 
 namespace ledger {
@@ -39,7 +38,7 @@ namespace ledger {
 
         SECP256k1Point::SECP256k1Point(const std::vector<uint8_t> &p) : SECP256k1Point() {
             _pubKey = new secp256k1_pubkey();
-            secp256k1_ec_pubkey_parse(_context, _pubKey, p.data(), p.size());
+            wrapper::secp256k1_ec_pubkey_parse(_context, _pubKey, p.data(), p.size());
         }
 
         SECP256k1Point SECP256k1Point::operator+(const SECP256k1Point &p) const {
@@ -47,12 +46,12 @@ namespace ledger {
         }
 
         SECP256k1Point::SECP256k1Point() {
-            _context = secp256k1_context_create(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY);
+            _context = wrapper::secp256k1_context_create(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY);
             _pubKey = nullptr;
         }
 
         SECP256k1Point::~SECP256k1Point() {
-            secp256k1_context_destroy(_context);
+            wrapper::secp256k1_context_destroy(_context);
             if (_pubKey) {
                 delete _pubKey;
             }
@@ -83,9 +82,9 @@ namespace ledger {
             memcpy(pubKey, _pubKey, sizeof(*pubKey));
             std::vector<uint8_t> serializedKey(33);
             auto len = serializedKey.size();
-            auto flag = secp256k1_ec_pubkey_tweak_add(_context, pubKey, n.data());
+            auto flag = wrapper::secp256k1_ec_pubkey_tweak_add(_context, pubKey, n.data());
             if (flag == 0) throw Exception(api::ErrorCode::RUNTIME_ERROR, "SECP256k1Point SECP256k1Point::generatorMultiply(const std::vector<uint8_t> &n) failed");
-            secp256k1_ec_pubkey_serialize(_context, serializedKey.data(), &len, pubKey, SECP256K1_EC_COMPRESSED);
+            wrapper::secp256k1_ec_pubkey_serialize(_context, serializedKey.data(), &len, pubKey, SECP256K1_EC_COMPRESSED);
             return SECP256k1Point(serializedKey);
         }
 
@@ -94,7 +93,7 @@ namespace ledger {
             if (compressed) {
                 std::vector<uint8_t> result(33);
                 size_t len = 33;
-                secp256k1_ec_pubkey_serialize(_context, result.data(), &len, _pubKey, SECP256K1_EC_COMPRESSED);
+                wrapper::secp256k1_ec_pubkey_serialize(_context, result.data(), &len, _pubKey, SECP256K1_EC_COMPRESSED);
                 return result;
             }
             return std::vector<uint8_t>(_pubKey->data, _pubKey->data + sizeof(_pubKey->data));

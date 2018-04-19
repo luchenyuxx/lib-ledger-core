@@ -31,7 +31,7 @@
 #ifndef LEDGER_CORE_SECP256K1POINT_HPP
 #define LEDGER_CORE_SECP256K1POINT_HPP
 
-#include <include/secp256k1.h>
+#include <secp256k1_wrapper.h>
 #include "../math/BigInt.h"
 #include <cstdint>
 

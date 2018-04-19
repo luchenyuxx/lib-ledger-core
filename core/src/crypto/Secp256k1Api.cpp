@@ -14,7 +14,7 @@ namespace ledger {
         }
 
         Secp256k1Api::Secp256k1Api() {
-            _context = secp256k1_context_create(SECP256K1_CONTEXT_VERIFY | SECP256K1_CONTEXT_SIGN);
+            _context = wrapper::secp256k1_context_create(SECP256K1_CONTEXT_VERIFY | SECP256K1_CONTEXT_SIGN);
         }
 
         std::vector<uint8_t> Secp256k1Api::computePubKey(const std::vector<uint8_t> &privKey, bool compress) {
@@ -26,7 +26,7 @@ namespace ledger {
                 throw make_exception(api::ErrorCode::EC_PRIV_KEY_INVALID_FORMAT, "EC private key {} is not valid",
                 hex::toString(privKey));
             }
-            secp256k1_ec_pubkey_serialize(_context, (unsigned char *) out.data(), &outLength, &pk,
+            wrapper::secp256k1_ec_pubkey_serialize(_context, (unsigned char *) out.data(), &outLength, &pk,
                                           compress ? SECP256K1_EC_COMPRESSED : SECP256K1_EC_UNCOMPRESSED);
             out.resize(outLength);
             return out;

@@ -26,6 +26,6 @@ endif()
 
 add_subdirectory(doc)
 add_subdirectory(core)
-#add_subdirectory(qt-host)
+add_subdirectory(qt-host)
 
 enable_testing()
