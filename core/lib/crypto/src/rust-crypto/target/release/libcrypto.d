@@ -1,0 +1,1 @@
+/Users/elkhalilbellakrid/Desktop/Playground_07/lib-ledger-core/core/lib/crypto/src/rust-crypto/target/release/libcrypto.a: /Users/elkhalilbellakrid/Desktop/Playground_07/lib-ledger-core/core/lib/crypto/src/rust-crypto/src/lib.rs

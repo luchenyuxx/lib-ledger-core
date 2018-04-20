@@ -5,7 +5,6 @@
 #ifndef LEDGER_CORE_SECP256K1_WRAPPER_H
 #define LEDGER_CORE_SECP256K1_WRAPPER_H
 
-#include <iostream>
 #include <stdint.h>
 #include <include/secp256k1.h>
 

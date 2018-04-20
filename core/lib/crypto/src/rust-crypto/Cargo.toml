@@ -1,0 +1,14 @@
+[package]
+name = "rust-crypto"
+version = "0.1.0"
+authors = ["KhalilBellakrid <khalil.bellakrid@ledger.fr>"]
+
+[lib]
+name = "crypto"
+path = "src/lib.rs"
+crate-type = ["staticlib"]
+
+[dependencies]
+rust-crypto = "0.2.36"
+log = "0.4.1"
+libc = "0.2.40"
