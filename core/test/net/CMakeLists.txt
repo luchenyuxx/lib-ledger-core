@@ -8,7 +8,9 @@ endif (APPLE)
 
 include_directories(../lib/libledger-test/)
 
-add_executable(ledger-core-net-tests main.cpp http_client_tests.cpp websocket_client_tests.cpp)
+#http_client_tests.cpp is not used since we remove mangoose.c (which  needs openssl dependency)
+#TODO: look for another web server impl to test http client
+add_executable(ledger-core-net-tests main.cpp websocket_client_tests.cpp)
 
 target_link_libraries(ledger-core-net-tests gtest gtest_main)
 target_link_libraries(ledger-core-net-tests ledger-core)

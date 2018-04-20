@@ -34,5 +34,13 @@ namespace wrapper {
 
     std::vector<uint8_t> sha512(const std::vector<uint8_t>& key,
                                 const std::vector<uint8_t>& data);
+
+    std::vector<uint8_t> getRandomBytes(int32_t size);
+
+    int32_t getRandomInt();
+
+    int64_t getRandomLong();
+
+    int8_t getRandomByte();
 }
 #endif //LEDGER_CORE_CRYPTO_WRAPPER_H

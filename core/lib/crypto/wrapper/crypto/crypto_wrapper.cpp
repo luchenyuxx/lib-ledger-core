@@ -34,6 +34,16 @@ extern "C" {
 
     vector_t hmac_sha512(const vector_t& key,
                          const vector_t& data);
+
+    //RNG
+    vector_t get_random_bytes(int32_t size);
+
+    int32_t get_random_int();
+
+    int64_t get_random_long();
+
+    int8_t get_random_byte();
+
 }
 
 namespace wrapper {
@@ -107,5 +117,22 @@ namespace wrapper {
         vector_t v_data = {&data[0], data.size()};
         auto v_result = hmac_sha512(v_key, v_data);
         return std::vector<uint8_t>((char *)v_result.data, (char *)v_result.data + v_result.length);
+    }
+
+    std::vector<uint8_t> getRandomBytes(int32_t size) {
+        auto v_result = get_random_bytes(size);
+        return std::vector<uint8_t>((char *)v_result.data, (char *)v_result.data + v_result.length);
+    }
+
+    int32_t getRandomInt() {
+        return get_random_int();
+    }
+
+    int64_t getRandomLong() {
+        return get_random_long();
+    }
+
+    int8_t getRandomByte() {
+        return get_random_byte();
     }
 }

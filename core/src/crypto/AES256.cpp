@@ -29,44 +29,20 @@
  *
  */
 #include "AES256.hpp"
-#include <openssl/aes.h>
 #include <cstdio>
 #include <cstring>
+#include <crypto_wrapper.h>
 
-const uint32_t ledger::core::AES256::BLOCK_SIZE = AES_BLOCK_SIZE;
+//Can't access from Rust crypto Crate, should find a solution to retrieve AES_BLOCK_SIZE
+const uint32_t ledger::core::AES256::BLOCK_SIZE = 16;
 
 std::vector<uint8_t> ledger::core::AES256::encrypt(const std::vector<uint8_t> &IV, const std::vector<uint8_t> &key,
                                                    const std::vector<uint8_t> &data) {
-    const size_t encslength = ((data.size() + AES_BLOCK_SIZE) / AES_BLOCK_SIZE) * AES_BLOCK_SIZE;
-    uint8_t enc_out[encslength];
-    ::memset(enc_out, 0, sizeof(enc_out));
 
-    uint8_t iv[IV.size()];
-    ::memcpy(iv, IV.data(), IV.size());
-
-    AES_KEY enc_key;
-    AES_set_encrypt_key(key.data(), key.size() * 8, &enc_key);
-    AES_cbc_encrypt(data.data(), enc_out, data.size(), &enc_key, iv, AES_ENCRYPT);
-
-    return std::vector<uint8_t>(enc_out, enc_out + encslength);
+    return wrapper::encrypt(IV, key, data);
 }
 
 std::vector<uint8_t> ledger::core::AES256::decrypt(const std::vector<uint8_t> &IV, const std::vector<uint8_t> &key,
                                                    const std::vector<uint8_t> &data) {
-    /* init vector */
-    unsigned char iv_enc[AES_BLOCK_SIZE], iv_dec[AES_BLOCK_SIZE];
-
-    // buffers for encryption and decryption
-    const size_t inputslength = data.size();
-    unsigned char dec_out[inputslength];
-    ::memset(dec_out, 0, sizeof(dec_out));
-
-    uint8_t iv[IV.size()];
-    ::memcpy(iv, IV.data(), IV.size());
-
-    AES_KEY dec_key;
-    AES_set_decrypt_key(key.data(), key.size() * 8, &dec_key);
-    AES_cbc_encrypt(data.data(), dec_out, data.size(), &dec_key, iv, AES_DECRYPT);
-
-    return std::vector<uint8_t>(dec_out, dec_out + inputslength);
+    return wrapper::decrypt(IV, key, data);
 }

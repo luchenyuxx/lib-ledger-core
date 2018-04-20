@@ -5,16 +5,13 @@ extern crate libc;
 use libc::{ size_t, c_char };
 
 extern crate crypto;
-use crypto::{ symmetriccipher, buffer, blockmodes, sha1, sha2, aes, pbkdf2, hmac, ripemd160 };
+use crypto::{ fortuna, symmetriccipher, buffer, blockmodes, sha1, sha2, aes, pbkdf2, hmac, ripemd160 };
 use crypto::buffer::{ ReadBuffer, WriteBuffer, BufferResult };
 use crypto::digest::Digest;
 use crypto::mac::Mac;
-//extern crate serialize;
-//use serialize::hex::FromHex;
 
-//extern crate serde;
-//use serde::de::{Deserialize, Deserializer, Error, MapAccess, SeqAccess, Visitor};
-
+extern crate rand;
+use rand::Rng;
 
 #[no_mangle]
 pub extern fn make_u8_vec() -> *mut Vec<u8> {
@@ -228,34 +225,28 @@ pub extern fn hmac_sha512(key: &Vector, data: &Vector) -> Vector {
     hmac_hash(sha2::Sha512::new(), key, data)
 }
 
-/*
-#[no_mangle]
-pub extern fn hmac_sha256(key: &Vector, data: &Vector) -> Vector {
-//pub extern fn
-    unsafe{
-        let v_key = key.as_u8_slice();
-        let v_data = data.as_u8_slice();
-    }
-
-    let mut hasher = Hmac::new(sha2::Sha256::new(), &v_key[..]);
-    hasher.input(&v_data[..]);
-    let mut hash : Vec<u8> = Vec::with_capacity(hasher.output_bits());
-    hasher.result(&mut hash[..]);
-    Vector::from_vec(hash)
+//////RNG//////
+fn get_random_data<T : rand::Rand>() -> T {
+    let mut rng = rand::thread_rng();
+    rng.gen::<T>()
 }
-
 #[no_mangle]
-pub extern fn hmac_sha512(key: &Vector, data: &Vector) -> Vector {
-//pub extern fn
-    unsafe{
-        let v_key = key.as_u8_slice();
-        let v_data = data.as_u8_slice();
-    }
-
-    let mut hasher = Hmac::new(sha2::Sha512::new(), &v_key[..]);
-    hasher.input(&v_data[..]);
-    let mut hash : Vec<u8> = Vec::with_capacity(hasher.output_bits());
-    hasher.result(&mut hash[..]);
-    Vector::from_vec(hash)
+pub extern fn get_random_int() -> i32 {
+    get_random_data::<i32>()
 }
-*/
+#[no_mangle]
+pub extern fn get_random_long() -> i64 {
+    get_random_data::<i64>()
+}
+#[no_mangle]
+pub extern fn get_random_byte() -> u8 {
+    get_random_data::<u8>()
+}
+#[no_mangle]
+pub extern fn get_random_bytes(size: i32) -> Vector {
+    let mut random : Vec<u8> = Vec::new();
+    for i in 0 .. size - 1 {
+        random.push(get_random_byte())
+    }
+    Vector::from_vec(random)
+}

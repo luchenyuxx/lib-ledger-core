@@ -30,7 +30,7 @@
  */
 #include "SHA256.hpp"
 #include "../utils/hex.h"
-#include <openssl/sha.h>
+#include <crypto_wrapper.h>
 
 std::string ledger::core::SHA256::stringToHexHash(const std::string &input) {
     return hex::toString(stringToBytesHash(input));
@@ -41,19 +41,9 @@ std::string ledger::core::SHA256::bytesToHexHash(const std::vector<uint8_t> &byt
 }
 
 std::vector<uint8_t> ledger::core::SHA256::stringToBytesHash(const std::string &input) {
-    uint8_t hash[SHA256_DIGEST_LENGTH];
-    SHA256_CTX sha256;
-    SHA256_Init(&sha256);
-    SHA256_Update(&sha256, input.c_str(), input.size());
-    SHA256_Final(hash, &sha256);
-    return std::vector<uint8_t >(hash, hash + SHA256_DIGEST_LENGTH);
+    return wrapper::stringToBytesHash(input);
 }
 
 std::vector<uint8_t> ledger::core::SHA256::bytesToBytesHash(const std::vector<uint8_t> &bytes) {
-    uint8_t hash[SHA256_DIGEST_LENGTH];
-    SHA256_CTX sha256;
-    SHA256_Init(&sha256);
-    SHA256_Update(&sha256, bytes.data(), bytes.size());
-    SHA256_Final(hash, &sha256);
-    return std::vector<uint8_t >(hash, hash + SHA256_DIGEST_LENGTH);
+    return bytesToBytesHash(bytes);
 }

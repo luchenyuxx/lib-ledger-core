@@ -12,3 +12,4 @@ crate-type = ["staticlib"]
 rust-crypto = "0.2.36"
 log = "0.4.1"
 libc = "0.2.40"
+rand = "0.4.2"

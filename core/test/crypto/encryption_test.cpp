@@ -34,7 +34,7 @@
 #include <ledger/core/crypto/PBKDF2.hpp>
 #include <vector>
 #include <ledger/core/crypto/AESCipher.hpp>
-#include <OpenSSLRandomNumberGenerator.hpp>
+#include <RustRandomNumberGenerator.hpp>
 #include <sstream>
 #include <ledger/core/bytes/BytesReader.h>
 #include <ledger/core/bytes/BytesWriter.h>
@@ -106,7 +106,7 @@ TEST(Encryption, EncryptDecryptWithAES256CBCAndPBKDF2) {
 
 TEST(Encryption, EncryptDecryptWithCipher) {
 
-    auto rng = std::make_shared<OpenSSLRandomNumberGenerator>();
+    auto rng = std::make_shared<RustRandomNumberGenerator>();
 
     //Init reader
     std::vector<uint8_t> vec(BIG_TEXT.begin(), BIG_TEXT.end());
@@ -129,7 +129,7 @@ TEST(Encryption, EncryptDecryptWithCipher) {
 }
 
 TEST(Encryption, EncryptDecryptWithCipherHugeText) {
-    auto rng = std::make_shared<OpenSSLRandomNumberGenerator>();
+    auto rng = std::make_shared<RustRandomNumberGenerator>();
     //Init reader
     std::vector<uint8_t> Bigvec;
     for (auto i = 0; i < 10; i++) {

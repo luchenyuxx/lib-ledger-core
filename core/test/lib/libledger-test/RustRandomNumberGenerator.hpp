@@ -1,9 +1,9 @@
 /*
  *
- * HMACSHA256
+ * RustRandomNumberGenerator
  * ledger-core
  *
- * Created by Pierre Pollastri on 15/12/2016.
+ * Created by Pierre Pollastri on 08/12/2016.
  *
  * The MIT License (MIT)
  *
@@ -28,16 +28,22 @@
  * SOFTWARE.
  *
  */
+#ifndef LEDGER_CORE_RUSTRANDOMNUMBERGENERATOR_HPP
+#define LEDGER_CORE_RUSTRANDOMNUMBERGENERATOR_HPP
 
-#include "HMAC.hpp"
-#include <crypto_wrapper.h>
 
-std::vector<uint8_t> ledger::core::HMAC::sha256(const std::vector<uint8_t>& key,
-                                                    const std::vector<uint8_t>& data) {
-    return wrapper::sha256(key, data);
-}
+#include <ledger/core/api/RandomNumberGenerator.hpp>
 
-std::vector<uint8_t> ledger::core::HMAC::sha512(const std::vector<uint8_t>& key,
-                                                    const std::vector<uint8_t>& data) {
-    return wrapper::sha512(key, data);
-}
+class RustRandomNumberGenerator : public ledger::core::api::RandomNumberGenerator {
+public:
+    virtual std::vector<uint8_t> getRandomBytes(int32_t size) override;
+
+    virtual int32_t getRandomInt() override;
+
+    virtual int64_t getRandomLong() override;
+
+    virtual int8_t getRandomByte() override;
+};
+
+
+#endif //LEDGER_CORE_RUSTRANDOMNUMBERGENERATOR_HPP

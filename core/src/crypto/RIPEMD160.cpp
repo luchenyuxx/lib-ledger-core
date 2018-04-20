@@ -29,15 +29,9 @@
  *
  */
 #include "RIPEMD160.hpp"
-#include <openssl/ripemd.h>
+#include <crypto_wrapper.h>
 #include <cstdint>
 
 std::vector<uint8_t> ledger::core::RIPEMD160::hash(const std::vector<uint8_t> &data) {
-    std::vector<uint8_t> hash;
-    hash.resize(RIPEMD160_DIGEST_LENGTH);
-    RIPEMD160_CTX ripemd160;
-    RIPEMD160_Init(&ripemd160);
-    RIPEMD160_Update(&ripemd160, data.data(), data.size());
-    RIPEMD160_Final(hash.data(), &ripemd160);
-    return hash;
+    return wrapper::ripemd160_hash(data);
 }
