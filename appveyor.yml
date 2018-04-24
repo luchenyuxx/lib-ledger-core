@@ -27,6 +27,7 @@ environment:
       BOOST_LIBRARYDIR: C:\Libraries\boost_1_63_0\lib64-msvc-14.0
       SQLITE3_DIR: C:\Tools\vcpkg\packages\sqlite3_x64-windows
       CMAKE_DIR: C:\projects\deps\cmake
+      CARGO_TARGET: i686-pc-windows-gnu
 
 build:
   verbosity: minimal
@@ -49,6 +50,13 @@ install:
 #Set SDK
 - call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
 - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
+
+#Install Cargo
+- appveyor-retry appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
+- rustup-init.exe -y --default-host %CARGO_TARGET%
+- set PATH=%PATH%;C:\Users\appveyor\.cargo\bin
+- rustc -V
+- cargo -V
 
 #Add mingw, Qt5, sqlite3, cmake to PATH
 - set PATH=%MINGW%\bin;%QT5%\bin;%PATH%
