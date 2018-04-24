@@ -66,7 +66,7 @@ static inline std::vector<uint8_t> vectorize(const std::string& str) {
 }
 
 static inline std::string strigify(const std::vector<uint8_t>& vector) {
-    return std::string((const char *)vector.data());
+    return std::string(vector.begin(), vector.end());
 }
 
 TEST(Encryption, EncryptDecryptWithAES256CBC) {
@@ -108,6 +108,7 @@ TEST(Encryption, EncryptDecryptWithCipher) {
 
     auto rng = std::make_shared<RustRandomNumberGenerator>();
 
+    //rng->getRandomByte()
     //Init reader
     std::vector<uint8_t> vec(BIG_TEXT.begin(), BIG_TEXT.end());
     BytesReader input(vec);

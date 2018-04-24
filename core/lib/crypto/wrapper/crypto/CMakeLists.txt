@@ -1,8 +1,13 @@
 project(crypto_wrapper)
 
 #Create a wrapper library
-add_library(crypto_wrapper STATIC crypto_wrapper.h crypto_wrapper.cpp)
+#add_library(crypto_wrapper STATIC crypto_wrapper.h crypto_wrapper.cpp)
+#####For Test######
+add_library(crypto_wrapper STATIC crypto_wrapper.h crypto_wrapper.cpp hex.cpp hex.h)
+###################
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
 add_dependencies(crypto_wrapper crypto)
 
 #Link to Rust library

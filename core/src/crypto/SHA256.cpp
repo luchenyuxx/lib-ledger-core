@@ -32,6 +32,10 @@
 #include "../utils/hex.h"
 #include <crypto_wrapper.h>
 
+
+#include <iostream>
+using namespace std;
+
 std::string ledger::core::SHA256::stringToHexHash(const std::string &input) {
     return hex::toString(stringToBytesHash(input));
 }
@@ -45,5 +49,13 @@ std::vector<uint8_t> ledger::core::SHA256::stringToBytesHash(const std::string &
 }
 
 std::vector<uint8_t> ledger::core::SHA256::bytesToBytesHash(const std::vector<uint8_t> &bytes) {
-    return bytesToBytesHash(bytes);
+
+    auto result = wrapper::bytesToBytesHash(bytes);
+//    cout<<"================bytesToBytesHash=================="<<endl;
+//    cout<<"Input: "<<bytes.data()<<endl;
+//    cout<<"Input: "<<hex::toString(bytes)<<endl;
+//    cout<<"Output: "<<hex::toString(result)<<endl;
+//    cout<<"Output: "<<result.data()<<endl;
+//    cout<<"=================================================="<<endl;
+    return result;
 }

@@ -1,14 +1,17 @@
-use std::{ slice, mem };
+use std::{ slice, mem, str };
 use std::ffi::{ CStr };
+use std::iter::repeat;
+//use std::hex;
 
 extern crate libc;
 use libc::{ size_t, c_char };
 
 extern crate crypto;
-use crypto::{ fortuna, symmetriccipher, buffer, blockmodes, sha1, sha2, aes, pbkdf2, hmac, ripemd160 };
+use crypto::{ symmetriccipher, buffer, blockmodes, sha1, sha2, aes, pbkdf2, hmac, ripemd160 };
 use crypto::buffer::{ ReadBuffer, WriteBuffer, BufferResult };
 use crypto::digest::Digest;
-use crypto::mac::Mac;
+use crypto::mac::{Mac, MacResult};
+
 
 extern crate rand;
 use rand::Rng;
@@ -23,19 +26,19 @@ pub extern fn make_u8_vec() -> *mut Vec<u8> {
 #[repr(C)]
 pub struct Vector {
     data: *const u8,
-    length: size_t,
+    len: usize,
 }
 
 impl Vector {
 
     unsafe fn as_u8_slice(&self) -> &[u8] {
-        assert!(!self.data.is_null());
-        slice::from_raw_parts(self.data as *const u8, self.length as usize)
+        //assert!(!self.data.is_null());
+        slice::from_raw_parts(self.data as *const u8, self.len as usize)
     }
 
     fn from_vec<T>(mut vec: Vec<T>) -> Vector {
         vec.shrink_to_fit();
-        let array = Vector { data: vec.as_ptr() as *const u8, length: vec.len() as size_t };
+        let array = Vector { data: vec.as_ptr() as *const u8, len: vec.len() as size_t };
         mem::forget(vec);
         array
     }
@@ -121,27 +124,14 @@ pub fn decrypt_rust_impl(iv: &[u8], key: &[u8], encrypted_data: &[u8]) -> Result
 /////////SHA256////////
 #[no_mangle]
 pub extern fn string_to_bytes_hash(input: *const c_char) -> Vector {
-
     let c_str = unsafe {
         assert!(!input.is_null());
         CStr::from_ptr(input)
     };
-
-    //let r_str = c_str.to_str().unwrap();
-
-    // create a Sha256 object
     let mut hasher = sha2::Sha256::new();
-
-    let mut hash : Vec<u8> = Vec::with_capacity(hasher.output_bits());
-
-    //&mut [u8]
-    hasher.result(&mut hash[..]);
-
+    hasher.input(c_str.to_bytes());
+    let mut hash = hasher.result_str().into_bytes();
     Vector::from_vec(hash)
-    //match hex[..].from_hex() {
-    //    Ok(result_string) => Vector::from_vec(result_string),
-    //    Err(_) => panic!("Failed at string_to_bytes_hash")
-    //}
 }
 
 /*
@@ -161,17 +151,12 @@ pub extern fn string_to_hex_hash(input: *const c_char) -> *const c_char {
 
 #[no_mangle]
 pub extern fn bytes_to_bytes_hash(input: &Vector) -> Vector {
-    // create a Sha256 object
     let mut hasher = sha2::Sha256::new();
-
-    // write input message
     unsafe {
         hasher.input(input.as_u8_slice());
     }
-
-    // read hash digest
-    let mut hash : Vec<u8> = Vec::with_capacity(hasher.output_bits());
-    hasher.result(&mut hash[..]);
+    let mut hash = hasher.result_str().into_bytes();
+    hasher.reset();
     Vector::from_vec(hash)
 }
 
@@ -184,8 +169,8 @@ pub extern fn ripemd160_hash(input: &Vector) -> Vector {
         hasher.input(input.as_u8_slice());
     }
     // read hash digest
-    let mut hash : Vec<u8> = Vec::with_capacity(hasher.output_bits());
-    hasher.result(&mut hash[..]);
+    let mut hash = hasher.result_str().into_bytes();
+    hasher.reset();
     Vector::from_vec(hash)
 }
 
@@ -193,11 +178,9 @@ pub extern fn ripemd160_hash(input: &Vector) -> Vector {
 #[no_mangle]
 pub extern fn pbkdf2_derive(key: &Vector, salt: &Vector, iter: u32, outLength: size_t) -> Vector {
     unsafe {
-        let v_key = key.as_u8_slice();
-        let v_salt = salt.as_u8_slice();
-        let mut mac = hmac::Hmac::new(sha1::Sha1::new(), &v_key[..]);
-        let mut result: Vec<u8> = Vec::with_capacity(outLength as usize);
-        pbkdf2::pbkdf2(&mut mac, &v_salt[..], iter, &mut result);
+        let mut mac = hmac::Hmac::new(sha1::Sha1::new(), key.as_u8_slice());
+        let mut result: Vec<u8> = repeat(0).take(outLength as usize).collect();
+        pbkdf2::pbkdf2(&mut mac, salt.as_u8_slice(), iter, &mut result);
         Vector::from_vec(result)
     }
 }
@@ -205,13 +188,11 @@ pub extern fn pbkdf2_derive(key: &Vector, salt: &Vector, iter: u32, outLength: s
 //////HMAC//////
 fn hmac_hash<D: Digest>(mut digest: D, key: &Vector, data: &Vector) -> Vector {
     unsafe{
-        let v_key = key.as_u8_slice();
-        let v_data = data.as_u8_slice();
-        let mut mac = hmac::Hmac::new(digest, &v_key[..]);
-        mac.input(&v_data[..]);
-        let mut hash : Vec<u8> = Vec::with_capacity(mac.output_bytes());
-        let mac_result = mac.raw_result(&mut hash[..]);
-        Vector::from_vec(hash)
+        let mut mac = hmac::Hmac::new(digest, key.as_u8_slice());
+        mac.input(data.as_u8_slice());
+        let mac_result = mac.result();
+        mac.reset();
+        Vector::from_vec(mac_result.code().to_vec())
     }
 }
 
@@ -245,7 +226,7 @@ pub extern fn get_random_byte() -> u8 {
 #[no_mangle]
 pub extern fn get_random_bytes(size: i32) -> Vector {
     let mut random : Vec<u8> = Vec::new();
-    for i in 0 .. size - 1 {
+    for i in 0 .. size {
         random.push(get_random_byte())
     }
     Vector::from_vec(random)
