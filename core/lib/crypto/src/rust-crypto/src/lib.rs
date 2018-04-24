@@ -1,7 +1,6 @@
 use std::{ slice, mem, str };
 use std::ffi::{ CStr };
 use std::iter::repeat;
-//use std::hex;
 
 extern crate libc;
 use libc::{ size_t, c_char };
@@ -130,10 +129,22 @@ pub extern fn string_to_bytes_hash(input: *const c_char) -> Vector {
     };
     let mut hasher = sha2::Sha256::new();
     hasher.input(c_str.to_bytes());
-    let mut hash = hasher.result_str().into_bytes();
+    let mut hash: Vec<u8> = repeat(0).take(hasher.output_bits()/8).collect();
+    hasher.result(& mut hash);
+    hasher.reset();
     Vector::from_vec(hash)
 }
-
+#[no_mangle]
+pub extern fn bytes_to_bytes_hash(input: &Vector) -> Vector {
+    let mut hasher = sha2::Sha256::new();
+    unsafe {
+        hasher.input(input.as_u8_slice());
+    }
+    let mut hash: Vec<u8> = repeat(0).take(hasher.output_bits()/8).collect();
+    hasher.result(& mut hash);
+    hasher.reset();
+    Vector::from_vec(hash)
+}
 /*
 #[no_mangle]
 pub extern fn string_to_hex_hash(input: *const c_char) -> *const c_char {
@@ -148,28 +159,15 @@ pub extern fn string_to_hex_hash(input: *const c_char) -> *const c_char {
 
 }
 */
-
-#[no_mangle]
-pub extern fn bytes_to_bytes_hash(input: &Vector) -> Vector {
-    let mut hasher = sha2::Sha256::new();
-    unsafe {
-        hasher.input(input.as_u8_slice());
-    }
-    let mut hash = hasher.result_str().into_bytes();
-    hasher.reset();
-    Vector::from_vec(hash)
-}
-
 ////////RIPEMD160/////////////
 #[no_mangle]
 pub extern fn ripemd160_hash(input: &Vector) -> Vector {
     let mut hasher = ripemd160::Ripemd160::new();
-    // write input message
     unsafe {
         hasher.input(input.as_u8_slice());
     }
-    // read hash digest
-    let mut hash = hasher.result_str().into_bytes();
+    let mut hash: Vec<u8> = repeat(0).take(hasher.output_bits()/8).collect();
+    hasher.result(& mut hash);
     hasher.reset();
     Vector::from_vec(hash)
 }

@@ -6,9 +6,7 @@
 #include <vector>
 #include <cstdint>
 #include <string>
-#include <iostream>
 #include <assert.h>
-//#include "../../../../src/utils/hex.h"
 #include <hex.h>
 
 const std::string BitcoinPublicKeyHashPrefix = "00";
@@ -43,10 +41,13 @@ static inline std::string strigify(const std::vector<uint8_t>& vector) {
 static std::vector<uint8_t> computeChecksum(const std::vector<uint8_t> &bytes) {
     auto hash = wrapper::bytesToBytesHash(bytes);
     auto doubleHash = wrapper::bytesToBytesHash(hash);
-    //cout<<"doubleHash: "<<ledger::core::hex::toString(doubleHash)<<endl;
     return std::vector<uint8_t>(doubleHash.begin(), doubleHash.begin() + 4);
 }
 
+/*
+ * Those tests are here just to test if the call from Rust is OK,
+ * there are tests (crypto) covering the "sanity" of result
+*/
 int main() {
 
     auto blocksize = 16;
@@ -70,23 +71,13 @@ int main() {
     }
     assert(strigify(decryptedData) == data);
 
-    cout<<"=================================="<<endl;
-    cout<<"==========AES TEST OK============="<<endl;
-    cout<<"=================================="<<endl;
-
     //SHA256
-    int i = 0;
     for (auto& item : fixtures) {
-        auto result = computeChecksum(ledger::core::hex::toByteArray(item[0] + item[1]));
+        auto local_result = computeChecksum(ledger::core::hex::toByteArray(item[0] + item[1]));
+        auto local_hex_result = ledger::core::hex::toString(local_result);
     }
 
-    //"2ff100b36c386c65a1afc462ad53e25479bec9498ed00aa5a04de584bc25301b"
-    auto hex_result = ledger::core::hex::toString(wrapper::stringToBytesHash("abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmno"));
-    cout<<"hex_result = "<<hex_result<<endl;
-
-    cout<<"=================================="<<endl;
-    cout<<"==========SHA256 TEST OK============="<<endl;
-    cout<<"=================================="<<endl;
+    auto v_hex_result = wrapper::stringToBytesHash("abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmno");
 
     //RIPEMD160
     std::vector<std::vector<std::string>> ripemd_fixtures = {
@@ -96,13 +87,8 @@ int main() {
             {"message digest", 	"5d0689ef49d2fae572b881b123a85ffa21595f36"}
     };
     for (auto& i : ripemd_fixtures) {
-        auto result = wrapper::ripemd160_hash(std::vector<uint8_t>(i[0].begin(), i[0].end()));
-        cout<<"ripemd result = "<<ledger::core::hex::toString(result)<<endl;
+        auto local_result = wrapper::ripemd160_hash(std::vector<uint8_t>(i[0].begin(), i[0].end()));
     }
-    cout<<"=================================="<<endl;
-    cout<<"==========RIPEMD160 TEST OK============="<<endl;
-    cout<<"=================================="<<endl;
-
 
     //PBKDF2
     std::string password = "My supa strong password!";
@@ -113,13 +99,6 @@ int main() {
     assert(pbdf2Decrypted.size() == dataVector.size());
     auto pbdf2DecryptedString = strigify(pbdf2Decrypted);
     assert(pbdf2DecryptedString == data);
-    cout<<"=================================="<<endl;
-    cout<<"==========PBKDF2 TEST OK============="<<endl;
-    cout<<"=================================="<<endl;
-
-
-
-
 }
 
 

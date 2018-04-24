@@ -74,37 +74,20 @@ namespace wrapper {
     //SHA256
     std::vector <uint8_t> stringToBytesHash(const std::string &input) {
         auto v_hash = string_to_bytes_hash(input.c_str());
-        auto vector_hash = std::vector<uint8_t>(v_hash.data, v_hash.data + v_hash.len);
-        std::string str_hash;
-        for(auto &item : vector_hash) {
-            str_hash.push_back((char)item);
-        }
-        return ledger::core::hex::toByteArray(str_hash);
+        return std::vector<uint8_t>(v_hash.data, v_hash.data + v_hash.len);
     }
 
     std::vector<uint8_t> bytesToBytesHash(const std::vector<uint8_t> &bytes) {
         vector_t v_bytes = {&bytes[0], bytes.size()};
         auto v_hash = bytes_to_bytes_hash(v_bytes);
-        auto vector_hash = std::vector<uint8_t>(v_hash.data, v_hash.data + v_hash.len);
-        std::string str_hash;
-        for(auto &item : vector_hash) {
-            str_hash.push_back((char)item);
-        }
-        return ledger::core::hex::toByteArray(str_hash);
+        return std::vector<uint8_t>(v_hash.data, v_hash.data + v_hash.len);
     }
 
     //RIPEMD160
     std::vector<uint8_t> ripemd160_hash(const std::vector<uint8_t> &data) {
         vector_t v_data = {&data[0], data.size()};
         auto v_hash = ripemd160_hash(v_data);
-        auto vector_hash = std::vector<uint8_t>(v_hash.data, v_hash.data + v_hash.len);
-        std::string str_hash;
-        for(auto &item : vector_hash) {
-            str_hash.push_back((char)item);
-        }
-        return ledger::core::hex::toByteArray(str_hash);
-
-        //return std::vector<uint8_t>((char *)v_hash.data, (char *)v_hash.data + v_hash.len);
+        return std::vector<uint8_t>(v_hash.data, v_hash.data + v_hash.len);
     }
 
     //PBKDF2
@@ -126,7 +109,7 @@ namespace wrapper {
         vector_t v_data = {&data[0], data.size()};
         auto v_result = hmac_sha256(v_key, v_data);
 
-        return std::vector<uint8_t>((char *)v_result.data, (char *)v_result.data + v_result.len);
+        return std::vector<uint8_t>(v_result.data, v_result.data + v_result.len);
     }
 
     std::vector<uint8_t> sha512(const std::vector<uint8_t>& key,
@@ -134,12 +117,12 @@ namespace wrapper {
         vector_t v_key = {&key[0], key.size()};
         vector_t v_data = {&data[0], data.size()};
         auto v_result = hmac_sha512(v_key, v_data);
-        return std::vector<uint8_t>((char *)v_result.data, (char *)v_result.data + v_result.len);
+        return std::vector<uint8_t>(v_result.data, v_result.data + v_result.len);
     }
 
     std::vector<uint8_t> getRandomBytes(int32_t size) {
         auto v_result = get_random_bytes(size);
-        return std::vector<uint8_t>((char *)v_result.data, (char *)v_result.data + v_result.len);
+        return std::vector<uint8_t>(v_result.data, v_result.data + v_result.len);
     }
 
     int32_t getRandomInt() {
