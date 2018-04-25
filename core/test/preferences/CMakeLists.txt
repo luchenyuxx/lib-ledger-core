@@ -15,6 +15,7 @@ target_link_libraries(ledger-core-preferences-tests ledger-core)
 target_link_libraries(ledger-core-preferences-tests ledger-test)
 
 include(CopyAndInstallImportedTargets)
-copy_install_imported_targets(ledger-core-preferences-tests crypto ledger-core)
+#copy_install_imported_targets(ledger-core-preferences-tests crypto ledger-core)
+copy_install_imported_targets(ledger-core-preferences-tests ledger-core)
 
 add_test (NAME ledger-core-preferences-tests COMMAND ledger-core-preferences-tests)

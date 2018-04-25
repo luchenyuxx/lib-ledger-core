@@ -31,6 +31,6 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.lis
 apt-get update && apt-get install -y yarn
 
 echo "========> Install Rust"
-curl -sS https://static.rust-lang.org/rustup.sh | sudo sh
+curl -sS https://static.rust-lang.org/rustup.sh | sh
 export PATH="$HOME/.cargo/bin:$PATH"
 

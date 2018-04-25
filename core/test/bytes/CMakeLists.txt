@@ -13,6 +13,7 @@ target_link_libraries(ledger-core-bytes-tests gtest gtest_main)
 target_link_libraries(ledger-core-bytes-tests ledger-core)
 
 include(CopyAndInstallImportedTargets)
-copy_install_imported_targets(ledger-core-bytes-tests crypto ledger-core)
+#copy_install_imported_targets(ledger-core-bytes-tests crypto ledger-core)
+copy_install_imported_targets(ledger-core-bytes-tests ledger-core)
 
 add_test (NAME ledger-core-bytes-tests COMMAND ledger-core-bytes-tests)

@@ -17,6 +17,7 @@ target_include_directories(ledger-core-bitcoin-tests PUBLIC ../../../core/lib/le
 include_directories(../lib/libledger-test/)
 
 include(CopyAndInstallImportedTargets)
-copy_install_imported_targets(ledger-core-bitcoin-tests crypto ledger-core)
+#copy_install_imported_targets(ledger-core-bitcoin-tests crypto ledger-core)
+copy_install_imported_targets(ledger-core-bitcoin-tests ledger-core)
 
 add_test (NAME ledger-core-bitcoin-tests COMMAND ledger-core-bitcoin-tests)

@@ -21,6 +21,8 @@ target_include_directories(ledger-core-net-tests PUBLIC ../../../qt-host)
 target_include_directories(ledger-core-net-tests PUBLIC ../../../core/src)
 
 include(CopyAndInstallImportedTargets)
-copy_install_imported_targets(ledger-core-net-tests crypto ledger-core)
+#copy_install_imported_targets(ledger-core-net-tests crypto ledger-core)
+copy_install_imported_targets(ledger-core-net-tests ledger-core)
+
 
 add_test (NAME ledger-core-net-tests COMMAND ledger-core-net-tests)
