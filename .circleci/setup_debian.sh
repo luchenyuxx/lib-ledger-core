@@ -6,6 +6,17 @@ apt-get install -y apt-transport-https wget git python build-essential libx11-xc
 apt-get install -y libssl-dev curl
 apt-get install -y awscli
 
+echo "========> Install Rust"
+
+apt-get install -y rustc cargo || echo "!!!!!!!!Failed to install Rust"
+rustc --version || echo "!!!!!!!!Failed to install Rust"
+cargo --version || echo "!!!!!!!!Failed to install Cargo"
+ls -la /root/.cargo/bin || echo "!!!!!!!!Can't find Cargo"
+
+curl -sSf https://static.rust-lang.org/rustup.sh | sh || echo "!!!!!!!!Failed to install Rust"
+export PATH=/root/.cargo/bin:$PATH
+
+
 echo "========> Install C++ dependencies"
 apt-get install -y g++ make
 export PATH=/root/cmake-3.10.3/bin:$PATH
@@ -30,7 +41,5 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 apt-get update && apt-get install -y yarn
 
-echo "========> Install Rust"
-curl -sS https://static.rust-lang.org/rustup.sh | sh
-export PATH="$HOME/.cargo/bin:$PATH"
+
 
