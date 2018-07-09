@@ -35,7 +35,9 @@
 #include <ledger/core/utils/hex.h>
 #include <ledger/core/crypto/HMAC.hpp>
 #include <ledger/core/crypto/HASH160.hpp>
-
+#include <ledger/core/crypto/Keccak.h>
+#include <iostream>
+using namespace std;
 using namespace ledger::core;
 
 TEST(Digests, SHA256_Strings_to_String) {
@@ -80,4 +82,16 @@ TEST(Digest, HASH160) {
     auto pk = hex::toByteArray("02e73960f79f6637b773cf50f148cff54004669fd36045f8f9a36ffd669bcce71c");
     auto hash160 = HASH160::hash(pk);
     EXPECT_EQ(hex::toString(hash160), "253f5a6b1dd3f7d971807a5f3f2dcc9158002303");
+}
+
+TEST(Digest, Keccak256) {
+
+    auto empty = hex::toByteArray("");
+    auto check = Keccak::keccak256(empty);
+    EXPECT_EQ(hex::toString(check), "c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470");
+
+    auto pk = hex::toByteArray("6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0");
+    auto keccak = Keccak::keccak256(pk);
+    EXPECT_EQ(hex::toString(keccak), "2a5bc342ed616b5ba5732269001d3f1ef827552ae1114027bd3ecf1f086ba0f9");
+
 }

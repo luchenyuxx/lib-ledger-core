@@ -68,4 +68,17 @@ RCT_REMAP_METHOD(bitcoin,bitcoinWithResolver:(RCTPromiseResolveBlock)resolve rej
     }
 
 }
+
+RCT_REMAP_METHOD(ethereum,ethereumWithResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+
+    id result = @{@"result" :[LGNetworks ethereum]};
+    if(result)
+    {
+        resolve(result);
+    }
+    else
+    {
+        reject(@"impl_call_error", @"Error while calling LGNetworks::ethereum", nil);
+    }
+}
 @end

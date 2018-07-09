@@ -9,6 +9,7 @@
 #include "../../../core/src/api/BitcoinLikePickingStrategy.hpp"
 #include "../../../core/src/api/Currency.hpp"
 #include "../../../core/src/api/CurrencyUnit.hpp"
+#include "../../../core/src/api/EthereumLikeNetworkParameters.hpp"
 #include "NJSAmountCpp.hpp"
 #include "NJSBitcoinLikeScriptCpp.hpp"
 #include "NJSBitcoinLikeTransactionCallback.hpp"

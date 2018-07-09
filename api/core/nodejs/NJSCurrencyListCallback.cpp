@@ -106,6 +106,36 @@ void NJSCurrencyListCallback::onCallback(const std::experimental::optional<std::
             }
 
             Nan::DefineOwnProperty(arg_0_tmp_elem, Nan::New<String>("bitcoinLikeNetworkParameters").ToLocalChecked(), arg_0_tmp_elem_6);
+            Local<Value> arg_0_tmp_elem_7;
+            if(arg_0_optional[arg_0_tmp_id].ethereumLikeNetworkParameters)
+            {
+                auto arg_0_tmp_elem_7_optional = (arg_0_optional[arg_0_tmp_id].ethereumLikeNetworkParameters).value();
+                auto arg_0_tmp_elem_7_tmp = Nan::New<Object>();
+                auto arg_0_tmp_elem_7_tmp_1 = Nan::New<String>(arg_0_tmp_elem_7_optional.Identifier).ToLocalChecked();
+                Nan::DefineOwnProperty(arg_0_tmp_elem_7_tmp, Nan::New<String>("Identifier").ToLocalChecked(), arg_0_tmp_elem_7_tmp_1);
+                auto arg_0_tmp_elem_7_tmp_2 = Nan::New<String>(arg_0_tmp_elem_7_optional.MessagePrefix).ToLocalChecked();
+                Nan::DefineOwnProperty(arg_0_tmp_elem_7_tmp, Nan::New<String>("MessagePrefix").ToLocalChecked(), arg_0_tmp_elem_7_tmp_2);
+                Local<Array> arg_0_tmp_elem_7_tmp_3 = Nan::New<Array>();
+                for(size_t arg_0_tmp_elem_7_tmp_3_id = 0; arg_0_tmp_elem_7_tmp_3_id < arg_0_tmp_elem_7_optional.XPUBVersion.size(); arg_0_tmp_elem_7_tmp_3_id++)
+                {
+                    auto arg_0_tmp_elem_7_tmp_3_elem = Nan::New<Uint32>(arg_0_tmp_elem_7_optional.XPUBVersion[arg_0_tmp_elem_7_tmp_3_id]);
+                    arg_0_tmp_elem_7_tmp_3->Set((int)arg_0_tmp_elem_7_tmp_3_id,arg_0_tmp_elem_7_tmp_3_elem);
+                }
+
+                Nan::DefineOwnProperty(arg_0_tmp_elem_7_tmp, Nan::New<String>("XPUBVersion").ToLocalChecked(), arg_0_tmp_elem_7_tmp_3);
+                Local<Array> arg_0_tmp_elem_7_tmp_4 = Nan::New<Array>();
+                for(size_t arg_0_tmp_elem_7_tmp_4_id = 0; arg_0_tmp_elem_7_tmp_4_id < arg_0_tmp_elem_7_optional.AdditionalEIPs.size(); arg_0_tmp_elem_7_tmp_4_id++)
+                {
+                    auto arg_0_tmp_elem_7_tmp_4_elem = Nan::New<String>(arg_0_tmp_elem_7_optional.AdditionalEIPs[arg_0_tmp_elem_7_tmp_4_id]).ToLocalChecked();
+                    arg_0_tmp_elem_7_tmp_4->Set((int)arg_0_tmp_elem_7_tmp_4_id,arg_0_tmp_elem_7_tmp_4_elem);
+                }
+
+                Nan::DefineOwnProperty(arg_0_tmp_elem_7_tmp, Nan::New<String>("AdditionalEIPs").ToLocalChecked(), arg_0_tmp_elem_7_tmp_4);
+
+                arg_0_tmp_elem_7 = arg_0_tmp_elem_7_tmp;
+            }
+
+            Nan::DefineOwnProperty(arg_0_tmp_elem, Nan::New<String>("ethereumLikeNetworkParameters").ToLocalChecked(), arg_0_tmp_elem_7);
 
             arg_0_tmp->Set((int)arg_0_tmp_id,arg_0_tmp_elem);
         }

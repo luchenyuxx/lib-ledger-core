@@ -39,6 +39,13 @@
 #include "../bytes/BytesWriter.h"
 #include "HASH160.hpp"
 
+#include "Keccak.h"
+#include <api/Secp256k1.hpp>
+
+#include <iostream>
+using namespace std;
+#include <utils/hex.h>
+
 namespace ledger {
     namespace core {
 
@@ -63,11 +70,25 @@ namespace ledger {
         }
 
         std::vector<uint8_t> DeterministicPublicKey::getUncompressedPublicKey() const {
-            throw Exception(api::ErrorCode::IMPLEMENTATION_IS_MISSING, "ledger::core::DeterministicPublicKey::getUncompressedPublicKey not implemented");
+            auto secp256k1Api = api::Secp256k1::newInstance();
+            return secp256k1Api->computeUncompressedPubKey(_key);
         }
 
         std::vector<uint8_t> DeterministicPublicKey::getPublicKeyHash160() const {
             return HASH160::hash(_key);
+        }
+
+        std::vector<uint8_t> DeterministicPublicKey::getPublicKeyKeccak256() const {
+            auto uncompressedPk = getUncompressedPublicKey();
+            //Remove 0x04
+            uncompressedPk.erase(uncompressedPk.begin());
+            auto keccak = Keccak::keccak256(uncompressedPk);
+            //Check decoded address size
+            if (keccak.size() <= 20) {
+                throw Exception(api::ErrorCode::INVALID_ARGUMENT, "Invalid public key :  Keccak hash of uncompressed public key with wrong size");
+            }
+            std::vector<uint8_t> result(keccak.end() - 20, keccak.end());
+            return result;
         }
 
         const std::vector<uint8_t>& DeterministicPublicKey::getPublicKey() const {

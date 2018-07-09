@@ -10,6 +10,7 @@
 #include "../../../core/src/api/Currency.hpp"
 #include "../../../core/src/api/CurrencyUnit.hpp"
 #include "../../../core/src/api/Error.hpp"
+#include "../../../core/src/api/EthereumLikeNetworkParameters.hpp"
 #include <string>
 
 #include <nan.h>

@@ -17,6 +17,12 @@ declare class NJSSecp256k1
      */
     declare function computePubKey(privKey: Object, compress: boolean): Object;
     /**
+     * Generates uncompressed public key from compressed public key.
+     * @param pubKey 33 byte private key (starting with 02 or 03)
+     * @return uncompressed public key (65 bytes starting with 04)
+     */
+    declare function computeUncompressedPubKey(pubKey: Object): Object;
+    /**
      * Signs message using a given private key
      * @param privKey 32 bytes private key
      * @param data 32 bytes message to sign
@@ -36,6 +42,7 @@ declare class NJSSecp256k1
 declare class NJSNetworks
 {
     static declare function bitcoin(): BitcoinLikeNetworkParameters;
+    static declare function ethereum(): EthereumLikeNetworkParameters;
 }
 /** Helper class for commonly used crypto algorithms */
 declare class NJSHashAlgorithmHelper
@@ -1260,6 +1267,38 @@ declare class NJSBitcoinLikeScript
     declare function head(): NJSBitcoinLikeScriptChunk;
     declare function toString(): string;
     static declare function parse(data: Object): NJSBitcoinLikeScript;
+}
+/** Helper class for manipulating Ethereum like addresses */
+declare class NJSEthereumLikeAddress
+{
+    /**
+     * Gets the version of the address
+     * @return The version of the address
+     */
+    declare function getVersion(): Object;
+    /**
+     * Gets the raw hash160 of the public key
+     * @return The 20 bytes of the public key hash160
+     */
+    declare function getHash160(): Object;
+    /**
+     * Gets the network parameters used for serializing the address
+     * @return The network parameters of the address
+     */
+    declare function getNetworkParameters(): EthereumLikeNetworkParameters;
+    /**
+     * Serializes the hash160 into a Base58 encoded address (with checksum)
+     * @return The Base58 serialization
+     */
+    declare function toBase58(): string;
+}
+declare class NJSEthereumLikeExtendedPublicKey
+{
+    declare function derive(path: string): NJSEthereumLikeAddress;
+    declare function derivePublicKey(path: string): Object;
+    declare function deriveHash160(path: string): Object;
+    declare function toBase58(): string;
+    declare function getRootPath(): string;
 }
 /** Helper class for manipulating Bitcoin like addresses */
 declare class NJSBitcoinLikeAddress

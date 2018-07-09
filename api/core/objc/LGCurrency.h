@@ -3,6 +3,7 @@
 
 #import "LGBitcoinLikeNetworkParameters.h"
 #import "LGCurrencyUnit.h"
+#import "LGEthereumLikeNetworkParameters.h"
 #import "LGWalletType.h"
 #import <Foundation/Foundation.h>
 
@@ -13,13 +14,15 @@
                              bip44CoinType:(int32_t)bip44CoinType
                           paymentUriScheme:(nonnull NSString *)paymentUriScheme
                                      units:(nonnull NSArray<LGCurrencyUnit *> *)units
-              bitcoinLikeNetworkParameters:(nullable LGBitcoinLikeNetworkParameters *)bitcoinLikeNetworkParameters;
+              bitcoinLikeNetworkParameters:(nullable LGBitcoinLikeNetworkParameters *)bitcoinLikeNetworkParameters
+             ethereumLikeNetworkParameters:(nullable LGEthereumLikeNetworkParameters *)ethereumLikeNetworkParameters;
 + (nonnull instancetype)CurrencyWithWalletType:(LGWalletType)walletType
                                           name:(nonnull NSString *)name
                                  bip44CoinType:(int32_t)bip44CoinType
                               paymentUriScheme:(nonnull NSString *)paymentUriScheme
                                          units:(nonnull NSArray<LGCurrencyUnit *> *)units
-                  bitcoinLikeNetworkParameters:(nullable LGBitcoinLikeNetworkParameters *)bitcoinLikeNetworkParameters;
+                  bitcoinLikeNetworkParameters:(nullable LGBitcoinLikeNetworkParameters *)bitcoinLikeNetworkParameters
+                 ethereumLikeNetworkParameters:(nullable LGEthereumLikeNetworkParameters *)ethereumLikeNetworkParameters;
 
 /**WalletType object defining the type of wallet the currency belongs to */
 @property (nonatomic, readonly) LGWalletType walletType;
@@ -39,7 +42,13 @@
 /**List of CurrencyUnit objects (e.g. BTC, mBTC ...) */
 @property (nonatomic, readonly, nonnull) NSArray<LGCurrencyUnit *> * units;
 
-/**Optional BitcoinLikeNetworkParameters, for more details refer to BitcoinLikeNetworkParameters doc */
+/**
+ *TODO: find a better solution to have only a networkParameters
+ *Optional BitcoinLikeNetworkParameters, for more details refer to BitcoinLikeNetworkParameters doc
+ */
 @property (nonatomic, readonly, nullable) LGBitcoinLikeNetworkParameters * bitcoinLikeNetworkParameters;
+
+/**Optional EthereumLikeNetworkParameters, for more details refer to EthereumLikeNetworkParameters doc */
+@property (nonatomic, readonly, nullable) LGEthereumLikeNetworkParameters * ethereumLikeNetworkParameters;
 
 @end

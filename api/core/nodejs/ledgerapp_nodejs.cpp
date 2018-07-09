@@ -48,6 +48,8 @@
 #include "NJSEthereumLikeWalletCpp.hpp"
 #include "NJSBitcoinLikeScriptChunkCpp.hpp"
 #include "NJSBitcoinLikeScriptCpp.hpp"
+#include "NJSEthereumLikeAddressCpp.hpp"
+#include "NJSEthereumLikeExtendedPublicKeyCpp.hpp"
 #include "NJSBitcoinLikeAddressCpp.hpp"
 #include "NJSBitcoinLikeExtendedPublicKeyCpp.hpp"
 #include "NJSAmountCpp.hpp"
@@ -138,6 +140,8 @@ static void initAll(Local<Object> target)
     NJSEthereumLikeWallet::Initialize(target);
     NJSBitcoinLikeScriptChunk::Initialize(target);
     NJSBitcoinLikeScript::Initialize(target);
+    NJSEthereumLikeAddress::Initialize(target);
+    NJSEthereumLikeExtendedPublicKey::Initialize(target);
     NJSBitcoinLikeAddress::Initialize(target);
     NJSBitcoinLikeExtendedPublicKey::Initialize(target);
     NJSAmount::Initialize(target);

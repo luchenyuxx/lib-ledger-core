@@ -13,3 +13,6 @@
 [submodule "core/lib/spdlog"]
 	path = core/lib/spdlog
 	url = git@github.com:LedgerHQ/spdlog.git
+[submodule "core/lib/ethash"]
+	path = core/lib/ethash
+	url = git@github.com:ethereum/ethash.git

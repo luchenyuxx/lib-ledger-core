@@ -105,6 +105,24 @@ RCT_REMAP_METHOD(computePubKey,computePubKey:(NSDictionary *)currentInstance wit
 }
 
 /**
+ * Generates uncompressed public key from compressed public key.
+ * @param pubKey 33 byte private key (starting with 02 or 03)
+ * @return uncompressed public key (65 bytes starting with 04)
+ */
+RCT_REMAP_METHOD(computeUncompressedPubKey,computeUncompressedPubKey:(nonnull NSData *)pubKey withResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+
+    id result = @{@"result" :[self.objcImpl computeUncompressedPubKey:pubKey]};
+    if(result)
+    {
+        resolve(result);
+    }
+    else
+    {
+        reject(@"impl_call_error", @"Error while calling LGSecp256k1::computeUncompressedPubKey", nil);
+    }
+}
+
+/**
  * Signs message using a given private key
  * @param privKey 32 bytes private key
  * @param data 32 bytes message to sign

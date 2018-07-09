@@ -391,7 +391,52 @@ NAN_METHOD(NJSWalletPool::createWallet) {
         arg_1_6.emplace(opt_arg_1_6);
     }
 
-    Currency arg_1(arg_1_1, arg_1_2, arg_1_3, arg_1_4, arg_1_5, arg_1_6);
+
+    auto field_arg_1_7 = Nan::Get(info[1]->ToObject(), Nan::New<String>("ethereumLikeNetworkParameters").ToLocalChecked()).ToLocalChecked();
+    auto arg_1_7 = std::experimental::optional<EthereumLikeNetworkParameters>();
+    if(!field_arg_1_7->IsNull())
+    {
+
+        auto field_opt_arg_1_7_1 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("Identifier").ToLocalChecked()).ToLocalChecked();
+        String::Utf8Value string_opt_arg_1_7_1(field_opt_arg_1_7_1->ToString());
+        auto opt_arg_1_7_1 = std::string(*string_opt_arg_1_7_1);
+
+        auto field_opt_arg_1_7_2 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("MessagePrefix").ToLocalChecked()).ToLocalChecked();
+        String::Utf8Value string_opt_arg_1_7_2(field_opt_arg_1_7_2->ToString());
+        auto opt_arg_1_7_2 = std::string(*string_opt_arg_1_7_2);
+
+        auto field_opt_arg_1_7_3 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("XPUBVersion").ToLocalChecked()).ToLocalChecked();
+        vector<uint8_t> opt_arg_1_7_3;
+        Local<Array> opt_arg_1_7_3_container = Local<Array>::Cast(field_opt_arg_1_7_3);
+        for(uint32_t opt_arg_1_7_3_id = 0; opt_arg_1_7_3_id < opt_arg_1_7_3_container->Length(); opt_arg_1_7_3_id++)
+        {
+            if(opt_arg_1_7_3_container->Get(opt_arg_1_7_3_id)->IsUint32())
+            {
+                auto opt_arg_1_7_3_elem = Nan::To<uint32_t>(opt_arg_1_7_3_container->Get(opt_arg_1_7_3_id)).FromJust();
+                opt_arg_1_7_3.emplace_back(opt_arg_1_7_3_elem);
+            }
+        }
+
+
+        auto field_opt_arg_1_7_4 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("AdditionalEIPs").ToLocalChecked()).ToLocalChecked();
+        vector<std::string> opt_arg_1_7_4;
+        Local<Array> opt_arg_1_7_4_container = Local<Array>::Cast(field_opt_arg_1_7_4);
+        for(uint32_t opt_arg_1_7_4_id = 0; opt_arg_1_7_4_id < opt_arg_1_7_4_container->Length(); opt_arg_1_7_4_id++)
+        {
+            if(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->IsString())
+            {
+                String::Utf8Value string_opt_arg_1_7_4_elem(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->ToString());
+                auto opt_arg_1_7_4_elem = std::string(*string_opt_arg_1_7_4_elem);
+                opt_arg_1_7_4.emplace_back(opt_arg_1_7_4_elem);
+            }
+        }
+
+        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4);
+
+        arg_1_7.emplace(opt_arg_1_7);
+    }
+
+    Currency arg_1(arg_1_1, arg_1_2, arg_1_3, arg_1_4, arg_1_5, arg_1_6, arg_1_7);
 
     Local<Object> njs_arg_2 = info[2]->ToObject(Nan::GetCurrentContext()).ToLocalChecked();
     NJSDynamicObject *njs_ptr_arg_2 = static_cast<NJSDynamicObject *>(Nan::GetInternalFieldPointer(njs_arg_2,0));

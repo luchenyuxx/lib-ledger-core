@@ -465,6 +465,10 @@ package object implicits {
     }
     implicit class RichBitcoinLikeScript(val self: BitcoinLikeScript) {
     }
+    implicit class RichEthereumLikeAddress(val self: EthereumLikeAddress) {
+    }
+    implicit class RichEthereumLikeExtendedPublicKey(val self: EthereumLikeExtendedPublicKey) {
+    }
     implicit class RichBitcoinLikeAddress(val self: BitcoinLikeAddress) {
     }
     implicit class RichBitcoinLikeExtendedPublicKey(val self: BitcoinLikeExtendedPublicKey) {

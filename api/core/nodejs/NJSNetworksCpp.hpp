@@ -6,6 +6,7 @@
 
 
 #include "../../../core/src/api/BitcoinLikeNetworkParameters.hpp"
+#include "../../../core/src/api/EthereumLikeNetworkParameters.hpp"
 #include <memory>
 #include <string>
 
@@ -31,6 +32,8 @@ public:
 
 private:
     static NAN_METHOD(bitcoin);
+
+    static NAN_METHOD(ethereum);
 
     static NAN_METHOD(New);
 

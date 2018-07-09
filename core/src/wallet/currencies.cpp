@@ -30,6 +30,7 @@
  */
 #include "currencies.hpp"
 #include "bitcoin/networks.hpp"
+#include "ethereum/ethereumNetworks.hpp"
 #include <wallet/common/CurrencyBuilder.hpp>
 
 namespace ledger {
@@ -220,6 +221,17 @@ namespace ledger {
                             .unit("satoshi", 0, "satoshi")
                             .unit("clubcoin", 8, "CLUB");
 
+            const api::Currency ETHEREUM =
+                    Currency("ethereum")
+                            .bip44(60)
+                            .forkOfEthereum(networks::getEthLikeNetworkParameters("ethereum"))
+                            .paymentUri("ethereum")
+                            .unit("wei", 0, "wei")
+                            .unit("ether", 18, "ETH")
+                            .unit("kwei", 3, "kwei")
+                            .unit("mwei", 6, ",mwei")
+                            .unit("gwei", 9, "gwei");
+
             const std::vector<api::Currency> ALL({
                 BITCOIN,
                 BITCOIN_TESTNET,
@@ -241,7 +253,8 @@ namespace ledger {
                 KOMODO,
                 POSWALLET,
                 PIVX,
-                CLUBCOIN
+                CLUBCOIN,
+                ETHEREUM
             });
         }
     }

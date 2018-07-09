@@ -230,6 +230,36 @@ NAN_METHOD(NJSAddress::getCurrency) {
     }
 
     Nan::DefineOwnProperty(arg_0, Nan::New<String>("bitcoinLikeNetworkParameters").ToLocalChecked(), arg_0_6);
+    Local<Value> arg_0_7;
+    if(result.ethereumLikeNetworkParameters)
+    {
+        auto arg_0_7_optional = (result.ethereumLikeNetworkParameters).value();
+        auto arg_0_7_tmp = Nan::New<Object>();
+        auto arg_0_7_tmp_1 = Nan::New<String>(arg_0_7_optional.Identifier).ToLocalChecked();
+        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("Identifier").ToLocalChecked(), arg_0_7_tmp_1);
+        auto arg_0_7_tmp_2 = Nan::New<String>(arg_0_7_optional.MessagePrefix).ToLocalChecked();
+        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("MessagePrefix").ToLocalChecked(), arg_0_7_tmp_2);
+        Local<Array> arg_0_7_tmp_3 = Nan::New<Array>();
+        for(size_t arg_0_7_tmp_3_id = 0; arg_0_7_tmp_3_id < arg_0_7_optional.XPUBVersion.size(); arg_0_7_tmp_3_id++)
+        {
+            auto arg_0_7_tmp_3_elem = Nan::New<Uint32>(arg_0_7_optional.XPUBVersion[arg_0_7_tmp_3_id]);
+            arg_0_7_tmp_3->Set((int)arg_0_7_tmp_3_id,arg_0_7_tmp_3_elem);
+        }
+
+        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("XPUBVersion").ToLocalChecked(), arg_0_7_tmp_3);
+        Local<Array> arg_0_7_tmp_4 = Nan::New<Array>();
+        for(size_t arg_0_7_tmp_4_id = 0; arg_0_7_tmp_4_id < arg_0_7_optional.AdditionalEIPs.size(); arg_0_7_tmp_4_id++)
+        {
+            auto arg_0_7_tmp_4_elem = Nan::New<String>(arg_0_7_optional.AdditionalEIPs[arg_0_7_tmp_4_id]).ToLocalChecked();
+            arg_0_7_tmp_4->Set((int)arg_0_7_tmp_4_id,arg_0_7_tmp_4_elem);
+        }
+
+        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("AdditionalEIPs").ToLocalChecked(), arg_0_7_tmp_4);
+
+        arg_0_7 = arg_0_7_tmp;
+    }
+
+    Nan::DefineOwnProperty(arg_0, Nan::New<String>("ethereumLikeNetworkParameters").ToLocalChecked(), arg_0_7);
 
 
     //Return result
@@ -385,7 +415,52 @@ NAN_METHOD(NJSAddress::parse) {
         arg_1_6.emplace(opt_arg_1_6);
     }
 
-    Currency arg_1(arg_1_1, arg_1_2, arg_1_3, arg_1_4, arg_1_5, arg_1_6);
+
+    auto field_arg_1_7 = Nan::Get(info[1]->ToObject(), Nan::New<String>("ethereumLikeNetworkParameters").ToLocalChecked()).ToLocalChecked();
+    auto arg_1_7 = std::experimental::optional<EthereumLikeNetworkParameters>();
+    if(!field_arg_1_7->IsNull())
+    {
+
+        auto field_opt_arg_1_7_1 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("Identifier").ToLocalChecked()).ToLocalChecked();
+        String::Utf8Value string_opt_arg_1_7_1(field_opt_arg_1_7_1->ToString());
+        auto opt_arg_1_7_1 = std::string(*string_opt_arg_1_7_1);
+
+        auto field_opt_arg_1_7_2 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("MessagePrefix").ToLocalChecked()).ToLocalChecked();
+        String::Utf8Value string_opt_arg_1_7_2(field_opt_arg_1_7_2->ToString());
+        auto opt_arg_1_7_2 = std::string(*string_opt_arg_1_7_2);
+
+        auto field_opt_arg_1_7_3 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("XPUBVersion").ToLocalChecked()).ToLocalChecked();
+        vector<uint8_t> opt_arg_1_7_3;
+        Local<Array> opt_arg_1_7_3_container = Local<Array>::Cast(field_opt_arg_1_7_3);
+        for(uint32_t opt_arg_1_7_3_id = 0; opt_arg_1_7_3_id < opt_arg_1_7_3_container->Length(); opt_arg_1_7_3_id++)
+        {
+            if(opt_arg_1_7_3_container->Get(opt_arg_1_7_3_id)->IsUint32())
+            {
+                auto opt_arg_1_7_3_elem = Nan::To<uint32_t>(opt_arg_1_7_3_container->Get(opt_arg_1_7_3_id)).FromJust();
+                opt_arg_1_7_3.emplace_back(opt_arg_1_7_3_elem);
+            }
+        }
+
+
+        auto field_opt_arg_1_7_4 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("AdditionalEIPs").ToLocalChecked()).ToLocalChecked();
+        vector<std::string> opt_arg_1_7_4;
+        Local<Array> opt_arg_1_7_4_container = Local<Array>::Cast(field_opt_arg_1_7_4);
+        for(uint32_t opt_arg_1_7_4_id = 0; opt_arg_1_7_4_id < opt_arg_1_7_4_container->Length(); opt_arg_1_7_4_id++)
+        {
+            if(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->IsString())
+            {
+                String::Utf8Value string_opt_arg_1_7_4_elem(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->ToString());
+                auto opt_arg_1_7_4_elem = std::string(*string_opt_arg_1_7_4_elem);
+                opt_arg_1_7_4.emplace_back(opt_arg_1_7_4_elem);
+            }
+        }
+
+        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4);
+
+        arg_1_7.emplace(opt_arg_1_7);
+    }
+
+    Currency arg_1(arg_1_1, arg_1_2, arg_1_3, arg_1_4, arg_1_5, arg_1_6, arg_1_7);
 
 
     auto result = Address::parse(arg_0,arg_1);
@@ -549,7 +624,52 @@ NAN_METHOD(NJSAddress::isValid) {
         arg_1_6.emplace(opt_arg_1_6);
     }
 
-    Currency arg_1(arg_1_1, arg_1_2, arg_1_3, arg_1_4, arg_1_5, arg_1_6);
+
+    auto field_arg_1_7 = Nan::Get(info[1]->ToObject(), Nan::New<String>("ethereumLikeNetworkParameters").ToLocalChecked()).ToLocalChecked();
+    auto arg_1_7 = std::experimental::optional<EthereumLikeNetworkParameters>();
+    if(!field_arg_1_7->IsNull())
+    {
+
+        auto field_opt_arg_1_7_1 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("Identifier").ToLocalChecked()).ToLocalChecked();
+        String::Utf8Value string_opt_arg_1_7_1(field_opt_arg_1_7_1->ToString());
+        auto opt_arg_1_7_1 = std::string(*string_opt_arg_1_7_1);
+
+        auto field_opt_arg_1_7_2 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("MessagePrefix").ToLocalChecked()).ToLocalChecked();
+        String::Utf8Value string_opt_arg_1_7_2(field_opt_arg_1_7_2->ToString());
+        auto opt_arg_1_7_2 = std::string(*string_opt_arg_1_7_2);
+
+        auto field_opt_arg_1_7_3 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("XPUBVersion").ToLocalChecked()).ToLocalChecked();
+        vector<uint8_t> opt_arg_1_7_3;
+        Local<Array> opt_arg_1_7_3_container = Local<Array>::Cast(field_opt_arg_1_7_3);
+        for(uint32_t opt_arg_1_7_3_id = 0; opt_arg_1_7_3_id < opt_arg_1_7_3_container->Length(); opt_arg_1_7_3_id++)
+        {
+            if(opt_arg_1_7_3_container->Get(opt_arg_1_7_3_id)->IsUint32())
+            {
+                auto opt_arg_1_7_3_elem = Nan::To<uint32_t>(opt_arg_1_7_3_container->Get(opt_arg_1_7_3_id)).FromJust();
+                opt_arg_1_7_3.emplace_back(opt_arg_1_7_3_elem);
+            }
+        }
+
+
+        auto field_opt_arg_1_7_4 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("AdditionalEIPs").ToLocalChecked()).ToLocalChecked();
+        vector<std::string> opt_arg_1_7_4;
+        Local<Array> opt_arg_1_7_4_container = Local<Array>::Cast(field_opt_arg_1_7_4);
+        for(uint32_t opt_arg_1_7_4_id = 0; opt_arg_1_7_4_id < opt_arg_1_7_4_container->Length(); opt_arg_1_7_4_id++)
+        {
+            if(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->IsString())
+            {
+                String::Utf8Value string_opt_arg_1_7_4_elem(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->ToString());
+                auto opt_arg_1_7_4_elem = std::string(*string_opt_arg_1_7_4_elem);
+                opt_arg_1_7_4.emplace_back(opt_arg_1_7_4_elem);
+            }
+        }
+
+        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4);
+
+        arg_1_7.emplace(opt_arg_1_7);
+    }
+
+    Currency arg_1(arg_1_1, arg_1_2, arg_1_3, arg_1_4, arg_1_5, arg_1_6, arg_1_7);
 
 
     auto result = Address::isValid(arg_0,arg_1);
@@ -716,7 +836,52 @@ NAN_METHOD(NJSAddress::New) {
         arg_1_6.emplace(opt_arg_1_6);
     }
 
-    Currency arg_1(arg_1_1, arg_1_2, arg_1_3, arg_1_4, arg_1_5, arg_1_6);
+
+    auto field_arg_1_7 = Nan::Get(info[1]->ToObject(), Nan::New<String>("ethereumLikeNetworkParameters").ToLocalChecked()).ToLocalChecked();
+    auto arg_1_7 = std::experimental::optional<EthereumLikeNetworkParameters>();
+    if(!field_arg_1_7->IsNull())
+    {
+
+        auto field_opt_arg_1_7_1 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("Identifier").ToLocalChecked()).ToLocalChecked();
+        String::Utf8Value string_opt_arg_1_7_1(field_opt_arg_1_7_1->ToString());
+        auto opt_arg_1_7_1 = std::string(*string_opt_arg_1_7_1);
+
+        auto field_opt_arg_1_7_2 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("MessagePrefix").ToLocalChecked()).ToLocalChecked();
+        String::Utf8Value string_opt_arg_1_7_2(field_opt_arg_1_7_2->ToString());
+        auto opt_arg_1_7_2 = std::string(*string_opt_arg_1_7_2);
+
+        auto field_opt_arg_1_7_3 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("XPUBVersion").ToLocalChecked()).ToLocalChecked();
+        vector<uint8_t> opt_arg_1_7_3;
+        Local<Array> opt_arg_1_7_3_container = Local<Array>::Cast(field_opt_arg_1_7_3);
+        for(uint32_t opt_arg_1_7_3_id = 0; opt_arg_1_7_3_id < opt_arg_1_7_3_container->Length(); opt_arg_1_7_3_id++)
+        {
+            if(opt_arg_1_7_3_container->Get(opt_arg_1_7_3_id)->IsUint32())
+            {
+                auto opt_arg_1_7_3_elem = Nan::To<uint32_t>(opt_arg_1_7_3_container->Get(opt_arg_1_7_3_id)).FromJust();
+                opt_arg_1_7_3.emplace_back(opt_arg_1_7_3_elem);
+            }
+        }
+
+
+        auto field_opt_arg_1_7_4 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("AdditionalEIPs").ToLocalChecked()).ToLocalChecked();
+        vector<std::string> opt_arg_1_7_4;
+        Local<Array> opt_arg_1_7_4_container = Local<Array>::Cast(field_opt_arg_1_7_4);
+        for(uint32_t opt_arg_1_7_4_id = 0; opt_arg_1_7_4_id < opt_arg_1_7_4_container->Length(); opt_arg_1_7_4_id++)
+        {
+            if(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->IsString())
+            {
+                String::Utf8Value string_opt_arg_1_7_4_elem(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->ToString());
+                auto opt_arg_1_7_4_elem = std::string(*string_opt_arg_1_7_4_elem);
+                opt_arg_1_7_4.emplace_back(opt_arg_1_7_4_elem);
+            }
+        }
+
+        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4);
+
+        arg_1_7.emplace(opt_arg_1_7);
+    }
+
+    Currency arg_1(arg_1_1, arg_1_2, arg_1_3, arg_1_4, arg_1_5, arg_1_6, arg_1_7);
 
 
     //Call factory

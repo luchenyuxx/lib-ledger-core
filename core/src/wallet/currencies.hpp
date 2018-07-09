@@ -66,6 +66,8 @@ namespace ledger {
             extern LIBCORE_EXPORT const api::Currency POSWALLET;
             extern LIBCORE_EXPORT const api::Currency PIVX;
             extern LIBCORE_EXPORT const api::Currency CLUBCOIN;
+
+            extern LIBCORE_EXPORT const api::Currency ETHEREUM;
         };
     }
 }
