@@ -5,6 +5,7 @@
 #import "LGWalletType.h"
 #import <Foundation/Foundation.h>
 @class LGBitcoinLikeAccount;
+@class LGEthereumLikeAccount;
 @class LGEventBus;
 @class LGLogger;
 @class LGOperationQuery;
@@ -98,6 +99,8 @@ extern NSString * __nonnull const LGAccountEVNEWOPUID;
 - (nullable LGPreferences *)getOperationPreferences:(nonnull NSString *)uid;
 
 - (nullable LGBitcoinLikeAccount *)asBitcoinLikeAccount;
+
+- (nullable LGEthereumLikeAccount *)asEthereumLikeAccount;
 
 /**
  * asEthereumLikeAccount(): Callback<EthereumLikeAccount>;

@@ -14,6 +14,7 @@
 #include "../../../core/src/api/WalletType.hpp"
 #include "NJSAmountCpp.hpp"
 #include "NJSBitcoinLikeOperationCpp.hpp"
+#include "NJSEthereumLikeOperationCpp.hpp"
 #include "NJSPreferencesCpp.hpp"
 #include "NJSTrustIndicatorCpp.hpp"
 #include <chrono>
@@ -114,6 +115,12 @@ private:
      *@return BitcoinLikeOperation object
      */
     static NAN_METHOD(asBitcoinLikeOperation);
+
+    /**
+     *Convert operation as Ethereum operation
+     *@return EthereumLikeOperation object
+     */
+    static NAN_METHOD(asEthereumLikeOperation);
 
     static NAN_METHOD(isInstanceOfBitcoinLikeOperation);
 

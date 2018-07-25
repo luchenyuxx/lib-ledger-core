@@ -37,19 +37,19 @@ RCT_REMAP_METHOD(getVersion,getVersionWithResolver:(RCTPromiseResolveBlock)resol
 }
 
 /**
- * Gets the raw hash160 of the public key
- * @return The 20 bytes of the public key hash160
+ * Gets the raw keccak hash of the public key (truncated to 20 bytes)
+ * @return The 20 bytes of the public key keccak hash
  */
-RCT_REMAP_METHOD(getHash160,getHash160WithResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+RCT_REMAP_METHOD(getKeccakHash,getKeccakHashWithResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
 
-    id result = @{@"result" :[self.objcImpl getHash160]};
+    id result = @{@"result" :[self.objcImpl getKeccakHash]};
     if(result)
     {
         resolve(result);
     }
     else
     {
-        reject(@"impl_call_error", @"Error while calling LGEthereumLikeAddress::getHash160", nil);
+        reject(@"impl_call_error", @"Error while calling LGEthereumLikeAddress::getKeccakHash", nil);
     }
 }
 
@@ -71,19 +71,19 @@ RCT_REMAP_METHOD(getNetworkParameters,getNetworkParametersWithResolver:(RCTPromi
 }
 
 /**
- * Serializes the hash160 into a Base58 encoded address (with checksum)
- * @return The Base58 serialization
+ * Encodes keccak with respect to EIP55
+ * @return The EIP55 encoding
  */
-RCT_REMAP_METHOD(toBase58,toBase58WithResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+RCT_REMAP_METHOD(toEIP55,toEIP55WithResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
 
-    id result = @{@"result" :[self.objcImpl toBase58]};
+    id result = @{@"result" :[self.objcImpl toEIP55]};
     if(result)
     {
         resolve(result);
     }
     else
     {
-        reject(@"impl_call_error", @"Error while calling LGEthereumLikeAddress::toBase58", nil);
+        reject(@"impl_call_error", @"Error while calling LGEthereumLikeAddress::toEIP55", nil);
     }
 }
 @end

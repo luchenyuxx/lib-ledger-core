@@ -14,10 +14,10 @@ public abstract class EthereumLikeAddress {
     public abstract byte[] getVersion();
 
     /**
-     * Gets the raw hash160 of the public key
-     * @return The 20 bytes of the public key hash160
+     * Gets the raw keccak hash of the public key (truncated to 20 bytes)
+     * @return The 20 bytes of the public key keccak hash
      */
-    public abstract byte[] getHash160();
+    public abstract byte[] getKeccakHash();
 
     /**
      * Gets the network parameters used for serializing the address
@@ -26,10 +26,10 @@ public abstract class EthereumLikeAddress {
     public abstract EthereumLikeNetworkParameters getNetworkParameters();
 
     /**
-     * Serializes the hash160 into a Base58 encoded address (with checksum)
-     * @return The Base58 serialization
+     * Encodes keccak with respect to EIP55
+     * @return The EIP55 encoding
      */
-    public abstract String toBase58();
+    public abstract String toEIP55();
 
     private static final class CppProxy extends EthereumLikeAddress
     {
@@ -63,12 +63,12 @@ public abstract class EthereumLikeAddress {
         private native byte[] native_getVersion(long _nativeRef);
 
         @Override
-        public byte[] getHash160()
+        public byte[] getKeccakHash()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getHash160(this.nativeRef);
+            return native_getKeccakHash(this.nativeRef);
         }
-        private native byte[] native_getHash160(long _nativeRef);
+        private native byte[] native_getKeccakHash(long _nativeRef);
 
         @Override
         public EthereumLikeNetworkParameters getNetworkParameters()
@@ -79,11 +79,11 @@ public abstract class EthereumLikeAddress {
         private native EthereumLikeNetworkParameters native_getNetworkParameters(long _nativeRef);
 
         @Override
-        public String toBase58()
+        public String toEIP55()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_toBase58(this.nativeRef);
+            return native_toEIP55(this.nativeRef);
         }
-        private native String native_toBase58(long _nativeRef);
+        private native String native_toEIP55(long _nativeRef);
     }
 }

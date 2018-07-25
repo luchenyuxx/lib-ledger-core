@@ -350,6 +350,34 @@ NAN_METHOD(NJSOperation::asBitcoinLikeOperation) {
     //Return result
     info.GetReturnValue().Set(arg_0);
 }
+NAN_METHOD(NJSOperation::asEthereumLikeOperation) {
+
+    //Check if method called with right number of arguments
+    if(info.Length() != 0)
+    {
+        return Nan::ThrowError("NJSOperation::asEthereumLikeOperation needs 0 arguments");
+    }
+
+    //Check if parameters have correct types
+
+    //Unwrap current object and retrieve its Cpp Implementation
+    NJSOperation* obj = Nan::ObjectWrap::Unwrap<NJSOperation>(info.This());
+    auto cpp_impl = obj->getCppImpl();
+    if(!cpp_impl)
+    {
+        return Nan::ThrowError("NJSOperation::asEthereumLikeOperation : implementation of Operation is not valid");
+    }
+
+    auto result = cpp_impl->asEthereumLikeOperation();
+
+    //Wrap result in node object
+    auto arg_0_wrap = NJSEthereumLikeOperation::wrap(result);
+    auto arg_0 = Nan::ObjectWrap::Unwrap<NJSEthereumLikeOperation>(arg_0_wrap)->handle();
+
+
+    //Return result
+    info.GetReturnValue().Set(arg_0);
+}
 NAN_METHOD(NJSOperation::isInstanceOfBitcoinLikeOperation) {
 
     //Check if method called with right number of arguments
@@ -696,6 +724,7 @@ void NJSOperation::Initialize(Local<Object> target) {
     Nan::SetPrototypeMethod(func_template,"getTrust", getTrust);
     Nan::SetPrototypeMethod(func_template,"getBlockHeight", getBlockHeight);
     Nan::SetPrototypeMethod(func_template,"asBitcoinLikeOperation", asBitcoinLikeOperation);
+    Nan::SetPrototypeMethod(func_template,"asEthereumLikeOperation", asEthereumLikeOperation);
     Nan::SetPrototypeMethod(func_template,"isInstanceOfBitcoinLikeOperation", isInstanceOfBitcoinLikeOperation);
     Nan::SetPrototypeMethod(func_template,"isInstanceOfEthereumLikeOperation", isInstanceOfEthereumLikeOperation);
     Nan::SetPrototypeMethod(func_template,"isInstanceOfRippleLikeOperation", isInstanceOfRippleLikeOperation);

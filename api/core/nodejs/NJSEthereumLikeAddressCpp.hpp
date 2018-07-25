@@ -39,10 +39,10 @@ private:
     static NAN_METHOD(getVersion);
 
     /**
-     * Gets the raw hash160 of the public key
-     * @return The 20 bytes of the public key hash160
+     * Gets the raw keccak hash of the public key (truncated to 20 bytes)
+     * @return The 20 bytes of the public key keccak hash
      */
-    static NAN_METHOD(getHash160);
+    static NAN_METHOD(getKeccakHash);
 
     /**
      * Gets the network parameters used for serializing the address
@@ -51,10 +51,10 @@ private:
     static NAN_METHOD(getNetworkParameters);
 
     /**
-     * Serializes the hash160 into a Base58 encoded address (with checksum)
-     * @return The Base58 serialization
+     * Encodes keccak with respect to EIP55
+     * @return The EIP55 encoding
      */
-    static NAN_METHOD(toBase58);
+    static NAN_METHOD(toEIP55);
 
     static NAN_METHOD(New);
 

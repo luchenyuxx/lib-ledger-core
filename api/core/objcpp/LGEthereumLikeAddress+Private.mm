@@ -38,9 +38,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull NSData *)getHash160 {
+- (nonnull NSData *)getKeccakHash {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->getHash160();
+        auto objcpp_result_ = _cppRefHandle.get()->getKeccakHash();
         return ::djinni::Binary::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
@@ -52,9 +52,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull NSString *)toBase58 {
+- (nonnull NSString *)toEIP55 {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->toBase58();
+        auto objcpp_result_ = _cppRefHandle.get()->toEIP55();
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

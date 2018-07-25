@@ -286,6 +286,34 @@ NAN_METHOD(NJSAccount::asBitcoinLikeAccount) {
     //Return result
     info.GetReturnValue().Set(arg_0);
 }
+NAN_METHOD(NJSAccount::asEthereumLikeAccount) {
+
+    //Check if method called with right number of arguments
+    if(info.Length() != 0)
+    {
+        return Nan::ThrowError("NJSAccount::asEthereumLikeAccount needs 0 arguments");
+    }
+
+    //Check if parameters have correct types
+
+    //Unwrap current object and retrieve its Cpp Implementation
+    NJSAccount* obj = Nan::ObjectWrap::Unwrap<NJSAccount>(info.This());
+    auto cpp_impl = obj->getCppImpl();
+    if(!cpp_impl)
+    {
+        return Nan::ThrowError("NJSAccount::asEthereumLikeAccount : implementation of Account is not valid");
+    }
+
+    auto result = cpp_impl->asEthereumLikeAccount();
+
+    //Wrap result in node object
+    auto arg_0_wrap = NJSEthereumLikeAccount::wrap(result);
+    auto arg_0 = Nan::ObjectWrap::Unwrap<NJSEthereumLikeAccount>(arg_0_wrap)->handle();
+
+
+    //Return result
+    info.GetReturnValue().Set(arg_0);
+}
 NAN_METHOD(NJSAccount::isInstanceOfBitcoinLikeAccount) {
 
     //Check if method called with right number of arguments
@@ -658,6 +686,7 @@ void NJSAccount::Initialize(Local<Object> target) {
     Nan::SetPrototypeMethod(func_template,"getLogger", getLogger);
     Nan::SetPrototypeMethod(func_template,"getOperationPreferences", getOperationPreferences);
     Nan::SetPrototypeMethod(func_template,"asBitcoinLikeAccount", asBitcoinLikeAccount);
+    Nan::SetPrototypeMethod(func_template,"asEthereumLikeAccount", asEthereumLikeAccount);
     Nan::SetPrototypeMethod(func_template,"isInstanceOfBitcoinLikeAccount", isInstanceOfBitcoinLikeAccount);
     Nan::SetPrototypeMethod(func_template,"isInstanceOfEthereumLikeAccount", isInstanceOfEthereumLikeAccount);
     Nan::SetPrototypeMethod(func_template,"isInstanceOfRippleLikeAccount", isInstanceOfRippleLikeAccount);

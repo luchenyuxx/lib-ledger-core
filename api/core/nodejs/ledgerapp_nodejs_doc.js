@@ -250,6 +250,11 @@ declare class NJSOperation
      *@return BitcoinLikeOperation object
      */
     declare function asBitcoinLikeOperation(): NJSBitcoinLikeOperation;
+    /**
+     *Convert operation as Ethereum operation
+     *@return EthereumLikeOperation object
+     */
+    declare function asEthereumLikeOperation(): NJSEthereumLikeOperation;
     declare function isInstanceOfBitcoinLikeOperation(): boolean;
     /**
      *Same as asBitcoinLikeOperation for ethereum
@@ -453,6 +458,7 @@ declare class NJSAccount
      */
     declare function getOperationPreferences(uid: string): NJSPreferences;
     declare function asBitcoinLikeAccount(): NJSBitcoinLikeAccount;
+    declare function asEthereumLikeAccount(): NJSEthereumLikeAccount;
     /**
      * asEthereumLikeAccount(): Callback<EthereumLikeAccount>;
      * asRippleLikeAccount(): Callback<RippleLikeAccount>;
@@ -1253,6 +1259,130 @@ declare class NJSGetEthreumLikeWalletCallback
 declare class NJSEthereumLikeWallet
 {
 }
+/**Class representing a Ethereum transaction */
+declare class NJSEthereumLikeTransaction
+{
+    /** Get the hash of the transaction. */
+    declare function getHash(): string;
+    /** Get the nonce of the transaction : sequence number issued by originating EOA */
+    declare function getNonce(): number;
+    /** Get Gas price (in wei) */
+    declare function getGasPrice(): NJSAmount;
+    /** Get start gas (in wei) : maximum amount of gas the originator is willing to pay */
+    declare function getGasLimit(): NJSAmount;
+    /** Get destination ETH address */
+    declare function getReceiver(): NJSEthereumLikeAddress;
+    /** Get amount of ether to send */
+    declare function getValue(): NJSAmount;
+    /** Get binary data payload */
+    declare function getData(): ?Object;
+    /** Serialize the transaction to its raw format. */
+    declare function serialize(): Object;
+    /**
+     * Get the time when the transaction was issued or the time of the block including
+     * this transaction
+     */
+    declare function getTime(): Date;
+}
+/**Class representing a Ethereum Operation */
+declare class NJSEthereumLikeOperation
+{
+    /**
+     *Get operation's transaction
+     *@return EthereumLikeTransaction object
+     */
+    declare function getTransaction(): NJSEthereumLikeTransaction;
+}
+/**Class representing Bitcoin block */
+declare class NJSEthereumLikeBlock
+{
+    /**
+     *Hash of block
+     *@return string representing hash of this block
+     */
+    declare function getHash(): string;
+    /**
+     *Height of block in blockchain
+     *@return 64 bits integer, height of block
+     */
+    declare function getHeight(): number;
+    /**
+     *Timestamp when block was mined
+     *@return Date object, date when block was appended to blockchain
+     */
+    declare function getTime(): Date;
+}
+declare class NJSEthereumLikeTransactionBuilder
+{
+    /**
+     * Send funds to the given address. This method can be called multiple times to send to multiple addresses.
+     * @param amount The value to send
+     * @param address Address of the recipient
+     * @return A reference on the same builder in order to chain calls.
+     */
+    declare function sendToAddress(amount: NJSAmount, address: string): NJSEthereumLikeTransactionBuilder;
+    /**
+     * Send all available funds to the given address.
+     * @param address Address of the recipient
+     * @return A reference on the same builder in order to chain calls.
+     */
+    declare function wipeToAddress(address: string): NJSEthereumLikeTransactionBuilder;
+    /**
+     * Set gas price (in wei) the originator is willing to pay
+     * @return A reference on the same builder in order to chain calls.
+     */
+    declare function setGasPrice(gasPrice: NJSAmount): NJSEthereumLikeTransactionBuilder;
+    /**
+     * Set gas limit (in wei) the originator is not willing to exceed
+     * @return A reference on the same builder in order to chain calls.
+     */
+    declare function setGasLimit(gasLimit: NJSAmount): NJSEthereumLikeTransactionBuilder;
+    /** Set input data the originator wants to embed in transaction */
+    declare function setInputData(data: Object): NJSEthereumLikeTransactionBuilder;
+    /** Build a transaction from the given builder parameters. */
+    declare function build(callback: NJSEthereumLikeTransactionCallback);
+    /**
+     * Creates a clone of this builder.
+     * @return A copy of the current builder instance.
+     */
+    declare function clone(): NJSEthereumLikeTransactionBuilder;
+    /** Reset the current instance to its initial state */
+    declare function reset();
+    static declare function parseRawUnsignedTransaction(currency: Currency, rawTransaction: Object): NJSEthereumLikeTransaction;
+}
+/**
+ *Callback triggered by main completed task,
+ *returns optional result of template type T
+ */
+declare class NJSEthereumLikeTransactionCallback
+{
+    /**
+     * Method triggered when main task complete
+     * @params result optional of type T, non null if main task failed
+     * @params error optional of type Error, non null if main task succeeded
+     */
+    declare function onCallback(result: ?NJSEthereumLikeTransaction, error: ?Error);
+}
+/**Class representing a Ethereum account */
+declare class NJSEthereumLikeAccount
+{
+    declare function broadcastRawTransaction(transaction: Object, callback: NJSStringCallback);
+    declare function broadcastTransaction(transaction: NJSEthereumLikeTransaction, callback: NJSStringCallback);
+    declare function buildTransaction(): NJSEthereumLikeTransactionBuilder;
+}
+/**
+ *Callback triggered by main completed task,
+ *returns optional result of template type T
+ */
+declare class NJSStringCallback
+{
+    /**
+     * Method triggered when main task complete
+     * @params result optional of type T, non null if main task failed
+     * @params error optional of type Error, non null if main task succeeded
+     */
+    declare function onCallback(result: ?string, error: ?Error);
+}
 declare class NJSBitcoinLikeScriptChunk
 {
     declare function isOperator(): boolean;
@@ -1277,20 +1407,20 @@ declare class NJSEthereumLikeAddress
      */
     declare function getVersion(): Object;
     /**
-     * Gets the raw hash160 of the public key
-     * @return The 20 bytes of the public key hash160
+     * Gets the raw keccak hash of the public key (truncated to 20 bytes)
+     * @return The 20 bytes of the public key keccak hash
      */
-    declare function getHash160(): Object;
+    declare function getKeccakHash(): Object;
     /**
      * Gets the network parameters used for serializing the address
      * @return The network parameters of the address
      */
     declare function getNetworkParameters(): EthereumLikeNetworkParameters;
     /**
-     * Serializes the hash160 into a Base58 encoded address (with checksum)
-     * @return The Base58 serialization
+     * Encodes keccak with respect to EIP55
+     * @return The EIP55 encoding
      */
-    declare function toBase58(): string;
+    declare function toEIP55(): string;
 }
 declare class NJSEthereumLikeExtendedPublicKey
 {
@@ -1792,19 +1922,6 @@ declare class NJSBitcoinLikeOutputListCallback
      * @params error optional of type Error, non null if main task succeeded
      */
     declare function onCallback(result: ?Array<NJSBitcoinLikeOutput>, error: ?Error);
-}
-/**
- *Callback triggered by main completed task,
- *returns optional result of template type T
- */
-declare class NJSStringCallback
-{
-    /**
-     * Method triggered when main task complete
-     * @params result optional of type T, non null if main task failed
-     * @params error optional of type Error, non null if main task succeeded
-     */
-    declare function onCallback(result: ?string, error: ?Error);
 }
 declare class NJSBitcoinLikeWallet
 {

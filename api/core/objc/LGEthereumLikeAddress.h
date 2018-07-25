@@ -15,10 +15,10 @@
 - (nonnull NSData *)getVersion;
 
 /**
- * Gets the raw hash160 of the public key
- * @return The 20 bytes of the public key hash160
+ * Gets the raw keccak hash of the public key (truncated to 20 bytes)
+ * @return The 20 bytes of the public key keccak hash
  */
-- (nonnull NSData *)getHash160;
+- (nonnull NSData *)getKeccakHash;
 
 /**
  * Gets the network parameters used for serializing the address
@@ -27,9 +27,9 @@
 - (nonnull LGEthereumLikeNetworkParameters *)getNetworkParameters;
 
 /**
- * Serializes the hash160 into a Base58 encoded address (with checksum)
- * @return The Base58 serialization
+ * Encodes keccak with respect to EIP55
+ * @return The EIP55 encoding
  */
-- (nonnull NSString *)toBase58;
+- (nonnull NSString *)toEIP55;
 
 @end

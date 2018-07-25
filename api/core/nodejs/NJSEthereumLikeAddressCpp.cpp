@@ -39,12 +39,12 @@ NAN_METHOD(NJSEthereumLikeAddress::getVersion) {
     //Return result
     info.GetReturnValue().Set(arg_0);
 }
-NAN_METHOD(NJSEthereumLikeAddress::getHash160) {
+NAN_METHOD(NJSEthereumLikeAddress::getKeccakHash) {
 
     //Check if method called with right number of arguments
     if(info.Length() != 0)
     {
-        return Nan::ThrowError("NJSEthereumLikeAddress::getHash160 needs 0 arguments");
+        return Nan::ThrowError("NJSEthereumLikeAddress::getKeccakHash needs 0 arguments");
     }
 
     //Check if parameters have correct types
@@ -54,10 +54,10 @@ NAN_METHOD(NJSEthereumLikeAddress::getHash160) {
     auto cpp_impl = obj->getCppImpl();
     if(!cpp_impl)
     {
-        return Nan::ThrowError("NJSEthereumLikeAddress::getHash160 : implementation of EthereumLikeAddress is not valid");
+        return Nan::ThrowError("NJSEthereumLikeAddress::getKeccakHash : implementation of EthereumLikeAddress is not valid");
     }
 
-    auto result = cpp_impl->getHash160();
+    auto result = cpp_impl->getKeccakHash();
 
     //Wrap result in node object
     Local<Array> arg_0 = Nan::New<Array>();
@@ -118,12 +118,12 @@ NAN_METHOD(NJSEthereumLikeAddress::getNetworkParameters) {
     //Return result
     info.GetReturnValue().Set(arg_0);
 }
-NAN_METHOD(NJSEthereumLikeAddress::toBase58) {
+NAN_METHOD(NJSEthereumLikeAddress::toEIP55) {
 
     //Check if method called with right number of arguments
     if(info.Length() != 0)
     {
-        return Nan::ThrowError("NJSEthereumLikeAddress::toBase58 needs 0 arguments");
+        return Nan::ThrowError("NJSEthereumLikeAddress::toEIP55 needs 0 arguments");
     }
 
     //Check if parameters have correct types
@@ -133,10 +133,10 @@ NAN_METHOD(NJSEthereumLikeAddress::toBase58) {
     auto cpp_impl = obj->getCppImpl();
     if(!cpp_impl)
     {
-        return Nan::ThrowError("NJSEthereumLikeAddress::toBase58 : implementation of EthereumLikeAddress is not valid");
+        return Nan::ThrowError("NJSEthereumLikeAddress::toEIP55 : implementation of EthereumLikeAddress is not valid");
     }
 
-    auto result = cpp_impl->toBase58();
+    auto result = cpp_impl->toEIP55();
 
     //Wrap result in node object
     auto arg_0 = Nan::New<String>(result).ToLocalChecked();
@@ -205,9 +205,9 @@ void NJSEthereumLikeAddress::Initialize(Local<Object> target) {
 
     //SetPrototypeMethod all methods
     Nan::SetPrototypeMethod(func_template,"getVersion", getVersion);
-    Nan::SetPrototypeMethod(func_template,"getHash160", getHash160);
+    Nan::SetPrototypeMethod(func_template,"getKeccakHash", getKeccakHash);
     Nan::SetPrototypeMethod(func_template,"getNetworkParameters", getNetworkParameters);
-    Nan::SetPrototypeMethod(func_template,"toBase58", toBase58);
+    Nan::SetPrototypeMethod(func_template,"toEIP55", toEIP55);
     //Set object prototype
     EthereumLikeAddress_prototype.Reset(objectTemplate);
     Nan::SetPrototypeMethod(func_template,"isNull", isNull);

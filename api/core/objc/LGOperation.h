@@ -7,6 +7,7 @@
 #import <Foundation/Foundation.h>
 @class LGAmount;
 @class LGBitcoinLikeOperation;
+@class LGEthereumLikeOperation;
 @class LGPreferences;
 @class LGTrustIndicator;
 
@@ -85,6 +86,12 @@
  *@return BitcoinLikeOperation object
  */
 - (nullable LGBitcoinLikeOperation *)asBitcoinLikeOperation;
+
+/**
+ *Convert operation as Ethereum operation
+ *@return EthereumLikeOperation object
+ */
+- (nullable LGEthereumLikeOperation *)asEthereumLikeOperation;
 
 - (BOOL)isInstanceOfBitcoinLikeOperation;
 

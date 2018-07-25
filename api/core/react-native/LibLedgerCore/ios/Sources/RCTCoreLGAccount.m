@@ -345,6 +345,19 @@ RCT_REMAP_METHOD(asBitcoinLikeAccount,asBitcoinLikeAccount:(NSDictionary *)curre
 
 }
 
+RCT_REMAP_METHOD(asEthereumLikeAccount,asEthereumLikeAccountWithResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+
+    id result = @{@"result" :[self.objcImpl asEthereumLikeAccount]};
+    if(result)
+    {
+        resolve(result);
+    }
+    else
+    {
+        reject(@"impl_call_error", @"Error while calling LGAccount::asEthereumLikeAccount", nil);
+    }
+}
+
 /**
  * asEthereumLikeAccount(): Callback<EthereumLikeAccount>;
  * asRippleLikeAccount(): Callback<RippleLikeAccount>;
