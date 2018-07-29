@@ -360,7 +360,7 @@ namespace ledger {
                 auto scriptSig = reader.read(scriptSize);
                 auto sequence = reader.readNextLeUint();
                 auto parsedScript = ledger::core::BitcoinLikeScript::parse(scriptSig);
-                ledger::core::BitcoinLikeBlockchainExplorer::Output output;
+                ledger::core::BitcoinLikeBlockchainExplorerOutput output;
                 std::string address;
                 if (parsedScript.isSuccess()) {
                    auto parsedAddress = parsedScript.getValue().parseAddress(currency);
@@ -382,7 +382,7 @@ namespace ledger {
 
             auto outputsCount = reader.readNextVarInt();
             for (auto index = 0; index < outputsCount; index++) {
-                ledger::core::BitcoinLikeBlockchainExplorer::Output output;
+                ledger::core::BitcoinLikeBlockchainExplorerOutput output;
                 output.index = static_cast<uint64_t>(index);
                 output.value = reader.readNextLeBigInt(8);
                 auto scriptSize = reader.readNextVarInt();
