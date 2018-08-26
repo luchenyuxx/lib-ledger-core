@@ -13,7 +13,8 @@ auto EthereumLikeNetworkParameters::toCpp(ObjcType obj) -> CppType
     return {::djinni::String::toCpp(obj.Identifier),
             ::djinni::String::toCpp(obj.MessagePrefix),
             ::djinni::Binary::toCpp(obj.XPUBVersion),
-            ::djinni::List<::djinni::String>::toCpp(obj.AdditionalEIPs)};
+            ::djinni::List<::djinni::String>::toCpp(obj.AdditionalEIPs),
+            ::djinni::I64::toCpp(obj.TimestampDelay)};
 }
 
 auto EthereumLikeNetworkParameters::fromCpp(const CppType& cpp) -> ObjcType
@@ -21,7 +22,8 @@ auto EthereumLikeNetworkParameters::fromCpp(const CppType& cpp) -> ObjcType
     return [[LGEthereumLikeNetworkParameters alloc] initWithIdentifier:(::djinni::String::fromCpp(cpp.Identifier))
                                                          MessagePrefix:(::djinni::String::fromCpp(cpp.MessagePrefix))
                                                            XPUBVersion:(::djinni::Binary::fromCpp(cpp.XPUBVersion))
-                                                        AdditionalEIPs:(::djinni::List<::djinni::String>::fromCpp(cpp.AdditionalEIPs))];
+                                                        AdditionalEIPs:(::djinni::List<::djinni::String>::fromCpp(cpp.AdditionalEIPs))
+                                                        TimestampDelay:(::djinni::I64::fromCpp(cpp.TimestampDelay))];
 }
 
 }  // namespace djinni_generated

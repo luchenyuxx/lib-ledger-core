@@ -255,6 +255,8 @@ NAN_METHOD(NJSAddress::getCurrency) {
         }
 
         Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("AdditionalEIPs").ToLocalChecked(), arg_0_7_tmp_4);
+        auto arg_0_7_tmp_5 = Nan::New<Number>(arg_0_7_optional.TimestampDelay);
+        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("TimestampDelay").ToLocalChecked(), arg_0_7_tmp_5);
 
         arg_0_7 = arg_0_7_tmp;
     }
@@ -455,7 +457,10 @@ NAN_METHOD(NJSAddress::parse) {
             }
         }
 
-        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4);
+
+        auto field_opt_arg_1_7_5 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("TimestampDelay").ToLocalChecked()).ToLocalChecked();
+        auto opt_arg_1_7_5 = Nan::To<int64_t>(field_opt_arg_1_7_5).FromJust();
+        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4, opt_arg_1_7_5);
 
         arg_1_7.emplace(opt_arg_1_7);
     }
@@ -664,7 +669,10 @@ NAN_METHOD(NJSAddress::isValid) {
             }
         }
 
-        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4);
+
+        auto field_opt_arg_1_7_5 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("TimestampDelay").ToLocalChecked()).ToLocalChecked();
+        auto opt_arg_1_7_5 = Nan::To<int64_t>(field_opt_arg_1_7_5).FromJust();
+        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4, opt_arg_1_7_5);
 
         arg_1_7.emplace(opt_arg_1_7);
     }
@@ -876,7 +884,10 @@ NAN_METHOD(NJSAddress::New) {
             }
         }
 
-        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4);
+
+        auto field_opt_arg_1_7_5 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("TimestampDelay").ToLocalChecked()).ToLocalChecked();
+        auto opt_arg_1_7_5 = Nan::To<int64_t>(field_opt_arg_1_7_5).FromJust();
+        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4, opt_arg_1_7_5);
 
         arg_1_7.emplace(opt_arg_1_7);
     }

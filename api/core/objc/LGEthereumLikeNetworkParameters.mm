@@ -10,12 +10,14 @@
                              MessagePrefix:(nonnull NSString *)MessagePrefix
                                XPUBVersion:(nonnull NSData *)XPUBVersion
                             AdditionalEIPs:(nonnull NSArray<NSString *> *)AdditionalEIPs
+                            TimestampDelay:(int64_t)TimestampDelay
 {
     if (self = [super init]) {
         _Identifier = [Identifier copy];
         _MessagePrefix = [MessagePrefix copy];
         _XPUBVersion = [XPUBVersion copy];
         _AdditionalEIPs = [AdditionalEIPs copy];
+        _TimestampDelay = TimestampDelay;
     }
     return self;
 }
@@ -24,16 +26,18 @@
                                                       MessagePrefix:(nonnull NSString *)MessagePrefix
                                                         XPUBVersion:(nonnull NSData *)XPUBVersion
                                                      AdditionalEIPs:(nonnull NSArray<NSString *> *)AdditionalEIPs
+                                                     TimestampDelay:(int64_t)TimestampDelay
 {
     return [[self alloc] initWithIdentifier:Identifier
                               MessagePrefix:MessagePrefix
                                 XPUBVersion:XPUBVersion
-                             AdditionalEIPs:AdditionalEIPs];
+                             AdditionalEIPs:AdditionalEIPs
+                             TimestampDelay:TimestampDelay];
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p Identifier:%@ MessagePrefix:%@ XPUBVersion:%@ AdditionalEIPs:%@>", self.class, (void *)self, self.Identifier, self.MessagePrefix, self.XPUBVersion, self.AdditionalEIPs];
+    return [NSString stringWithFormat:@"<%@ %p Identifier:%@ MessagePrefix:%@ XPUBVersion:%@ AdditionalEIPs:%@ TimestampDelay:%@>", self.class, (void *)self, self.Identifier, self.MessagePrefix, self.XPUBVersion, self.AdditionalEIPs, @(self.TimestampDelay)];
 }
 
 @end

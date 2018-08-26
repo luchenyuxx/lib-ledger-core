@@ -457,6 +457,10 @@ package object implicits {
     }
     implicit class RichEthereumPublicKeyProvider(val self: EthereumPublicKeyProvider) {
     }
+    implicit class RichERC20LikeAccount(val self: ERC20LikeAccount) {
+    }
+    implicit class RichERC20LikeOperation(val self: ERC20LikeOperation) {
+    }
     implicit class RichGetEthreumLikeWalletCallback(val self: GetEthreumLikeWalletCallback) {
     }
     implicit class RichEthereumLikeWallet(val self: EthereumLikeWallet) {

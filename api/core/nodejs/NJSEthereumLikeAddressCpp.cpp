@@ -113,6 +113,8 @@ NAN_METHOD(NJSEthereumLikeAddress::getNetworkParameters) {
     }
 
     Nan::DefineOwnProperty(arg_0, Nan::New<String>("AdditionalEIPs").ToLocalChecked(), arg_0_4);
+    auto arg_0_5 = Nan::New<Number>(result.TimestampDelay);
+    Nan::DefineOwnProperty(arg_0, Nan::New<String>("TimestampDelay").ToLocalChecked(), arg_0_5);
 
 
     //Return result

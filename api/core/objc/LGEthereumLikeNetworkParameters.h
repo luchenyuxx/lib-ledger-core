@@ -7,11 +7,13 @@
 - (nonnull instancetype)initWithIdentifier:(nonnull NSString *)Identifier
                              MessagePrefix:(nonnull NSString *)MessagePrefix
                                XPUBVersion:(nonnull NSData *)XPUBVersion
-                            AdditionalEIPs:(nonnull NSArray<NSString *> *)AdditionalEIPs;
+                            AdditionalEIPs:(nonnull NSArray<NSString *> *)AdditionalEIPs
+                            TimestampDelay:(int64_t)TimestampDelay;
 + (nonnull instancetype)EthereumLikeNetworkParametersWithIdentifier:(nonnull NSString *)Identifier
                                                       MessagePrefix:(nonnull NSString *)MessagePrefix
                                                         XPUBVersion:(nonnull NSData *)XPUBVersion
-                                                     AdditionalEIPs:(nonnull NSArray<NSString *> *)AdditionalEIPs;
+                                                     AdditionalEIPs:(nonnull NSArray<NSString *> *)AdditionalEIPs
+                                                     TimestampDelay:(int64_t)TimestampDelay;
 
 @property (nonatomic, readonly, nonnull) NSString * Identifier;
 
@@ -20,5 +22,7 @@
 @property (nonatomic, readonly, nonnull) NSData * XPUBVersion;
 
 @property (nonatomic, readonly, nonnull) NSArray<NSString *> * AdditionalEIPs;
+
+@property (nonatomic, readonly) int64_t TimestampDelay;
 
 @end

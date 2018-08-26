@@ -642,6 +642,8 @@ NAN_METHOD(NJSOperation::getCurrency) {
         }
 
         Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("AdditionalEIPs").ToLocalChecked(), arg_0_7_tmp_4);
+        auto arg_0_7_tmp_5 = Nan::New<Number>(arg_0_7_optional.TimestampDelay);
+        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("TimestampDelay").ToLocalChecked(), arg_0_7_tmp_5);
 
         arg_0_7 = arg_0_7_tmp;
     }

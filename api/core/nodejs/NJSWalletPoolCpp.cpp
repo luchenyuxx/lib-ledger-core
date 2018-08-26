@@ -431,7 +431,10 @@ NAN_METHOD(NJSWalletPool::createWallet) {
             }
         }
 
-        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4);
+
+        auto field_opt_arg_1_7_5 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("TimestampDelay").ToLocalChecked()).ToLocalChecked();
+        auto opt_arg_1_7_5 = Nan::To<int64_t>(field_opt_arg_1_7_5).FromJust();
+        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4, opt_arg_1_7_5);
 
         arg_1_7.emplace(opt_arg_1_7);
     }

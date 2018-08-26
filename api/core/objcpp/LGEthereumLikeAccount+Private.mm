@@ -6,6 +6,7 @@
 #import "DJICppWrapperCache+Private.h"
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
+#import "LGERC20LikeAccount+Private.h"
 #import "LGEthereumLikeTransaction+Private.h"
 #import "LGEthereumLikeTransactionBuilder+Private.h"
 #import "LGStringCallback+Private.h"
@@ -53,6 +54,13 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     try {
         auto objcpp_result_ = _cppRefHandle.get()->buildTransaction();
         return ::djinni_generated::EthereumLikeTransactionBuilder::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull NSArray<LGERC20LikeAccount *> *)getERC20Accounts {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->getERC20Accounts();
+        return ::djinni::List<::djinni_generated::ERC20LikeAccount>::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

@@ -106,6 +106,40 @@ NAN_METHOD(NJSEthereumLikeAccount::buildTransaction) {
     //Return result
     info.GetReturnValue().Set(arg_0);
 }
+NAN_METHOD(NJSEthereumLikeAccount::getERC20Accounts) {
+
+    //Check if method called with right number of arguments
+    if(info.Length() != 0)
+    {
+        return Nan::ThrowError("NJSEthereumLikeAccount::getERC20Accounts needs 0 arguments");
+    }
+
+    //Check if parameters have correct types
+
+    //Unwrap current object and retrieve its Cpp Implementation
+    NJSEthereumLikeAccount* obj = Nan::ObjectWrap::Unwrap<NJSEthereumLikeAccount>(info.This());
+    auto cpp_impl = obj->getCppImpl();
+    if(!cpp_impl)
+    {
+        return Nan::ThrowError("NJSEthereumLikeAccount::getERC20Accounts : implementation of EthereumLikeAccount is not valid");
+    }
+
+    auto result = cpp_impl->getERC20Accounts();
+
+    //Wrap result in node object
+    Local<Array> arg_0 = Nan::New<Array>();
+    for(size_t arg_0_id = 0; arg_0_id < result.size(); arg_0_id++)
+    {
+        auto arg_0_elem_wrap = NJSERC20LikeAccount::wrap(result[arg_0_id]);
+        auto arg_0_elem = Nan::ObjectWrap::Unwrap<NJSERC20LikeAccount>(arg_0_elem_wrap)->handle();
+
+        arg_0->Set((int)arg_0_id,arg_0_elem);
+    }
+
+
+    //Return result
+    info.GetReturnValue().Set(arg_0);
+}
 
 NAN_METHOD(NJSEthereumLikeAccount::New) {
     //Only new allowed
@@ -169,6 +203,7 @@ void NJSEthereumLikeAccount::Initialize(Local<Object> target) {
     Nan::SetPrototypeMethod(func_template,"broadcastRawTransaction", broadcastRawTransaction);
     Nan::SetPrototypeMethod(func_template,"broadcastTransaction", broadcastTransaction);
     Nan::SetPrototypeMethod(func_template,"buildTransaction", buildTransaction);
+    Nan::SetPrototypeMethod(func_template,"getERC20Accounts", getERC20Accounts);
     //Set object prototype
     EthereumLikeAccount_prototype.Reset(objectTemplate);
     Nan::SetPrototypeMethod(func_template,"isNull", isNull);

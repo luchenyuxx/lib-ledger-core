@@ -3,6 +3,7 @@
 
 package co.ledger.core;
 
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**Class representing a Ethereum account */
@@ -12,6 +13,8 @@ public abstract class EthereumLikeAccount {
     public abstract void broadcastTransaction(EthereumLikeTransaction transaction, StringCallback callback);
 
     public abstract EthereumLikeTransactionBuilder buildTransaction();
+
+    public abstract ArrayList<ERC20LikeAccount> getERC20Accounts();
 
     private static final class CppProxy extends EthereumLikeAccount
     {
@@ -59,5 +62,13 @@ public abstract class EthereumLikeAccount {
             return native_buildTransaction(this.nativeRef);
         }
         private native EthereumLikeTransactionBuilder native_buildTransaction(long _nativeRef);
+
+        @Override
+        public ArrayList<ERC20LikeAccount> getERC20Accounts()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getERC20Accounts(this.nativeRef);
+        }
+        private native ArrayList<ERC20LikeAccount> native_getERC20Accounts(long _nativeRef);
     }
 }

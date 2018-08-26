@@ -44,6 +44,8 @@
 #include "NJSDatabaseBackendCpp.hpp"
 #include "NJSRandomNumberGenerator.hpp"
 #include "NJSEthereumPublicKeyProvider.hpp"
+#include "NJSERC20LikeAccountCpp.hpp"
+#include "NJSERC20LikeOperationCpp.hpp"
 #include "NJSGetEthreumLikeWalletCallback.hpp"
 #include "NJSEthereumLikeWalletCpp.hpp"
 #include "NJSEthereumLikeTransactionCpp.hpp"
@@ -142,6 +144,8 @@ static void initAll(Local<Object> target)
     NJSDatabaseBackend::Initialize(target);
     NJSRandomNumberGenerator::Initialize(target);
     NJSEthereumPublicKeyProvider::Initialize(target);
+    NJSERC20LikeAccount::Initialize(target);
+    NJSERC20LikeOperation::Initialize(target);
     NJSGetEthreumLikeWalletCallback::Initialize(target);
     NJSEthereumLikeWallet::Initialize(target);
     NJSEthereumLikeTransaction::Initialize(target);

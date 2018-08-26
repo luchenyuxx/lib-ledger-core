@@ -1251,6 +1251,42 @@ declare class NJSRandomNumberGenerator
 declare class NJSEthereumPublicKeyProvider
 {
 }
+/**ERC20-like accounts class */
+declare class NJSERC20LikeAccount
+{
+    declare function getToken(): ERC20Token;
+    declare function getAddress(): string;
+    declare function getBalance(): NJSBigInt;
+    declare function getOperations(): Array<NJSERC20LikeOperation>;
+}
+/**Class representing a Ethereum transaction */
+declare class NJSERC20LikeOperation
+{
+    /** Get the hash of the transaction. */
+    declare function getHash(): string;
+    /** Get the nonce of the transaction : sequence number issued by originating EOA */
+    declare function getNonce(): number;
+    /** Get Gas price (in wei) */
+    declare function getGasPrice(): NJSAmount;
+    /** Get start gas (in wei) : maximum amount of gas the originator is willing to pay */
+    declare function getGasLimit(): NJSAmount;
+    /** Used gas (in wei) : used gas during this transaction */
+    declare function getUsedLimit(): NJSAmount;
+    /** Get source ETH address */
+    declare function getSender(): string;
+    /** Get destination ETH address */
+    declare function getReceiver(): string;
+    /** Get amount of ether to send */
+    declare function getValue(): NJSAmount;
+    /** Get binary data payload */
+    declare function getData(): Object;
+    /**
+     * Get the time when the transaction was issued or the time of the block including
+     * this transaction
+     */
+    declare function getTime(): Date;
+    declare function getOperationType(): OperationType;
+}
 declare class NJSGetEthreumLikeWalletCallback
 {
     declare function onSuccess(wallet: NJSEthereumLikeWallet, isCreated: boolean);
@@ -1369,6 +1405,7 @@ declare class NJSEthereumLikeAccount
     declare function broadcastRawTransaction(transaction: Object, callback: NJSStringCallback);
     declare function broadcastTransaction(transaction: NJSEthereumLikeTransaction, callback: NJSStringCallback);
     declare function buildTransaction(): NJSEthereumLikeTransactionBuilder;
+    declare function getERC20Accounts(): Array<NJSERC20LikeAccount>;
 }
 /**
  *Callback triggered by main completed task,

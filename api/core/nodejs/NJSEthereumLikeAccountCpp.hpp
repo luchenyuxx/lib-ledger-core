@@ -5,6 +5,7 @@
 #define DJINNI_GENERATED_NJSETHEREUMLIKEACCOUNT_HPP
 
 
+#include "NJSERC20LikeAccountCpp.hpp"
 #include "NJSEthereumLikeTransactionBuilderCpp.hpp"
 #include "NJSEthereumLikeTransactionCpp.hpp"
 #include "NJSStringCallback.hpp"
@@ -38,6 +39,8 @@ private:
     static NAN_METHOD(broadcastTransaction);
 
     static NAN_METHOD(buildTransaction);
+
+    static NAN_METHOD(getERC20Accounts);
 
     static NAN_METHOD(New);
 
