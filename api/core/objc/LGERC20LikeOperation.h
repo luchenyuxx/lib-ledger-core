@@ -22,7 +22,7 @@
 - (nullable LGAmount *)getGasLimit;
 
 /** Used gas (in wei) : used gas during this transaction */
-- (nullable LGAmount *)getUsedLimit;
+- (nullable LGAmount *)getUsedGas;
 
 /** Get source ETH address */
 - (nonnull NSString *)getSender;
@@ -43,5 +43,7 @@
 - (nonnull NSDate *)getTime;
 
 - (LGOperationType)getOperationType;
+
+- (int32_t)getStatus;
 
 @end

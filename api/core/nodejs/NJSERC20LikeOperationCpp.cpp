@@ -115,12 +115,12 @@ NAN_METHOD(NJSERC20LikeOperation::getGasLimit) {
     //Return result
     info.GetReturnValue().Set(arg_0);
 }
-NAN_METHOD(NJSERC20LikeOperation::getUsedLimit) {
+NAN_METHOD(NJSERC20LikeOperation::getUsedGas) {
 
     //Check if method called with right number of arguments
     if(info.Length() != 0)
     {
-        return Nan::ThrowError("NJSERC20LikeOperation::getUsedLimit needs 0 arguments");
+        return Nan::ThrowError("NJSERC20LikeOperation::getUsedGas needs 0 arguments");
     }
 
     //Check if parameters have correct types
@@ -130,10 +130,10 @@ NAN_METHOD(NJSERC20LikeOperation::getUsedLimit) {
     auto cpp_impl = obj->getCppImpl();
     if(!cpp_impl)
     {
-        return Nan::ThrowError("NJSERC20LikeOperation::getUsedLimit : implementation of ERC20LikeOperation is not valid");
+        return Nan::ThrowError("NJSERC20LikeOperation::getUsedGas : implementation of ERC20LikeOperation is not valid");
     }
 
-    auto result = cpp_impl->getUsedLimit();
+    auto result = cpp_impl->getUsedGas();
 
     //Wrap result in node object
     auto arg_0_wrap = NJSAmount::wrap(result);
@@ -308,6 +308,32 @@ NAN_METHOD(NJSERC20LikeOperation::getOperationType) {
     //Return result
     info.GetReturnValue().Set(arg_0);
 }
+NAN_METHOD(NJSERC20LikeOperation::getStatus) {
+
+    //Check if method called with right number of arguments
+    if(info.Length() != 0)
+    {
+        return Nan::ThrowError("NJSERC20LikeOperation::getStatus needs 0 arguments");
+    }
+
+    //Check if parameters have correct types
+
+    //Unwrap current object and retrieve its Cpp Implementation
+    NJSERC20LikeOperation* obj = Nan::ObjectWrap::Unwrap<NJSERC20LikeOperation>(info.This());
+    auto cpp_impl = obj->getCppImpl();
+    if(!cpp_impl)
+    {
+        return Nan::ThrowError("NJSERC20LikeOperation::getStatus : implementation of ERC20LikeOperation is not valid");
+    }
+
+    auto result = cpp_impl->getStatus();
+
+    //Wrap result in node object
+    auto arg_0 = Nan::New<Int32>(result);
+
+    //Return result
+    info.GetReturnValue().Set(arg_0);
+}
 
 NAN_METHOD(NJSERC20LikeOperation::New) {
     //Only new allowed
@@ -372,13 +398,14 @@ void NJSERC20LikeOperation::Initialize(Local<Object> target) {
     Nan::SetPrototypeMethod(func_template,"getNonce", getNonce);
     Nan::SetPrototypeMethod(func_template,"getGasPrice", getGasPrice);
     Nan::SetPrototypeMethod(func_template,"getGasLimit", getGasLimit);
-    Nan::SetPrototypeMethod(func_template,"getUsedLimit", getUsedLimit);
+    Nan::SetPrototypeMethod(func_template,"getUsedGas", getUsedGas);
     Nan::SetPrototypeMethod(func_template,"getSender", getSender);
     Nan::SetPrototypeMethod(func_template,"getReceiver", getReceiver);
     Nan::SetPrototypeMethod(func_template,"getValue", getValue);
     Nan::SetPrototypeMethod(func_template,"getData", getData);
     Nan::SetPrototypeMethod(func_template,"getTime", getTime);
     Nan::SetPrototypeMethod(func_template,"getOperationType", getOperationType);
+    Nan::SetPrototypeMethod(func_template,"getStatus", getStatus);
     //Set object prototype
     ERC20LikeOperation_prototype.Reset(objectTemplate);
     Nan::SetPrototypeMethod(func_template,"isNull", isNull);

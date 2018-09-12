@@ -47,7 +47,7 @@ private:
     static NAN_METHOD(getGasLimit);
 
     /** Used gas (in wei) : used gas during this transaction */
-    static NAN_METHOD(getUsedLimit);
+    static NAN_METHOD(getUsedGas);
 
     /** Get source ETH address */
     static NAN_METHOD(getSender);
@@ -68,6 +68,8 @@ private:
     static NAN_METHOD(getTime);
 
     static NAN_METHOD(getOperationType);
+
+    static NAN_METHOD(getStatus);
 
     static NAN_METHOD(New);
 

@@ -1271,7 +1271,7 @@ declare class NJSERC20LikeOperation
     /** Get start gas (in wei) : maximum amount of gas the originator is willing to pay */
     declare function getGasLimit(): NJSAmount;
     /** Used gas (in wei) : used gas during this transaction */
-    declare function getUsedLimit(): NJSAmount;
+    declare function getUsedGas(): NJSAmount;
     /** Get source ETH address */
     declare function getSender(): string;
     /** Get destination ETH address */
@@ -1286,6 +1286,7 @@ declare class NJSERC20LikeOperation
      */
     declare function getTime(): Date;
     declare function getOperationType(): OperationType;
+    declare function getStatus(): number;
 }
 declare class NJSGetEthreumLikeWalletCallback
 {
