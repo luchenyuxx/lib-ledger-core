@@ -19,7 +19,8 @@ if [ ! -e $DEST/src ]; then
     --node-out $DEST/src \
     --node-type-prefix NJS \
     --node-include-cpp ../include \
-    --node-package $PACKAGE_NAME
+    --node-package $PACKAGE_NAME \
+    --export-header-name libcore_export
 fi
 
 # copy include files
