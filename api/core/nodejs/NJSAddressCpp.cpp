@@ -324,7 +324,7 @@ NAN_METHOD(NJSAddress::parse) {
 
     auto field_arg_1_6 = Nan::Get(info[1]->ToObject(), Nan::New<String>("bitcoinLikeNetworkParameters").ToLocalChecked()).ToLocalChecked();
     auto arg_1_6 = std::experimental::optional<BitcoinLikeNetworkParameters>();
-    if(!field_arg_1_6->IsNull())
+    if(!field_arg_1_6->IsNull() && !field_arg_1_6->IsUndefined())
     {
 
         auto field_opt_arg_1_6_1 = Nan::Get(field_arg_1_6->ToObject(), Nan::New<String>("Identifier").ToLocalChecked()).ToLocalChecked();
@@ -420,7 +420,7 @@ NAN_METHOD(NJSAddress::parse) {
 
     auto field_arg_1_7 = Nan::Get(info[1]->ToObject(), Nan::New<String>("ethereumLikeNetworkParameters").ToLocalChecked()).ToLocalChecked();
     auto arg_1_7 = std::experimental::optional<EthereumLikeNetworkParameters>();
-    if(!field_arg_1_7->IsNull())
+    if(!field_arg_1_7->IsNull() && !field_arg_1_7->IsUndefined())
     {
 
         auto field_opt_arg_1_7_1 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("Identifier").ToLocalChecked()).ToLocalChecked();
@@ -536,7 +536,7 @@ NAN_METHOD(NJSAddress::isValid) {
 
     auto field_arg_1_6 = Nan::Get(info[1]->ToObject(), Nan::New<String>("bitcoinLikeNetworkParameters").ToLocalChecked()).ToLocalChecked();
     auto arg_1_6 = std::experimental::optional<BitcoinLikeNetworkParameters>();
-    if(!field_arg_1_6->IsNull())
+    if(!field_arg_1_6->IsNull() && !field_arg_1_6->IsUndefined())
     {
 
         auto field_opt_arg_1_6_1 = Nan::Get(field_arg_1_6->ToObject(), Nan::New<String>("Identifier").ToLocalChecked()).ToLocalChecked();
@@ -632,7 +632,7 @@ NAN_METHOD(NJSAddress::isValid) {
 
     auto field_arg_1_7 = Nan::Get(info[1]->ToObject(), Nan::New<String>("ethereumLikeNetworkParameters").ToLocalChecked()).ToLocalChecked();
     auto arg_1_7 = std::experimental::optional<EthereumLikeNetworkParameters>();
-    if(!field_arg_1_7->IsNull())
+    if(!field_arg_1_7->IsNull() && !field_arg_1_7->IsUndefined())
     {
 
         auto field_opt_arg_1_7_1 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("Identifier").ToLocalChecked()).ToLocalChecked();
@@ -751,7 +751,7 @@ NAN_METHOD(NJSAddress::New) {
 
     auto field_arg_1_6 = Nan::Get(info[1]->ToObject(), Nan::New<String>("bitcoinLikeNetworkParameters").ToLocalChecked()).ToLocalChecked();
     auto arg_1_6 = std::experimental::optional<BitcoinLikeNetworkParameters>();
-    if(!field_arg_1_6->IsNull())
+    if(!field_arg_1_6->IsNull() && !field_arg_1_6->IsUndefined())
     {
 
         auto field_opt_arg_1_6_1 = Nan::Get(field_arg_1_6->ToObject(), Nan::New<String>("Identifier").ToLocalChecked()).ToLocalChecked();
@@ -847,7 +847,7 @@ NAN_METHOD(NJSAddress::New) {
 
     auto field_arg_1_7 = Nan::Get(info[1]->ToObject(), Nan::New<String>("ethereumLikeNetworkParameters").ToLocalChecked()).ToLocalChecked();
     auto arg_1_7 = std::experimental::optional<EthereumLikeNetworkParameters>();
-    if(!field_arg_1_7->IsNull())
+    if(!field_arg_1_7->IsNull() && !field_arg_1_7->IsUndefined())
     {
 
         auto field_opt_arg_1_7_1 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("Identifier").ToLocalChecked()).ToLocalChecked();
