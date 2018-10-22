@@ -98,13 +98,17 @@ namespace ledger {
             return out;
         }
 
-        Option<api::Block> AccountDatabaseHelper::getLastBlockWithOperations(soci::session &sql, const std::string &accountUid) {
+        Option<api::Block> AccountDatabaseHelper::getLastBlockWithOperations(soci::session &sql,
+                                                                             const std::string &accountUid,
+                                                                             const std::shared_ptr<spdlog::logger> &logger) {
             //Get block_uid of most recent operation from DB
             rowset<row> rows = (sql.prepare << "SELECT op.block_uid, b.hash, b.height, b.time, b.currency_name"
-                                                    "FROM operations AS op "
+                                                    "FROM operations AS op"
                                                     "JOIN blocks AS b ON op.block_uid = b.uid"
                                                     "WHERE op.account_uid = :uid ORDER BY op.created_at DESC LIMIT 1",
                                                     use(accountUid));
+
+            logger->info("getLastBlockWithOperations Request succeeded for account {}", accountUid);
             for (auto& row : rows) {
                 auto block_uid = row.get<std::string>(0);
                 auto hash = row.get<std::string>(1);

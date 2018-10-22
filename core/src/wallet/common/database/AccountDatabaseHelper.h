@@ -36,6 +36,7 @@
 #include <list>
 #include <api/Block.hpp>
 #include <utils/Option.hpp>
+#include <spdlog/spdlog.h>
 namespace ledger {
     namespace core {
 
@@ -48,7 +49,7 @@ namespace ledger {
             static std::string createAccountUid(const std::string& walletUid, int32_t accountIndex);
             static int32_t computeNextAccountIndex(soci::session& sql, const std::string& walletUid);
             static std::list<int32_t>& getAccountsIndexes(soci::session& sql, const std::string& walletUid, int32_t from, int32_t count, std::list<int32_t>& out);
-            static Option<api::Block> getLastBlockWithOperations(soci::session &sql, const std::string &accountUid);
+            static Option<api::Block> getLastBlockWithOperations(soci::session &sql, const std::string &accountUid, const std::shared_ptr<spdlog::logger> &logger);
         };
     }
 }

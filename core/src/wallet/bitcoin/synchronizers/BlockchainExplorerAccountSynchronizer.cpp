@@ -182,7 +182,7 @@ namespace ledger {
                 if (deepestFailedBlockHeight > 0) {
                     //Get last block (in DB) which contains current account's operations
                     buddy->logger->info("Get last block (in DB) which contains current account's operations at {}", DateUtils::toJSON(DateUtils::now()));
-                    auto previousBlock = AccountDatabaseHelper::getLastBlockWithOperations(sql, buddy->account->getAccountUid());
+                    auto previousBlock = AccountDatabaseHelper::getLastBlockWithOperations(sql, buddy->account->getAccountUid(), buddy->logger);
                     for (auto& batch : buddy->savedState.getValue().batches) {
                         if (batch.blockHeight >= deepestFailedBlockHeight) {
                             batch.blockHeight = previousBlock.nonEmpty() ? (uint32_t)previousBlock.getValue().height : 0;
