@@ -182,7 +182,7 @@ namespace ledger {
 
             // Compute trust
             computeOperationTrust(operation, wallet, transaction);
-
+            logger()->info("Put operation for inputs for account {} at {}", getAccountUid(), DateUtils::toJSON(DateUtils::now()));
             if (accountInputs.size() > 0) {
                 // Create a send operation
                 result = result | FLAG_TRANSACTION_CREATED_SENDING_OPERATION;
@@ -199,7 +199,7 @@ namespace ledger {
                 if (OperationDatabaseHelper::putOperation(sql, operation))
                     emitNewOperationEvent(operation);
             }
-
+            logger()->info("Put operation for outputs for account {} at {}", getAccountUid(), DateUtils::toJSON(DateUtils::now()));
             if (accountOutputs.size() > 0) {
                 // Receive
                 BigInt amount;
@@ -228,6 +228,7 @@ namespace ledger {
 
                 auto accountUid = getAccountUid();
                 //Update account_uid column of bitcoin_outputs table
+                logger()->info("Update account_uid column of bitcoin_outputs table for account {} at {}", getAccountUid(), DateUtils::toJSON(DateUtils::now()));
                 for (auto& o : accountOutputs) {
                     if (o.first->address.nonEmpty()) {
 

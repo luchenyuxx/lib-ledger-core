@@ -150,6 +150,14 @@ namespace ledger {
                     );
 
             //Check if reorganization happened
+            buddy->logger
+                    ->info("Check if reorg happened for account#{} ({}) of wallet {} at {}",
+                           account->getIndex(),
+                           account->getKeychain()
+                                   ->getRestoreKey(),
+                           account->getWallet()
+                                   ->getName(), DateUtils::toJSON(DateUtils::now())
+                    );
             soci::session sql(buddy->wallet->getDatabase()->getPool());
             if (buddy->savedState.nonEmpty()) {
                 
@@ -164,14 +172,16 @@ namespace ledger {
                 size_t index = 0;
                 //Reorg can't happen until genesis block, safely initialize with 0
                 uint64_t deepestFailedBlockHeight = 0;
+                buddy->logger->info("Get last block before reorg at {}", DateUtils::toJSON(DateUtils::now()));
                 while (index < sortedBatches.size() && !BlockDatabaseHelper::blockExists(sql, sortedBatches[index].blockHash, currencyName)) {
                     deepestFailedBlockHeight = sortedBatches[index].blockHeight;
                     index ++;
                 }
-
+                buddy->logger->info("Got last block before reorg at {}", DateUtils::toJSON(DateUtils::now()));
                 //Case of reorg, update savedState's batches
                 if (deepestFailedBlockHeight > 0) {
                     //Get last block (in DB) which contains current account's operations
+                    buddy->logger->info("Get last block (in DB) which contains current account's operations at {}", DateUtils::toJSON(DateUtils::now()));
                     auto previousBlock = AccountDatabaseHelper::getLastBlockWithOperations(sql, buddy->account->getAccountUid());
                     for (auto& batch : buddy->savedState.getValue().batches) {
                         if (batch.blockHeight >= deepestFailedBlockHeight) {
@@ -179,17 +189,19 @@ namespace ledger {
                             batch.blockHash = previousBlock.nonEmpty() ? previousBlock.getValue().blockHash : "";
                         }
                     }
+                    buddy->logger->info("Got last block (in DB) which contains current account's operations at {}", DateUtils::toJSON(DateUtils::now()));
                 }
             }
 
             initializeSavedState(buddy->savedState, buddy->halfBatchSize);
 
             //Get all transactions in DB that may be dropped (txs without block_uid)
+            buddy->logger->info("Get all transactions in DB that may be dropped at {}", DateUtils::toJSON(DateUtils::now()));
             soci::rowset<soci::row> rows = (sql.prepare << "SELECT op.uid, btc_op.transaction_hash FROM operations AS op "
                                                             "LEFT OUTER JOIN bitcoin_operations AS btc_op ON btc_op.uid = op.uid "
                                                             "WHERE op.block_uid IS NULL AND op.account_uid = :uid ",
                                                             soci::use(account->getAccountUid()));
-
+            buddy->logger->info("Got all transactions in DB that may be dropped at {}", DateUtils::toJSON(DateUtils::now()));
             for (auto &row : rows) {
                 if (row.get_indicator(0) != soci::i_null && row.get_indicator(1) != soci::i_null) {
                     buddy->transactionsToDrop.insert(std::pair<std::string, std::string>(row.get<std::string>(1), row.get<std::string>(0)));
@@ -200,6 +212,12 @@ namespace ledger {
             _explorer->getCurrentBlock().onComplete(account->getContext(), [buddy] (const TryPtr<BitcoinLikeBlockchainExplorer::Block>& block) {
                 if (block.isSuccess()) {
                     soci::session sql(buddy->account->getWallet()->getDatabase()->getPool());
+                    buddy->logger->info("Update block for account#{} ({}) of wallet {}",buddy->account->getIndex(),
+                                        buddy->account->getKeychain()
+                                                ->getRestoreKey(),
+                                        buddy->account->getWallet()
+                                                ->getName(),
+                                        DateUtils::toJSON(DateUtils::now()));
                     buddy->account->putBlock(sql, *block.getValue());
                 }
             });
@@ -280,11 +298,12 @@ namespace ledger {
                     if (failedBlockHeight > 0) {
 
                         //Delete data related to failedBlock (and all blocks above it)
-                        buddy->logger->info("Deleting blocks above blbock height: {}", failedBlockHeight);
+                        buddy->logger->info("Deleting blocks above block height: {}", failedBlockHeight);
                         soci::session sql(buddy->wallet->getDatabase()->getPool());
                         sql << "DELETE FROM blocks where height >= :failedBlockHeight", soci::use(failedBlockHeight);
 
                         //Get last block not part from reorg
+                        buddy->logger->info("Get last block not part from reorg");
                         auto lastBlock = BlockDatabaseHelper::getLastBlock(sql, buddy->wallet->getCurrency().name);
 
                         //Resync from the "beginning" if no last block in DB
@@ -351,6 +370,7 @@ namespace ledger {
                         auto& batchState = buddy->savedState.getValue().batches[currentBatchIndex];
                         soci::session sql(buddy->wallet->getDatabase()->getPool());
                         soci::transaction tr(sql);
+                        buddy->logger->info("Put transactions in account {} at {}", buddy->account->getAccountUid(), DateUtils::toJSON(DateUtils::now()));
                         for (const auto& tx : bulk->transactions) {
                             buddy->account->putTransaction(sql, tx);
 
@@ -368,6 +388,7 @@ namespace ledger {
                             buddy->transactionsToDrop.erase(tx.hash);
                         }
                         tr.commit();
+                        buddy->logger->info("Put transactions successfully in account {} at {}", buddy->account->getAccountUid(), DateUtils::toJSON(DateUtils::now()));
                         buddy->account->emitEventsNow();
                         // Get the last block
                         if (bulk->transactions.size() > 0) {
