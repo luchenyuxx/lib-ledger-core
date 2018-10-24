@@ -1258,6 +1258,7 @@ declare class NJSERC20LikeAccount
     declare function getAddress(): string;
     declare function getBalance(): NJSBigInt;
     declare function getOperations(): Array<NJSERC20LikeOperation>;
+    declare function getTransferToAddressData(amount: NJSAmount, address: string): Object;
 }
 /**Class representing a Ethereum transaction */
 declare class NJSERC20LikeOperation

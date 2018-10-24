@@ -6,8 +6,10 @@
 
 
 #include "../../../core/src/api/ERC20Token.hpp"
+#include "NJSAmountCpp.hpp"
 #include "NJSBigIntCpp.hpp"
 #include "NJSERC20LikeOperationCpp.hpp"
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -40,6 +42,8 @@ private:
     static NAN_METHOD(getBalance);
 
     static NAN_METHOD(getOperations);
+
+    static NAN_METHOD(getTransferToAddressData);
 
     static NAN_METHOD(New);
 

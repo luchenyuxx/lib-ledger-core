@@ -130,6 +130,48 @@ NAN_METHOD(NJSERC20LikeAccount::getOperations) {
     //Return result
     info.GetReturnValue().Set(arg_0);
 }
+NAN_METHOD(NJSERC20LikeAccount::getTransferToAddressData) {
+
+    //Check if method called with right number of arguments
+    if(info.Length() != 2)
+    {
+        return Nan::ThrowError("NJSERC20LikeAccount::getTransferToAddressData needs 2 arguments");
+    }
+
+    //Check if parameters have correct types
+    Local<Object> njs_arg_0 = info[0]->ToObject(Nan::GetCurrentContext()).ToLocalChecked();
+    NJSAmount *njs_ptr_arg_0 = static_cast<NJSAmount *>(Nan::GetInternalFieldPointer(njs_arg_0,0));
+    if(!njs_ptr_arg_0)
+    {
+        return Nan::ThrowError("NodeJs Object to NJSAmount failed");
+    }
+    auto arg_0 = njs_ptr_arg_0->getCppImpl();
+
+    String::Utf8Value string_arg_1(info[1]->ToString());
+    auto arg_1 = std::string(*string_arg_1);
+
+    //Unwrap current object and retrieve its Cpp Implementation
+    NJSERC20LikeAccount* obj = Nan::ObjectWrap::Unwrap<NJSERC20LikeAccount>(info.This());
+    auto cpp_impl = obj->getCppImpl();
+    if(!cpp_impl)
+    {
+        return Nan::ThrowError("NJSERC20LikeAccount::getTransferToAddressData : implementation of ERC20LikeAccount is not valid");
+    }
+
+    auto result = cpp_impl->getTransferToAddressData(arg_0,arg_1);
+
+    //Wrap result in node object
+    Local<Array> arg_2 = Nan::New<Array>();
+    for(size_t arg_2_id = 0; arg_2_id < result.size(); arg_2_id++)
+    {
+        auto arg_2_elem = Nan::New<Uint32>(result[arg_2_id]);
+        arg_2->Set((int)arg_2_id,arg_2_elem);
+    }
+
+
+    //Return result
+    info.GetReturnValue().Set(arg_2);
+}
 
 NAN_METHOD(NJSERC20LikeAccount::New) {
     //Only new allowed
@@ -194,6 +236,7 @@ void NJSERC20LikeAccount::Initialize(Local<Object> target) {
     Nan::SetPrototypeMethod(func_template,"getAddress", getAddress);
     Nan::SetPrototypeMethod(func_template,"getBalance", getBalance);
     Nan::SetPrototypeMethod(func_template,"getOperations", getOperations);
+    Nan::SetPrototypeMethod(func_template,"getTransferToAddressData", getTransferToAddressData);
     //Set object prototype
     ERC20LikeAccount_prototype.Reset(objectTemplate);
     Nan::SetPrototypeMethod(func_template,"isNull", isNull);
