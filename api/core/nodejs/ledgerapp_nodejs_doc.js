@@ -1308,8 +1308,12 @@ declare class NJSEthereumLikeTransaction
     declare function getGasPrice(): NJSAmount;
     /** Get start gas (in wei) : maximum amount of gas the originator is willing to pay */
     declare function getGasLimit(): NJSAmount;
+    /** Effective used gas */
+    declare function getGasUsed(): NJSAmount;
     /** Get destination ETH address */
     declare function getReceiver(): NJSEthereumLikeAddress;
+    /** Get ETH sender address */
+    declare function getSender(): NJSEthereumLikeAddress;
     /** Get amount of ether to send */
     declare function getValue(): NJSAmount;
     /** Get binary data payload */
@@ -1320,7 +1324,7 @@ declare class NJSEthereumLikeTransaction
      * Get the time when the transaction was issued or the time of the block including
      * this transaction
      */
-    declare function getTime(): Date;
+    declare function getDate(): Date;
 }
 /**Class representing a Ethereum Operation */
 declare class NJSEthereumLikeOperation

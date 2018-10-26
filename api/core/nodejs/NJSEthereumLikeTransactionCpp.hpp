@@ -47,8 +47,14 @@ private:
     /** Get start gas (in wei) : maximum amount of gas the originator is willing to pay */
     static NAN_METHOD(getGasLimit);
 
+    /** Effective used gas */
+    static NAN_METHOD(getGasUsed);
+
     /** Get destination ETH address */
     static NAN_METHOD(getReceiver);
+
+    /** Get ETH sender address */
+    static NAN_METHOD(getSender);
 
     /** Get amount of ether to send */
     static NAN_METHOD(getValue);
@@ -63,7 +69,7 @@ private:
      * Get the time when the transaction was issued or the time of the block including
      * this transaction
      */
-    static NAN_METHOD(getTime);
+    static NAN_METHOD(getDate);
 
     static NAN_METHOD(New);
 

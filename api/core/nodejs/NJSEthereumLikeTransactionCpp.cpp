@@ -115,6 +115,34 @@ NAN_METHOD(NJSEthereumLikeTransaction::getGasLimit) {
     //Return result
     info.GetReturnValue().Set(arg_0);
 }
+NAN_METHOD(NJSEthereumLikeTransaction::getGasUsed) {
+
+    //Check if method called with right number of arguments
+    if(info.Length() != 0)
+    {
+        return Nan::ThrowError("NJSEthereumLikeTransaction::getGasUsed needs 0 arguments");
+    }
+
+    //Check if parameters have correct types
+
+    //Unwrap current object and retrieve its Cpp Implementation
+    NJSEthereumLikeTransaction* obj = Nan::ObjectWrap::Unwrap<NJSEthereumLikeTransaction>(info.This());
+    auto cpp_impl = obj->getCppImpl();
+    if(!cpp_impl)
+    {
+        return Nan::ThrowError("NJSEthereumLikeTransaction::getGasUsed : implementation of EthereumLikeTransaction is not valid");
+    }
+
+    auto result = cpp_impl->getGasUsed();
+
+    //Wrap result in node object
+    auto arg_0_wrap = NJSAmount::wrap(result);
+    auto arg_0 = Nan::ObjectWrap::Unwrap<NJSAmount>(arg_0_wrap)->handle();
+
+
+    //Return result
+    info.GetReturnValue().Set(arg_0);
+}
 NAN_METHOD(NJSEthereumLikeTransaction::getReceiver) {
 
     //Check if method called with right number of arguments
@@ -134,6 +162,34 @@ NAN_METHOD(NJSEthereumLikeTransaction::getReceiver) {
     }
 
     auto result = cpp_impl->getReceiver();
+
+    //Wrap result in node object
+    auto arg_0_wrap = NJSEthereumLikeAddress::wrap(result);
+    auto arg_0 = Nan::ObjectWrap::Unwrap<NJSEthereumLikeAddress>(arg_0_wrap)->handle();
+
+
+    //Return result
+    info.GetReturnValue().Set(arg_0);
+}
+NAN_METHOD(NJSEthereumLikeTransaction::getSender) {
+
+    //Check if method called with right number of arguments
+    if(info.Length() != 0)
+    {
+        return Nan::ThrowError("NJSEthereumLikeTransaction::getSender needs 0 arguments");
+    }
+
+    //Check if parameters have correct types
+
+    //Unwrap current object and retrieve its Cpp Implementation
+    NJSEthereumLikeTransaction* obj = Nan::ObjectWrap::Unwrap<NJSEthereumLikeTransaction>(info.This());
+    auto cpp_impl = obj->getCppImpl();
+    if(!cpp_impl)
+    {
+        return Nan::ThrowError("NJSEthereumLikeTransaction::getSender : implementation of EthereumLikeTransaction is not valid");
+    }
+
+    auto result = cpp_impl->getSender();
 
     //Wrap result in node object
     auto arg_0_wrap = NJSEthereumLikeAddress::wrap(result);
@@ -242,12 +298,12 @@ NAN_METHOD(NJSEthereumLikeTransaction::serialize) {
     //Return result
     info.GetReturnValue().Set(arg_0);
 }
-NAN_METHOD(NJSEthereumLikeTransaction::getTime) {
+NAN_METHOD(NJSEthereumLikeTransaction::getDate) {
 
     //Check if method called with right number of arguments
     if(info.Length() != 0)
     {
-        return Nan::ThrowError("NJSEthereumLikeTransaction::getTime needs 0 arguments");
+        return Nan::ThrowError("NJSEthereumLikeTransaction::getDate needs 0 arguments");
     }
 
     //Check if parameters have correct types
@@ -257,10 +313,10 @@ NAN_METHOD(NJSEthereumLikeTransaction::getTime) {
     auto cpp_impl = obj->getCppImpl();
     if(!cpp_impl)
     {
-        return Nan::ThrowError("NJSEthereumLikeTransaction::getTime : implementation of EthereumLikeTransaction is not valid");
+        return Nan::ThrowError("NJSEthereumLikeTransaction::getDate : implementation of EthereumLikeTransaction is not valid");
     }
 
-    auto result = cpp_impl->getTime();
+    auto result = cpp_impl->getDate();
 
     //Wrap result in node object
     auto date_arg_0 = chrono::duration_cast<chrono::milliseconds>(result.time_since_epoch()).count();
@@ -333,11 +389,13 @@ void NJSEthereumLikeTransaction::Initialize(Local<Object> target) {
     Nan::SetPrototypeMethod(func_template,"getNonce", getNonce);
     Nan::SetPrototypeMethod(func_template,"getGasPrice", getGasPrice);
     Nan::SetPrototypeMethod(func_template,"getGasLimit", getGasLimit);
+    Nan::SetPrototypeMethod(func_template,"getGasUsed", getGasUsed);
     Nan::SetPrototypeMethod(func_template,"getReceiver", getReceiver);
+    Nan::SetPrototypeMethod(func_template,"getSender", getSender);
     Nan::SetPrototypeMethod(func_template,"getValue", getValue);
     Nan::SetPrototypeMethod(func_template,"getData", getData);
     Nan::SetPrototypeMethod(func_template,"serialize", serialize);
-    Nan::SetPrototypeMethod(func_template,"getTime", getTime);
+    Nan::SetPrototypeMethod(func_template,"getDate", getDate);
     //Set object prototype
     EthereumLikeTransaction_prototype.Reset(objectTemplate);
     Nan::SetPrototypeMethod(func_template,"isNull", isNull);

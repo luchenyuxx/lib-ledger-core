@@ -20,8 +20,14 @@ public abstract class EthereumLikeTransaction {
     /** Get start gas (in wei) : maximum amount of gas the originator is willing to pay */
     public abstract Amount getGasLimit();
 
+    /** Effective used gas */
+    public abstract Amount getGasUsed();
+
     /** Get destination ETH address */
     public abstract EthereumLikeAddress getReceiver();
+
+    /** Get ETH sender address */
+    public abstract EthereumLikeAddress getSender();
 
     /** Get amount of ether to send */
     public abstract Amount getValue();
@@ -36,7 +42,7 @@ public abstract class EthereumLikeTransaction {
      * Get the time when the transaction was issued or the time of the block including
      * this transaction
      */
-    public abstract Date getTime();
+    public abstract Date getDate();
 
     private static final class CppProxy extends EthereumLikeTransaction
     {
@@ -94,12 +100,28 @@ public abstract class EthereumLikeTransaction {
         private native Amount native_getGasLimit(long _nativeRef);
 
         @Override
+        public Amount getGasUsed()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getGasUsed(this.nativeRef);
+        }
+        private native Amount native_getGasUsed(long _nativeRef);
+
+        @Override
         public EthereumLikeAddress getReceiver()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_getReceiver(this.nativeRef);
         }
         private native EthereumLikeAddress native_getReceiver(long _nativeRef);
+
+        @Override
+        public EthereumLikeAddress getSender()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getSender(this.nativeRef);
+        }
+        private native EthereumLikeAddress native_getSender(long _nativeRef);
 
         @Override
         public Amount getValue()
@@ -126,11 +148,11 @@ public abstract class EthereumLikeTransaction {
         private native byte[] native_serialize(long _nativeRef);
 
         @Override
-        public Date getTime()
+        public Date getDate()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getTime(this.nativeRef);
+            return native_getDate(this.nativeRef);
         }
-        private native Date native_getTime(long _nativeRef);
+        private native Date native_getDate(long _nativeRef);
     }
 }
