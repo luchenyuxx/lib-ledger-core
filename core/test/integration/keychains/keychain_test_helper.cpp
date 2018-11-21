@@ -165,5 +165,5 @@ KeychainTestData CLUBCOIN_DATA(ledger::core::networks::getNetworkParameters("clu
 
 KeychainTestData ETHEREUM_DATA(ledger::core::networks::getEthLikeNetworkParameters("ethereum"),
                                ledger::core::currencies::ETHEREUM,
-                               "xpub6E3C4qRJgptBznysvYD9JW7BNXQXvjhNBHYqASZKeF6konKuAH5bAm9Q9444SBasXSAB56BjjYnGCg9z1RYZzcEJeMxe6g4Ppgw8Q7Fo8fh",
+                               "xpub6DrvMc6me5H6sV3Wrva6thZyhxMZ7WMyB8nMWLe3T5xr79bBsDJn2zgSQiVWEbU5XfoLMEz7oZT9G49AoCcxYNrz2dVBrySzUw4k9GTNyoW",
                                "44'/60'/0'");
