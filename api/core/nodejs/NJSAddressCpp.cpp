@@ -240,23 +240,31 @@ NAN_METHOD(NJSAddress::getCurrency) {
         auto arg_0_7_tmp_2 = Nan::New<String>(arg_0_7_optional.MessagePrefix).ToLocalChecked();
         Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("MessagePrefix").ToLocalChecked(), arg_0_7_tmp_2);
         Local<Array> arg_0_7_tmp_3 = Nan::New<Array>();
-        for(size_t arg_0_7_tmp_3_id = 0; arg_0_7_tmp_3_id < arg_0_7_optional.XPUBVersion.size(); arg_0_7_tmp_3_id++)
+        for(size_t arg_0_7_tmp_3_id = 0; arg_0_7_tmp_3_id < arg_0_7_optional.ChainID.size(); arg_0_7_tmp_3_id++)
         {
-            auto arg_0_7_tmp_3_elem = Nan::New<Uint32>(arg_0_7_optional.XPUBVersion[arg_0_7_tmp_3_id]);
+            auto arg_0_7_tmp_3_elem = Nan::New<Uint32>(arg_0_7_optional.ChainID[arg_0_7_tmp_3_id]);
             arg_0_7_tmp_3->Set((int)arg_0_7_tmp_3_id,arg_0_7_tmp_3_elem);
         }
 
-        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("XPUBVersion").ToLocalChecked(), arg_0_7_tmp_3);
+        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("ChainID").ToLocalChecked(), arg_0_7_tmp_3);
         Local<Array> arg_0_7_tmp_4 = Nan::New<Array>();
-        for(size_t arg_0_7_tmp_4_id = 0; arg_0_7_tmp_4_id < arg_0_7_optional.AdditionalEIPs.size(); arg_0_7_tmp_4_id++)
+        for(size_t arg_0_7_tmp_4_id = 0; arg_0_7_tmp_4_id < arg_0_7_optional.XPUBVersion.size(); arg_0_7_tmp_4_id++)
         {
-            auto arg_0_7_tmp_4_elem = Nan::New<String>(arg_0_7_optional.AdditionalEIPs[arg_0_7_tmp_4_id]).ToLocalChecked();
+            auto arg_0_7_tmp_4_elem = Nan::New<Uint32>(arg_0_7_optional.XPUBVersion[arg_0_7_tmp_4_id]);
             arg_0_7_tmp_4->Set((int)arg_0_7_tmp_4_id,arg_0_7_tmp_4_elem);
         }
 
-        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("AdditionalEIPs").ToLocalChecked(), arg_0_7_tmp_4);
-        auto arg_0_7_tmp_5 = Nan::New<Number>(arg_0_7_optional.TimestampDelay);
-        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("TimestampDelay").ToLocalChecked(), arg_0_7_tmp_5);
+        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("XPUBVersion").ToLocalChecked(), arg_0_7_tmp_4);
+        Local<Array> arg_0_7_tmp_5 = Nan::New<Array>();
+        for(size_t arg_0_7_tmp_5_id = 0; arg_0_7_tmp_5_id < arg_0_7_optional.AdditionalEIPs.size(); arg_0_7_tmp_5_id++)
+        {
+            auto arg_0_7_tmp_5_elem = Nan::New<String>(arg_0_7_optional.AdditionalEIPs[arg_0_7_tmp_5_id]).ToLocalChecked();
+            arg_0_7_tmp_5->Set((int)arg_0_7_tmp_5_id,arg_0_7_tmp_5_elem);
+        }
+
+        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("AdditionalEIPs").ToLocalChecked(), arg_0_7_tmp_5);
+        auto arg_0_7_tmp_6 = Nan::New<Number>(arg_0_7_optional.TimestampDelay);
+        Nan::DefineOwnProperty(arg_0_7_tmp, Nan::New<String>("TimestampDelay").ToLocalChecked(), arg_0_7_tmp_6);
 
         arg_0_7 = arg_0_7_tmp;
     }
@@ -431,7 +439,7 @@ NAN_METHOD(NJSAddress::parse) {
         String::Utf8Value string_opt_arg_1_7_2(field_opt_arg_1_7_2->ToString());
         auto opt_arg_1_7_2 = std::string(*string_opt_arg_1_7_2);
 
-        auto field_opt_arg_1_7_3 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("XPUBVersion").ToLocalChecked()).ToLocalChecked();
+        auto field_opt_arg_1_7_3 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("ChainID").ToLocalChecked()).ToLocalChecked();
         vector<uint8_t> opt_arg_1_7_3;
         Local<Array> opt_arg_1_7_3_container = Local<Array>::Cast(field_opt_arg_1_7_3);
         for(uint32_t opt_arg_1_7_3_id = 0; opt_arg_1_7_3_id < opt_arg_1_7_3_container->Length(); opt_arg_1_7_3_id++)
@@ -444,23 +452,36 @@ NAN_METHOD(NJSAddress::parse) {
         }
 
 
-        auto field_opt_arg_1_7_4 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("AdditionalEIPs").ToLocalChecked()).ToLocalChecked();
-        vector<std::string> opt_arg_1_7_4;
+        auto field_opt_arg_1_7_4 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("XPUBVersion").ToLocalChecked()).ToLocalChecked();
+        vector<uint8_t> opt_arg_1_7_4;
         Local<Array> opt_arg_1_7_4_container = Local<Array>::Cast(field_opt_arg_1_7_4);
         for(uint32_t opt_arg_1_7_4_id = 0; opt_arg_1_7_4_id < opt_arg_1_7_4_container->Length(); opt_arg_1_7_4_id++)
         {
-            if(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->IsString())
+            if(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->IsUint32())
             {
-                String::Utf8Value string_opt_arg_1_7_4_elem(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->ToString());
-                auto opt_arg_1_7_4_elem = std::string(*string_opt_arg_1_7_4_elem);
+                auto opt_arg_1_7_4_elem = Nan::To<uint32_t>(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)).FromJust();
                 opt_arg_1_7_4.emplace_back(opt_arg_1_7_4_elem);
             }
         }
 
 
-        auto field_opt_arg_1_7_5 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("TimestampDelay").ToLocalChecked()).ToLocalChecked();
-        auto opt_arg_1_7_5 = Nan::To<int64_t>(field_opt_arg_1_7_5).FromJust();
-        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4, opt_arg_1_7_5);
+        auto field_opt_arg_1_7_5 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("AdditionalEIPs").ToLocalChecked()).ToLocalChecked();
+        vector<std::string> opt_arg_1_7_5;
+        Local<Array> opt_arg_1_7_5_container = Local<Array>::Cast(field_opt_arg_1_7_5);
+        for(uint32_t opt_arg_1_7_5_id = 0; opt_arg_1_7_5_id < opt_arg_1_7_5_container->Length(); opt_arg_1_7_5_id++)
+        {
+            if(opt_arg_1_7_5_container->Get(opt_arg_1_7_5_id)->IsString())
+            {
+                String::Utf8Value string_opt_arg_1_7_5_elem(opt_arg_1_7_5_container->Get(opt_arg_1_7_5_id)->ToString());
+                auto opt_arg_1_7_5_elem = std::string(*string_opt_arg_1_7_5_elem);
+                opt_arg_1_7_5.emplace_back(opt_arg_1_7_5_elem);
+            }
+        }
+
+
+        auto field_opt_arg_1_7_6 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("TimestampDelay").ToLocalChecked()).ToLocalChecked();
+        auto opt_arg_1_7_6 = Nan::To<int64_t>(field_opt_arg_1_7_6).FromJust();
+        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4, opt_arg_1_7_5, opt_arg_1_7_6);
 
         arg_1_7.emplace(opt_arg_1_7);
     }
@@ -643,7 +664,7 @@ NAN_METHOD(NJSAddress::isValid) {
         String::Utf8Value string_opt_arg_1_7_2(field_opt_arg_1_7_2->ToString());
         auto opt_arg_1_7_2 = std::string(*string_opt_arg_1_7_2);
 
-        auto field_opt_arg_1_7_3 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("XPUBVersion").ToLocalChecked()).ToLocalChecked();
+        auto field_opt_arg_1_7_3 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("ChainID").ToLocalChecked()).ToLocalChecked();
         vector<uint8_t> opt_arg_1_7_3;
         Local<Array> opt_arg_1_7_3_container = Local<Array>::Cast(field_opt_arg_1_7_3);
         for(uint32_t opt_arg_1_7_3_id = 0; opt_arg_1_7_3_id < opt_arg_1_7_3_container->Length(); opt_arg_1_7_3_id++)
@@ -656,23 +677,36 @@ NAN_METHOD(NJSAddress::isValid) {
         }
 
 
-        auto field_opt_arg_1_7_4 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("AdditionalEIPs").ToLocalChecked()).ToLocalChecked();
-        vector<std::string> opt_arg_1_7_4;
+        auto field_opt_arg_1_7_4 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("XPUBVersion").ToLocalChecked()).ToLocalChecked();
+        vector<uint8_t> opt_arg_1_7_4;
         Local<Array> opt_arg_1_7_4_container = Local<Array>::Cast(field_opt_arg_1_7_4);
         for(uint32_t opt_arg_1_7_4_id = 0; opt_arg_1_7_4_id < opt_arg_1_7_4_container->Length(); opt_arg_1_7_4_id++)
         {
-            if(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->IsString())
+            if(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->IsUint32())
             {
-                String::Utf8Value string_opt_arg_1_7_4_elem(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->ToString());
-                auto opt_arg_1_7_4_elem = std::string(*string_opt_arg_1_7_4_elem);
+                auto opt_arg_1_7_4_elem = Nan::To<uint32_t>(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)).FromJust();
                 opt_arg_1_7_4.emplace_back(opt_arg_1_7_4_elem);
             }
         }
 
 
-        auto field_opt_arg_1_7_5 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("TimestampDelay").ToLocalChecked()).ToLocalChecked();
-        auto opt_arg_1_7_5 = Nan::To<int64_t>(field_opt_arg_1_7_5).FromJust();
-        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4, opt_arg_1_7_5);
+        auto field_opt_arg_1_7_5 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("AdditionalEIPs").ToLocalChecked()).ToLocalChecked();
+        vector<std::string> opt_arg_1_7_5;
+        Local<Array> opt_arg_1_7_5_container = Local<Array>::Cast(field_opt_arg_1_7_5);
+        for(uint32_t opt_arg_1_7_5_id = 0; opt_arg_1_7_5_id < opt_arg_1_7_5_container->Length(); opt_arg_1_7_5_id++)
+        {
+            if(opt_arg_1_7_5_container->Get(opt_arg_1_7_5_id)->IsString())
+            {
+                String::Utf8Value string_opt_arg_1_7_5_elem(opt_arg_1_7_5_container->Get(opt_arg_1_7_5_id)->ToString());
+                auto opt_arg_1_7_5_elem = std::string(*string_opt_arg_1_7_5_elem);
+                opt_arg_1_7_5.emplace_back(opt_arg_1_7_5_elem);
+            }
+        }
+
+
+        auto field_opt_arg_1_7_6 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("TimestampDelay").ToLocalChecked()).ToLocalChecked();
+        auto opt_arg_1_7_6 = Nan::To<int64_t>(field_opt_arg_1_7_6).FromJust();
+        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4, opt_arg_1_7_5, opt_arg_1_7_6);
 
         arg_1_7.emplace(opt_arg_1_7);
     }
@@ -858,7 +892,7 @@ NAN_METHOD(NJSAddress::New) {
         String::Utf8Value string_opt_arg_1_7_2(field_opt_arg_1_7_2->ToString());
         auto opt_arg_1_7_2 = std::string(*string_opt_arg_1_7_2);
 
-        auto field_opt_arg_1_7_3 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("XPUBVersion").ToLocalChecked()).ToLocalChecked();
+        auto field_opt_arg_1_7_3 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("ChainID").ToLocalChecked()).ToLocalChecked();
         vector<uint8_t> opt_arg_1_7_3;
         Local<Array> opt_arg_1_7_3_container = Local<Array>::Cast(field_opt_arg_1_7_3);
         for(uint32_t opt_arg_1_7_3_id = 0; opt_arg_1_7_3_id < opt_arg_1_7_3_container->Length(); opt_arg_1_7_3_id++)
@@ -871,23 +905,36 @@ NAN_METHOD(NJSAddress::New) {
         }
 
 
-        auto field_opt_arg_1_7_4 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("AdditionalEIPs").ToLocalChecked()).ToLocalChecked();
-        vector<std::string> opt_arg_1_7_4;
+        auto field_opt_arg_1_7_4 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("XPUBVersion").ToLocalChecked()).ToLocalChecked();
+        vector<uint8_t> opt_arg_1_7_4;
         Local<Array> opt_arg_1_7_4_container = Local<Array>::Cast(field_opt_arg_1_7_4);
         for(uint32_t opt_arg_1_7_4_id = 0; opt_arg_1_7_4_id < opt_arg_1_7_4_container->Length(); opt_arg_1_7_4_id++)
         {
-            if(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->IsString())
+            if(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->IsUint32())
             {
-                String::Utf8Value string_opt_arg_1_7_4_elem(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)->ToString());
-                auto opt_arg_1_7_4_elem = std::string(*string_opt_arg_1_7_4_elem);
+                auto opt_arg_1_7_4_elem = Nan::To<uint32_t>(opt_arg_1_7_4_container->Get(opt_arg_1_7_4_id)).FromJust();
                 opt_arg_1_7_4.emplace_back(opt_arg_1_7_4_elem);
             }
         }
 
 
-        auto field_opt_arg_1_7_5 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("TimestampDelay").ToLocalChecked()).ToLocalChecked();
-        auto opt_arg_1_7_5 = Nan::To<int64_t>(field_opt_arg_1_7_5).FromJust();
-        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4, opt_arg_1_7_5);
+        auto field_opt_arg_1_7_5 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("AdditionalEIPs").ToLocalChecked()).ToLocalChecked();
+        vector<std::string> opt_arg_1_7_5;
+        Local<Array> opt_arg_1_7_5_container = Local<Array>::Cast(field_opt_arg_1_7_5);
+        for(uint32_t opt_arg_1_7_5_id = 0; opt_arg_1_7_5_id < opt_arg_1_7_5_container->Length(); opt_arg_1_7_5_id++)
+        {
+            if(opt_arg_1_7_5_container->Get(opt_arg_1_7_5_id)->IsString())
+            {
+                String::Utf8Value string_opt_arg_1_7_5_elem(opt_arg_1_7_5_container->Get(opt_arg_1_7_5_id)->ToString());
+                auto opt_arg_1_7_5_elem = std::string(*string_opt_arg_1_7_5_elem);
+                opt_arg_1_7_5.emplace_back(opt_arg_1_7_5_elem);
+            }
+        }
+
+
+        auto field_opt_arg_1_7_6 = Nan::Get(field_arg_1_7->ToObject(), Nan::New<String>("TimestampDelay").ToLocalChecked()).ToLocalChecked();
+        auto opt_arg_1_7_6 = Nan::To<int64_t>(field_opt_arg_1_7_6).FromJust();
+        EthereumLikeNetworkParameters opt_arg_1_7(opt_arg_1_7_1, opt_arg_1_7_2, opt_arg_1_7_3, opt_arg_1_7_4, opt_arg_1_7_5, opt_arg_1_7_6);
 
         arg_1_7.emplace(opt_arg_1_7);
     }

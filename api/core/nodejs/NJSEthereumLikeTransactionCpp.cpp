@@ -298,6 +298,77 @@ NAN_METHOD(NJSEthereumLikeTransaction::serialize) {
     //Return result
     info.GetReturnValue().Set(arg_0);
 }
+NAN_METHOD(NJSEthereumLikeTransaction::setSignature) {
+
+    //Check if method called with right number of arguments
+    if(info.Length() != 2)
+    {
+        return Nan::ThrowError("NJSEthereumLikeTransaction::setSignature needs 2 arguments");
+    }
+
+    //Check if parameters have correct types
+    vector<uint8_t> arg_0;
+    Local<Array> arg_0_container = Local<Array>::Cast(info[0]);
+    for(uint32_t arg_0_id = 0; arg_0_id < arg_0_container->Length(); arg_0_id++)
+    {
+        if(arg_0_container->Get(arg_0_id)->IsUint32())
+        {
+            auto arg_0_elem = Nan::To<uint32_t>(arg_0_container->Get(arg_0_id)).FromJust();
+            arg_0.emplace_back(arg_0_elem);
+        }
+    }
+
+    vector<uint8_t> arg_1;
+    Local<Array> arg_1_container = Local<Array>::Cast(info[1]);
+    for(uint32_t arg_1_id = 0; arg_1_id < arg_1_container->Length(); arg_1_id++)
+    {
+        if(arg_1_container->Get(arg_1_id)->IsUint32())
+        {
+            auto arg_1_elem = Nan::To<uint32_t>(arg_1_container->Get(arg_1_id)).FromJust();
+            arg_1.emplace_back(arg_1_elem);
+        }
+    }
+
+
+    //Unwrap current object and retrieve its Cpp Implementation
+    NJSEthereumLikeTransaction* obj = Nan::ObjectWrap::Unwrap<NJSEthereumLikeTransaction>(info.This());
+    auto cpp_impl = obj->getCppImpl();
+    if(!cpp_impl)
+    {
+        return Nan::ThrowError("NJSEthereumLikeTransaction::setSignature : implementation of EthereumLikeTransaction is not valid");
+    }
+    cpp_impl->setSignature(arg_0,arg_1);
+}
+NAN_METHOD(NJSEthereumLikeTransaction::setDERSignature) {
+
+    //Check if method called with right number of arguments
+    if(info.Length() != 1)
+    {
+        return Nan::ThrowError("NJSEthereumLikeTransaction::setDERSignature needs 1 arguments");
+    }
+
+    //Check if parameters have correct types
+    vector<uint8_t> arg_0;
+    Local<Array> arg_0_container = Local<Array>::Cast(info[0]);
+    for(uint32_t arg_0_id = 0; arg_0_id < arg_0_container->Length(); arg_0_id++)
+    {
+        if(arg_0_container->Get(arg_0_id)->IsUint32())
+        {
+            auto arg_0_elem = Nan::To<uint32_t>(arg_0_container->Get(arg_0_id)).FromJust();
+            arg_0.emplace_back(arg_0_elem);
+        }
+    }
+
+
+    //Unwrap current object and retrieve its Cpp Implementation
+    NJSEthereumLikeTransaction* obj = Nan::ObjectWrap::Unwrap<NJSEthereumLikeTransaction>(info.This());
+    auto cpp_impl = obj->getCppImpl();
+    if(!cpp_impl)
+    {
+        return Nan::ThrowError("NJSEthereumLikeTransaction::setDERSignature : implementation of EthereumLikeTransaction is not valid");
+    }
+    cpp_impl->setDERSignature(arg_0);
+}
 NAN_METHOD(NJSEthereumLikeTransaction::getDate) {
 
     //Check if method called with right number of arguments
@@ -321,6 +392,35 @@ NAN_METHOD(NJSEthereumLikeTransaction::getDate) {
     //Wrap result in node object
     auto date_arg_0 = chrono::duration_cast<chrono::milliseconds>(result.time_since_epoch()).count();
     auto arg_0 = Nan::New<Date>(date_arg_0).ToLocalChecked();
+
+    //Return result
+    info.GetReturnValue().Set(arg_0);
+}
+NAN_METHOD(NJSEthereumLikeTransaction::getBlock) {
+
+    //Check if method called with right number of arguments
+    if(info.Length() != 0)
+    {
+        return Nan::ThrowError("NJSEthereumLikeTransaction::getBlock needs 0 arguments");
+    }
+
+    //Check if parameters have correct types
+
+    //Unwrap current object and retrieve its Cpp Implementation
+    NJSEthereumLikeTransaction* obj = Nan::ObjectWrap::Unwrap<NJSEthereumLikeTransaction>(info.This());
+    auto cpp_impl = obj->getCppImpl();
+    if(!cpp_impl)
+    {
+        return Nan::ThrowError("NJSEthereumLikeTransaction::getBlock : implementation of EthereumLikeTransaction is not valid");
+    }
+
+    auto result = cpp_impl->getBlock();
+
+    //Wrap result in node object
+    auto arg_0_wrap = NJSEthereumLikeBlock::wrap(result);
+    auto arg_0 = Nan::ObjectWrap::Unwrap<NJSEthereumLikeBlock>(arg_0_wrap)->handle();
+
+
 
     //Return result
     info.GetReturnValue().Set(arg_0);
@@ -395,7 +495,10 @@ void NJSEthereumLikeTransaction::Initialize(Local<Object> target) {
     Nan::SetPrototypeMethod(func_template,"getValue", getValue);
     Nan::SetPrototypeMethod(func_template,"getData", getData);
     Nan::SetPrototypeMethod(func_template,"serialize", serialize);
+    Nan::SetPrototypeMethod(func_template,"setSignature", setSignature);
+    Nan::SetPrototypeMethod(func_template,"setDERSignature", setDERSignature);
     Nan::SetPrototypeMethod(func_template,"getDate", getDate);
+    Nan::SetPrototypeMethod(func_template,"getBlock", getBlock);
     //Set object prototype
     EthereumLikeTransaction_prototype.Reset(objectTemplate);
     Nan::SetPrototypeMethod(func_template,"isNull", isNull);

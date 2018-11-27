@@ -113,23 +113,31 @@ void NJSCurrencyCallback::onCallback(const std::experimental::optional<Currency>
             auto arg_0_tmp_7_tmp_2 = Nan::New<String>(arg_0_tmp_7_optional.MessagePrefix).ToLocalChecked();
             Nan::DefineOwnProperty(arg_0_tmp_7_tmp, Nan::New<String>("MessagePrefix").ToLocalChecked(), arg_0_tmp_7_tmp_2);
             Local<Array> arg_0_tmp_7_tmp_3 = Nan::New<Array>();
-            for(size_t arg_0_tmp_7_tmp_3_id = 0; arg_0_tmp_7_tmp_3_id < arg_0_tmp_7_optional.XPUBVersion.size(); arg_0_tmp_7_tmp_3_id++)
+            for(size_t arg_0_tmp_7_tmp_3_id = 0; arg_0_tmp_7_tmp_3_id < arg_0_tmp_7_optional.ChainID.size(); arg_0_tmp_7_tmp_3_id++)
             {
-                auto arg_0_tmp_7_tmp_3_elem = Nan::New<Uint32>(arg_0_tmp_7_optional.XPUBVersion[arg_0_tmp_7_tmp_3_id]);
+                auto arg_0_tmp_7_tmp_3_elem = Nan::New<Uint32>(arg_0_tmp_7_optional.ChainID[arg_0_tmp_7_tmp_3_id]);
                 arg_0_tmp_7_tmp_3->Set((int)arg_0_tmp_7_tmp_3_id,arg_0_tmp_7_tmp_3_elem);
             }
 
-            Nan::DefineOwnProperty(arg_0_tmp_7_tmp, Nan::New<String>("XPUBVersion").ToLocalChecked(), arg_0_tmp_7_tmp_3);
+            Nan::DefineOwnProperty(arg_0_tmp_7_tmp, Nan::New<String>("ChainID").ToLocalChecked(), arg_0_tmp_7_tmp_3);
             Local<Array> arg_0_tmp_7_tmp_4 = Nan::New<Array>();
-            for(size_t arg_0_tmp_7_tmp_4_id = 0; arg_0_tmp_7_tmp_4_id < arg_0_tmp_7_optional.AdditionalEIPs.size(); arg_0_tmp_7_tmp_4_id++)
+            for(size_t arg_0_tmp_7_tmp_4_id = 0; arg_0_tmp_7_tmp_4_id < arg_0_tmp_7_optional.XPUBVersion.size(); arg_0_tmp_7_tmp_4_id++)
             {
-                auto arg_0_tmp_7_tmp_4_elem = Nan::New<String>(arg_0_tmp_7_optional.AdditionalEIPs[arg_0_tmp_7_tmp_4_id]).ToLocalChecked();
+                auto arg_0_tmp_7_tmp_4_elem = Nan::New<Uint32>(arg_0_tmp_7_optional.XPUBVersion[arg_0_tmp_7_tmp_4_id]);
                 arg_0_tmp_7_tmp_4->Set((int)arg_0_tmp_7_tmp_4_id,arg_0_tmp_7_tmp_4_elem);
             }
 
-            Nan::DefineOwnProperty(arg_0_tmp_7_tmp, Nan::New<String>("AdditionalEIPs").ToLocalChecked(), arg_0_tmp_7_tmp_4);
-            auto arg_0_tmp_7_tmp_5 = Nan::New<Number>(arg_0_tmp_7_optional.TimestampDelay);
-            Nan::DefineOwnProperty(arg_0_tmp_7_tmp, Nan::New<String>("TimestampDelay").ToLocalChecked(), arg_0_tmp_7_tmp_5);
+            Nan::DefineOwnProperty(arg_0_tmp_7_tmp, Nan::New<String>("XPUBVersion").ToLocalChecked(), arg_0_tmp_7_tmp_4);
+            Local<Array> arg_0_tmp_7_tmp_5 = Nan::New<Array>();
+            for(size_t arg_0_tmp_7_tmp_5_id = 0; arg_0_tmp_7_tmp_5_id < arg_0_tmp_7_optional.AdditionalEIPs.size(); arg_0_tmp_7_tmp_5_id++)
+            {
+                auto arg_0_tmp_7_tmp_5_elem = Nan::New<String>(arg_0_tmp_7_optional.AdditionalEIPs[arg_0_tmp_7_tmp_5_id]).ToLocalChecked();
+                arg_0_tmp_7_tmp_5->Set((int)arg_0_tmp_7_tmp_5_id,arg_0_tmp_7_tmp_5_elem);
+            }
+
+            Nan::DefineOwnProperty(arg_0_tmp_7_tmp, Nan::New<String>("AdditionalEIPs").ToLocalChecked(), arg_0_tmp_7_tmp_5);
+            auto arg_0_tmp_7_tmp_6 = Nan::New<Number>(arg_0_tmp_7_optional.TimestampDelay);
+            Nan::DefineOwnProperty(arg_0_tmp_7_tmp, Nan::New<String>("TimestampDelay").ToLocalChecked(), arg_0_tmp_7_tmp_6);
 
             arg_0_tmp_7 = arg_0_tmp_7_tmp;
         }

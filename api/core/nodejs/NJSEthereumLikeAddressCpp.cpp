@@ -98,23 +98,31 @@ NAN_METHOD(NJSEthereumLikeAddress::getNetworkParameters) {
     auto arg_0_2 = Nan::New<String>(result.MessagePrefix).ToLocalChecked();
     Nan::DefineOwnProperty(arg_0, Nan::New<String>("MessagePrefix").ToLocalChecked(), arg_0_2);
     Local<Array> arg_0_3 = Nan::New<Array>();
-    for(size_t arg_0_3_id = 0; arg_0_3_id < result.XPUBVersion.size(); arg_0_3_id++)
+    for(size_t arg_0_3_id = 0; arg_0_3_id < result.ChainID.size(); arg_0_3_id++)
     {
-        auto arg_0_3_elem = Nan::New<Uint32>(result.XPUBVersion[arg_0_3_id]);
+        auto arg_0_3_elem = Nan::New<Uint32>(result.ChainID[arg_0_3_id]);
         arg_0_3->Set((int)arg_0_3_id,arg_0_3_elem);
     }
 
-    Nan::DefineOwnProperty(arg_0, Nan::New<String>("XPUBVersion").ToLocalChecked(), arg_0_3);
+    Nan::DefineOwnProperty(arg_0, Nan::New<String>("ChainID").ToLocalChecked(), arg_0_3);
     Local<Array> arg_0_4 = Nan::New<Array>();
-    for(size_t arg_0_4_id = 0; arg_0_4_id < result.AdditionalEIPs.size(); arg_0_4_id++)
+    for(size_t arg_0_4_id = 0; arg_0_4_id < result.XPUBVersion.size(); arg_0_4_id++)
     {
-        auto arg_0_4_elem = Nan::New<String>(result.AdditionalEIPs[arg_0_4_id]).ToLocalChecked();
+        auto arg_0_4_elem = Nan::New<Uint32>(result.XPUBVersion[arg_0_4_id]);
         arg_0_4->Set((int)arg_0_4_id,arg_0_4_elem);
     }
 
-    Nan::DefineOwnProperty(arg_0, Nan::New<String>("AdditionalEIPs").ToLocalChecked(), arg_0_4);
-    auto arg_0_5 = Nan::New<Number>(result.TimestampDelay);
-    Nan::DefineOwnProperty(arg_0, Nan::New<String>("TimestampDelay").ToLocalChecked(), arg_0_5);
+    Nan::DefineOwnProperty(arg_0, Nan::New<String>("XPUBVersion").ToLocalChecked(), arg_0_4);
+    Local<Array> arg_0_5 = Nan::New<Array>();
+    for(size_t arg_0_5_id = 0; arg_0_5_id < result.AdditionalEIPs.size(); arg_0_5_id++)
+    {
+        auto arg_0_5_elem = Nan::New<String>(result.AdditionalEIPs[arg_0_5_id]).ToLocalChecked();
+        arg_0_5->Set((int)arg_0_5_id,arg_0_5_elem);
+    }
+
+    Nan::DefineOwnProperty(arg_0, Nan::New<String>("AdditionalEIPs").ToLocalChecked(), arg_0_5);
+    auto arg_0_6 = Nan::New<Number>(result.TimestampDelay);
+    Nan::DefineOwnProperty(arg_0, Nan::New<String>("TimestampDelay").ToLocalChecked(), arg_0_6);
 
 
     //Return result

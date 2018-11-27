@@ -1320,11 +1320,16 @@ declare class NJSEthereumLikeTransaction
     declare function getData(): ?Object;
     /** Serialize the transaction to its raw format. */
     declare function serialize(): Object;
+    /** Set signature of transaction, when a signature is set serialize method gives back serialized Tx */
+    declare function setSignature(rSignature: Object, sSignature: Object);
+    declare function setDERSignature(signature: Object);
     /**
      * Get the time when the transaction was issued or the time of the block including
      * this transaction
      */
     declare function getDate(): Date;
+    /** Get block to which transaction belongs (was mined in) */
+    declare function getBlock(): ?NJSEthereumLikeBlock;
 }
 /**Class representing a Ethereum Operation */
 declare class NJSEthereumLikeOperation

@@ -8,6 +8,7 @@
 #include "../../../core/src/api/../utils/optional.hpp"
 #include "NJSAmountCpp.hpp"
 #include "NJSEthereumLikeAddressCpp.hpp"
+#include "NJSEthereumLikeBlockCpp.hpp"
 #include <chrono>
 #include <cstdint>
 #include <memory>
@@ -65,11 +66,19 @@ private:
     /** Serialize the transaction to its raw format. */
     static NAN_METHOD(serialize);
 
+    /** Set signature of transaction, when a signature is set serialize method gives back serialized Tx */
+    static NAN_METHOD(setSignature);
+
+    static NAN_METHOD(setDERSignature);
+
     /**
      * Get the time when the transaction was issued or the time of the block including
      * this transaction
      */
     static NAN_METHOD(getDate);
+
+    /** Get block to which transaction belongs (was mined in) */
+    static NAN_METHOD(getBlock);
 
     static NAN_METHOD(New);
 
