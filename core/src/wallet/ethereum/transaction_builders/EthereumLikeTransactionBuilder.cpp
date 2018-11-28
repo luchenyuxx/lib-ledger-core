@@ -151,5 +151,10 @@ namespace ledger {
             return tx;
         }
 
+        std::shared_ptr<api::EthereumLikeTransaction>
+        api::EthereumLikeTransactionBuilder::parseRawUnsignedTransaction(const api::Currency & currency,
+                                                                    const std::vector<uint8_t> & rawTransaction) {
+          return ledger::core::EthereumLikeTransactionBuilder::parseRawUnsignedTransaction(currency, rawTransaction);
+        }
     }
 }
